@@ -309,11 +309,14 @@ export function ChatDrawer({
         <div
           style={{
             maxWidth: "85%",
-            borderRadius: isUser ? "14px 14px 2px 14px" : "14px 14px 14px 2px",
-            padding: "12px 16px", fontSize: 13, lineHeight: 1.55,
+            borderRadius: isUser ? "16px 16px 4px 16px" : "16px 16px 16px 4px",
+            padding: "13px 18px", fontSize: 13.5, lineHeight: 1.6,
             background: isUser ? "var(--land-accent)" : "var(--land-bg-2)",
             color: isUser ? "#ffffff" : "var(--land-ink)",
             border: isUser ? "none" : "1px solid var(--land-rule)",
+            boxShadow: isUser 
+              ? "0 3px 12px rgba(217, 119, 54, 0.22)" 
+              : "0 2px 10px rgba(0, 0, 0, 0.04)",
           }}
         >
           {/* Action execution tag */}
@@ -377,14 +380,14 @@ export function ChatDrawer({
               display: "flex", alignItems: "center", justifyContent: "space-between",
               fontSize: 11, color: "var(--land-ink-3)",
             }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
                 {onSpeak && (msg.speechText || msg.content) && (
                   <button
                     onClick={() => onSpeak(msg.speechText || msg.content)}
                     style={{
-                      display: "inline-flex", alignItems: "center", gap: 4,
+                      display: "inline-flex", alignItems: "center", gap: 5,
                       background: "none", border: "none", color: "var(--land-accent)",
-                      cursor: "pointer", padding: 0, fontSize: 11, fontFamily: "var(--land-sans)",
+                      cursor: "pointer", padding: "2px 4px", fontSize: 11.5, fontWeight: 500, fontFamily: "var(--land-sans)",
                     }}
                     title="Replay Voice"
                   >
@@ -394,9 +397,9 @@ export function ChatDrawer({
                 <button
                   onClick={() => handleCopy(msg.content, index)}
                   style={{
-                    display: "inline-flex", alignItems: "center", gap: 4,
-                    background: "none", border: "none", color: "var(--land-ink-3)",
-                    cursor: "pointer", padding: 0, fontSize: 11, fontFamily: "var(--land-sans)",
+                    display: "inline-flex", alignItems: "center", gap: 5,
+                    background: "none", border: "none", color: "var(--land-ink-2)",
+                    cursor: "pointer", padding: "2px 4px", fontSize: 11.5, fontWeight: 500, fontFamily: "var(--land-sans)",
                   }}
                   title="Copy message"
                 >
@@ -411,10 +414,10 @@ export function ChatDrawer({
                   <button
                     onClick={() => handleToggleBookmark(msgId)}
                     style={{
-                      display: "inline-flex", alignItems: "center", gap: 4,
+                      display: "inline-flex", alignItems: "center", gap: 5,
                       background: "none", border: "none",
-                      color: isBookmarked ? "var(--land-accent)" : "var(--land-ink-3)",
-                      cursor: "pointer", padding: 0, fontSize: 11, fontFamily: "var(--land-sans)",
+                      color: isBookmarked ? "var(--land-accent)" : "var(--land-ink-2)",
+                      cursor: "pointer", padding: "2px 4px", fontSize: 11.5, fontWeight: 500, fontFamily: "var(--land-sans)",
                     }}
                     title={isBookmarked ? "Remove bookmark" : "Bookmark this"}
                   >
@@ -423,7 +426,7 @@ export function ChatDrawer({
                   </button>
                 )}
               </div>
-              <span style={{ fontFamily: "monospace", fontSize: 10 }}>{timeLabel}</span>
+              <span style={{ fontFamily: "monospace", fontSize: 10.5, color: "var(--land-ink-3)", fontWeight: 500 }}>{timeLabel}</span>
             </div>
           )}
 
@@ -851,22 +854,25 @@ export function ChatDrawer({
               placeholder={isBusy ? `${assistantName} is responding...` : `Message ${assistantName}...`}
               disabled={isBusy}
               style={{
-                flex: 1, background: "var(--land-bg)", border: "1px solid var(--land-rule)",
-                borderRadius: 8, padding: "10px 14px", fontSize: 13,
+                flex: 1, background: "var(--land-bg)", border: "1.5px solid var(--land-rule)",
+                borderRadius: 10, padding: "11px 16px", fontSize: 13.5,
                 color: "var(--land-ink)", outline: "none", fontFamily: "var(--land-sans)",
+                boxShadow: "inset 0 1px 2px rgba(0,0,0,0.05)",
+                transition: "border-color 0.15s, box-shadow 0.15s",
               }}
             />
             <button
               type="submit"
               disabled={!inputVal.trim() || isBusy}
               style={{
-                width: 38, height: 38, borderRadius: 8,
+                width: 40, height: 40, borderRadius: 10,
                 background: inputVal.trim() && !isBusy ? "var(--land-accent)" : "var(--land-bg)",
                 color: inputVal.trim() && !isBusy ? "#fff" : "var(--land-ink-3)",
                 border: "1px solid var(--land-rule)", display: "flex",
                 alignItems: "center", justifyContent: "center",
                 cursor: !inputVal.trim() || isBusy ? "not-allowed" : "pointer",
-                opacity: !inputVal.trim() || isBusy ? 0.4 : 1, flexShrink: 0,
+                opacity: !inputVal.trim() || isBusy ? 0.45 : 1, flexShrink: 0,
+                transition: "all 0.15s ease",
               }}
               title="Send" aria-label="Send"
             >

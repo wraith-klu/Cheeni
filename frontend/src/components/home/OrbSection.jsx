@@ -2,6 +2,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import defaultAvatar from "../../assets/image1.jpg";
 import AudioWave from "../AudioWave";
+import MarkdownRenderer from "../MarkdownRenderer";
 
 /*
  * Central avatar + state display for the agent dashboard.
@@ -242,19 +243,28 @@ export function OrbSection({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             style={{
-              marginTop: 8, maxWidth: 480, width: "100%",
+              marginTop: 10, maxWidth: 520, width: "100%",
               background: "var(--land-bg-2)", border: "1px solid var(--land-rule)",
-              borderLeft: "3px solid #5B4FBE",
-              borderRadius: 10, padding: "12px 16px",
-              fontFamily: "var(--land-sans)", fontSize: 14, lineHeight: 1.65, color: "var(--land-ink-2)",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
+              borderLeft: "3px solid var(--land-accent)",
+              borderRadius: 12, padding: "14px 18px",
+              fontFamily: "var(--land-sans)", fontSize: 13.5, lineHeight: 1.6, color: "var(--land-ink)",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.06)",
+              textAlign: "left",
             }}
           >
-            <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#5B4FBE", display: "block", marginBottom: 4 }}>
-              Responding
-            </span>
-            {streamingText || "▍"}
-            <span style={{ opacity: isStreaming ? 1 : 0 }}>▍</span>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
+              <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--land-accent)" }}>
+                Responding
+              </span>
+              <span style={{ fontSize: 10, color: "var(--land-ink-3)", fontFamily: "monospace" }}>
+                Live Stream
+              </span>
+            </div>
+            {streamingText ? (
+              <MarkdownRenderer content={streamingText} />
+            ) : (
+              <span style={{ color: "var(--land-ink-3)", fontSize: 13 }}>Thinking...</span>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

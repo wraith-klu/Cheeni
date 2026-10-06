@@ -410,29 +410,39 @@ export const askAssistantStream = async (req, res) => {
     };
 
     let streamErrorOccurred = false;
-    try {
-      accumulatedText = await streamCheeniReply({
-        prompt: cleanedText,
-        assistantName,
-        userName,
-        userPreferences,
-        history: recentContext,
-        onChunk,
-      });
-    } catch (streamErr) {
-      console.error("[Cheeni:stream] Call-2 (stream) failed:", streamErr.message);
-      streamErrorOccurred = true;
 
-      // If chunks were already delivered to the client, notify frontend with an error event
-      if (accumulatedText && accumulatedText.trim().length > 0) {
-        sseWrite({
-          type: "error",
-          message: "Stream connection interrupted. Partial response preserved.",
-          partialText: accumulatedText,
+    // If an action was identified and handled (e.g. YouTube play, open app, battery check),
+    // stream the clean authoritative confirmation from Call 1 instead of re-prompting
+    // an unconstrained LLM that might contradict the tool and say "I can't play music".
+    if (structuredAction) {
+      const actionText = (aiResult?.textResponse || `### ${structuredAction.label || structuredAction.type}\n\n${assistantSpeech}`).trim();
+      accumulatedText = actionText;
+      onChunk(actionText);
+    } else {
+      try {
+        accumulatedText = await streamCheeniReply({
+          prompt: cleanedText,
+          assistantName,
+          userName,
+          userPreferences,
+          history: recentContext,
+          onChunk,
         });
-      } else {
-        // No chunks sent yet — fallback to speechText
-        accumulatedText = assistantSpeech;
+      } catch (streamErr) {
+        console.error("[Cheeni:stream] Call-2 (stream) failed:", streamErr.message);
+        streamErrorOccurred = true;
+
+        // If chunks were already delivered to the client, notify frontend with an error event
+        if (accumulatedText && accumulatedText.trim().length > 0) {
+          sseWrite({
+            type: "error",
+            message: "Stream connection interrupted. Partial response preserved.",
+            partialText: accumulatedText,
+          });
+        } else {
+          // No chunks sent yet — fallback to speechText
+          accumulatedText = assistantSpeech;
+        }
       }
     }
 

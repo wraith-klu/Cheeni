@@ -63,7 +63,7 @@ export function MarkdownRenderer({ content = "" }) {
           href={linkMatch[2]}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-cyan-400 hover:text-cyan-300 underline font-medium"
+          className="text-[var(--land-accent)] hover:underline font-semibold"
         >
           {linkMatch[1]}
         </a>
@@ -86,7 +86,7 @@ export function MarkdownRenderer({ content = "" }) {
         return (
           <code
             key={i}
-            className="px-1.5 py-0.5 rounded bg-black/40 text-cyan-300 font-mono text-xs border border-cyan-500/20"
+            className="px-1.5 py-0.5 rounded bg-[var(--land-bg)] text-cyan-600 dark:text-cyan-300 font-mono text-xs border border-[var(--land-rule)]"
           >
             {tok.slice(1, -1)}
           </code>
@@ -94,14 +94,14 @@ export function MarkdownRenderer({ content = "" }) {
       }
       if (tok.startsWith("**") && tok.endsWith("**")) {
         return (
-          <strong key={i} className="font-bold text-white">
+          <strong key={i} className="font-bold text-[var(--land-ink)]">
             {tok.slice(2, -2)}
           </strong>
         );
       }
       if (tok.startsWith("*") && tok.endsWith("*")) {
         return (
-          <em key={i} className="italic text-gray-200">
+          <em key={i} className="italic text-[var(--land-ink-2)]">
             {tok.slice(1, -1)}
           </em>
         );
@@ -119,9 +119,9 @@ export function MarkdownRenderer({ content = "" }) {
     const flushList = () => {
       if (currentList.length > 0) {
         elements.push(
-          <ul key={`ul-${elements.length}`} className="list-disc list-inside space-y-1 my-2 text-gray-300">
+          <ul key={`ul-${elements.length}`} className="list-disc list-inside space-y-1.5 my-2 text-[var(--land-ink-2)]">
             {currentList.map((item, idx) => (
-              <li key={idx} className="leading-relaxed">
+              <li key={idx} className="leading-relaxed text-[var(--land-ink)]">
                 {formatInline(item)}
               </li>
             ))}
@@ -143,21 +143,21 @@ export function MarkdownRenderer({ content = "" }) {
       if (trimmed.startsWith("### ")) {
         flushList();
         elements.push(
-          <h3 key={lineIdx} className="text-base sm:text-lg font-bold text-cyan-300 mt-4 mb-2">
+          <h3 key={lineIdx} className="text-base font-bold text-[var(--land-accent)] mt-3.5 mb-1.5">
             {formatInline(trimmed.slice(4))}
           </h3>
         );
       } else if (trimmed.startsWith("## ")) {
         flushList();
         elements.push(
-          <h2 key={lineIdx} className="text-lg sm:text-xl font-bold text-white mt-4 mb-2">
+          <h2 key={lineIdx} className="text-lg font-bold text-[var(--land-ink)] mt-4 mb-2">
             {formatInline(trimmed.slice(3))}
           </h2>
         );
       } else if (trimmed.startsWith("# ")) {
         flushList();
         elements.push(
-          <h1 key={lineIdx} className="text-xl sm:text-2xl font-bold text-white mt-4 mb-2">
+          <h1 key={lineIdx} className="text-xl font-bold text-[var(--land-ink)] mt-4 mb-2">
             {formatInline(trimmed.slice(2))}
           </h1>
         );
@@ -167,7 +167,7 @@ export function MarkdownRenderer({ content = "" }) {
         elements.push(
           <blockquote
             key={lineIdx}
-            className="border-l-4 border-cyan-400 pl-3 py-1 my-2 bg-cyan-950/20 text-cyan-200 italic rounded-r text-sm"
+            className="border-l-4 border-[var(--land-accent)] pl-3 py-1.5 my-2 bg-[var(--land-accent-light)] text-[var(--land-ink)] italic rounded-r text-sm"
           >
             {formatInline(trimmed.slice(2))}
           </blockquote>
@@ -182,7 +182,7 @@ export function MarkdownRenderer({ content = "" }) {
         // Paragraph
         flushList();
         elements.push(
-          <p key={lineIdx} className="my-1.5 leading-relaxed text-gray-200 text-sm">
+          <p key={lineIdx} className="my-1.5 leading-relaxed text-[var(--land-ink)] text-sm">
             {formatInline(line)}
           </p>
         );
