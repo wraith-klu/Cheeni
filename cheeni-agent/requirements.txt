@@ -1,0 +1,23 @@
+# Cheeni Desktop Agent - Requirements
+# Windows Assistant OS Layer (V1 - V5 Architecture)
+
+# API & WebSocket Bridge
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.6.0
+python-dotenv>=1.0.0
+requests>=2.31.0
+
+# System Control & Hardware Telemetry (V3)
+psutil>=5.9.8
+pyautogui>=0.9.54
+pycaw>=20240210
+comtypes>=1.4.1
+
+# Document Intelligence & Filesystem (V4)
+pypdf2>=3.0.1
+python-docx>=1.1.0
+
+# Web Intelligence & Scraping (V5)
+beautifulsoup4>=4.12.3
+duckduckgo-search>=5.0.0

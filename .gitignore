@@ -1,0 +1,18 @@
+# Environment variables & API keys
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+cheeni-agent/__pycache__/
+*.pyc
+
+# Local logs & data
+*.log
+dist/
+build/
+.vscode/
+.idea/
