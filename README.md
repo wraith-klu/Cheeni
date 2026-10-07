@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🍯 CHEENI (Sam Desktop Agent)
+# 🍯 CHEENI
 
 ### Autonomous AI Desktop Agent & 2-Way Hands-Free Voice Assistant
 
@@ -11,9 +11,9 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)](https://microsoft.com/windows)
 
-**Cheeni** is an intelligent, privacy-first desktop assistant engineered for Windows. Powered by multi-LLM orchestration, real-time wake word detection, hands-free 2-way continuous conversation, native system automation, and a glassmorphism dashboard.
+**Cheeni** is an intelligent, privacy-first desktop assistant engineered for Windows. Powered by multi-LLM orchestration, real-time configurable wake word detection, hands-free 2-way continuous conversation, native system automation, and a glassmorphism dashboard.
 
-[Features](#-key-features) • [Voice Pipeline](#-hands-free-voice-pipeline) • [Architecture](#-architecture) • [Getting Started](#-getting-started) • [Voice Commands](#-voice-interaction--commands) • [Tech Stack](#-tech-stack)
+[Features](#-key-features) • [Voice Pipeline](#-hands-free-voice-pipeline) • [Architecture](#-architecture) • [Getting Started](#-getting-started) • [Voice Interaction](#-voice-interaction--commands) • [Tech Stack](#-tech-stack)
 
 ---
 
@@ -24,8 +24,8 @@
 | Feature | Description |
 |---|---|
 | 🗣️ **2-Way Continuous Voice** | Hands-free Alexa/Siri-style conversation loop: Wake Word → Listen → Process → Speak → Follow-up loop. |
-| 👂 **Phonetic Wake Word Engine** | Background acoustic listening with 50+ phonetic variants for names like **"Sam"**, **"Cheeni"**, **"Khushi"**, and configurable aliases. |
-| 🧠 **Multi-LLM Intelligence** | Seamless fallback chain: OpenRouter (Direct LLM) → Local Python Command Router → Node.js Multi-Provider AI (Gemini, Mistral, Groq, Cohere, DeepSeek). |
+| 👂 **Configurable Wake Word Engine** | Background acoustic listening with automatic phonetic expansion. Name your agent anything (e.g., *Cheeni*, *Sam*, *Jarvis*, *Khushi*, etc.) via `AGENT_NAME`. |
+| 🧠 **Multi-LLM Intelligence** | Seamless fallback chain: OpenRouter (Direct Fast LLM) → Local Python Command Router → Node.js Multi-Provider AI (Gemini, Mistral, Groq, Cohere, DeepSeek). |
 | 🛡️ **Execution Security Guard** | 3-tier action security classifier (`SAFE`, `RISKY`, `BLOCKED`) protecting against dangerous shell commands and file destruction. |
 | 🖥️ **Native System Control** | Application launching & closing, window tiling/minimizing/focusing, master audio control & muting, system telemetry (CPU, RAM, Battery). |
 | 🌐 **Live Web Intelligence** | DuckDuckGo search integration, web page content extraction, summarization, and live browsing. |
@@ -41,7 +41,7 @@ Cheeni implements an autonomous, non-blocking 2-way conversational state machine
 ```mermaid
 stateDiagram-v2
     [*] --> IDLE
-    IDLE --> ACTIVATED: Wake Word Detected ("Hey Sam", etc.)
+    IDLE --> ACTIVATED: Custom Wake Word ("Hey Cheeni", etc.)
     ACTIVATED --> LISTENING: Play chime / Mic engaged
     LISTENING --> PROCESSING: Speech captured via STT (WebRTC VAD)
     PROCESSING --> SPEAKING: Action executed / TTS Response ready
@@ -51,13 +51,13 @@ stateDiagram-v2
 ```
 
 ### Voice Components
-- **Wake Word Engine (`voice/wakeword.py`)**: Uses energy thresholding and fuzzy phonetic matching in background threads (`listen_in_background`), listening for configured keywords without hogging CPU.
-- **Speech-to-Text (`voice/listener.py`)**: WebRTC VAD voice activity detection combined with Google STT (tuned with `pause_threshold=0.6s` for conversational speed).
+- **Wake Word Engine (`voice/wakeword.py`)**: Uses energy thresholding and fuzzy phonetic matching in background threads (`listen_in_background`). Dynamically generates phonetic variations based on whatever `AGENT_NAME` you configure.
+- **Speech-to-Text (`voice/listener.py`)**: WebRTC VAD voice activity detection combined with Google STT (tuned with `pause_threshold=0.6s` for fast, natural conversation).
 - **Text-to-Speech (`voice/speaker.py`)**: High-performance, non-blocking `pyttsx3` native Windows speech synthesizer (Microsoft Zira / David) with thread-safe queue management.
 - **Session Manager (`voice/session.py`)**: Thread-safe state tracker emitting real-time WebSocket state broadcasts (`IDLE`, `ACTIVATED`, `LISTENING`, `PROCESSING`, `SPEAKING`).
 - **Sliding Memory (`voice/memory.py`)**: Tracks rolling multi-turn conversation context (default 10 turns) so follow-ups retain context.
 - **LLM Fallback Router (`voice/conversation.py`)**:
-  1. **Direct Fast LLM**: Queries OpenRouter (`inclusionai/ling-3.0-flash-sante:free` or user choice) for low latency.
+  1. **Direct Fast LLM**: Queries OpenRouter for low-latency conversational responses.
   2. **Local Tool Router**: Matches system tasks directly (volume, apps, windows, stats).
   3. **Backend Fallback**: Delegates complex tasks to the Node.js assistant orchestrator.
 
@@ -163,7 +163,10 @@ MISTRAL_API_KEY=your_mistral_api_key
 #### **Python Agent** (`cheeni-agent/.env`):
 ```env
 PORT=2026
-AGENT_NAME=Sam
+
+# Give your agent whatever custom name you want! (e.g., Cheeni, Jarvis, Sam, Khushi, etc.)
+AGENT_NAME=Cheeni
+
 BACKEND_URL=http://localhost:5000
 OPENROUTER_API_KEY=your_openrouter_api_key
 OPENROUTER_MODEL=inclusionai/ling-3.0-flash-sante:free
@@ -209,11 +212,9 @@ Visit **http://localhost:5173** to view the live dashboard.
 
 ## 🗣️ Voice Interaction & Commands
 
-### Wake Word
-Simply speak naturally into your microphone:
-- *"Hey Sam"* / *"Hi Sam"* / *"Okay Sam"*
-- Supported phonetics: `Sam`, `Sem`, `Saem`, `Shyam`, `Khushi`, `Cheeni`
-- *(Configurable via `AGENT_NAME` in `.env`)*
+### Custom Wake Word
+You can customize the agent name by setting `AGENT_NAME` in `cheeni-agent/.env` to whatever you prefer (e.g. `Cheeni`, `Jarvis`, `Sam`, `Friday`). The engine automatically builds phonetic match lists and natural prefix variants:
+- *"Hey {AgentName}"* / *"Hi {AgentName}"* / *"Okay {AgentName}"* / *"Wake up {AgentName}"* / *"Suno {AgentName}"*
 
 ### Example Natural Language Commands
 - **App Management**:
@@ -233,7 +234,7 @@ Simply speak naturally into your microphone:
   - *"Read the file notes.txt on my desktop"*
   - *"Summarize report.pdf in Documents"*
 - **Conversation Termination**:
-  - *"Goodbye"*, *"Bye Sam"*, *"Stop listening"*, *"Sleep"*
+  - *"Goodbye"*, *"Bye"*, *"Stop listening"*, *"Sleep"*
 
 ---
 
