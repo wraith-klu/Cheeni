@@ -315,6 +315,6 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 <div align="center">
 
-Built with ❤️ by **[Naitik](https://github.com/wraith-klu)**
+Built with ❤️ by **[Wraith](https://github.com/wraith-klu)**
 
 </div>
