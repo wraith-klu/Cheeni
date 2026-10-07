@@ -1,355 +1,319 @@
-﻿# 🌸 Cheeni AI — Voice-First Agentic Desktop Assistant
-
 <div align="center">
 
-![Cheeni AI Demo](./docs/demo.svg)
+# 🍯 CHEENI (Sam Desktop Agent)
 
-[![Node.js](https://img.shields.io/badge/Node.js-v18+-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org)
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://python.org)
-[![React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=black)](https://react.dev)
-[![Vite](https://img.shields.io/badge/Vite-7.2+-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
-[![Gemini](https://img.shields.io/badge/Gemini-2.0_Flash-4285F4?logo=google&logoColor=white)](https://ai.google.dev)
-[![Tests](https://img.shields.io/badge/Tests-21_passing-6EBF2E?logo=vitest&logoColor=white)](https://vitest.dev)
-[![License](https://img.shields.io/badge/License-ISC-blue.svg)](LICENSE)
+### Autonomous AI Desktop Agent & 2-Way Hands-Free Voice Assistant
 
-**Cheeni** is a voice-first, agentic AI desktop companion that actually controls your laptop — opens apps, plays YouTube videos, checks battery, and answers any question — with a warm, witty personality powered by Google Gemini native function calling.
+[![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)](https://microsoft.com/windows)
 
-[Features](#-features) • [Architecture](#-system-architecture) • [AI Pipeline](#-4-stage-ai-pipeline) • [Quick Start](#-quick-start) • [Testing](#-testing) • [Voice Commands](#-supported-voice-commands)
+**Cheeni** is an intelligent, privacy-first desktop assistant engineered for Windows. Powered by multi-LLM orchestration, real-time wake word detection, hands-free 2-way continuous conversation, native system automation, and a glassmorphism dashboard.
+
+[Features](#-key-features) • [Voice Pipeline](#-hands-free-voice-pipeline) • [Architecture](#-architecture) • [Getting Started](#-getting-started) • [Voice Commands](#-voice-interaction--commands) • [Tech Stack](#-tech-stack)
+
+---
 
 </div>
 
----
+## 🌟 Key Features
 
-## ✨ Features
-
-| Category | Capability |
+| Feature | Description |
 |---|---|
-| 🎙️ **Voice-First** | High-fidelity speech recognition, silence detection, live transcription, sweet TTS voice |
-| ⚡ **OS Control** | Opens apps, plays YouTube, adjusts volume, snaps windows, checks battery — all automatically |
-| 🧠 **AI Intelligence** | 4-stage hybrid pipeline: Pre-flight rules → Gemini Function Calling → OpenRouter → Offline |
-| 👁️ **Screen Vision** | *"What's on my screen?"* — captures screenshot & analyzes with Gemini multimodal vision |
-| 🎓 **Interview Prep** | DSA/System Design flashcards, mock interview timer, topic roadmap tracker |
-| 🧠 **User Memory** | Remembers preferences: response style, target goal, languages, custom instructions |
-| 📁 **File Intelligence** | Search files, read documents, create/rename/move folders via voice |
-| 🌐 **Web Intelligence** | Scrape live content, fetch latest news, search the web on command |
-| 📊 **Analytics** | Weekly tool invocations, voice talk-time, topic frequency dashboards |
-| 🌓 **Themes** | Adaptive dark/light mode with system preference auto-detection |
+| 🗣️ **2-Way Continuous Voice** | Hands-free Alexa/Siri-style conversation loop: Wake Word → Listen → Process → Speak → Follow-up loop. |
+| 👂 **Phonetic Wake Word Engine** | Background acoustic listening with 50+ phonetic variants for names like **"Sam"**, **"Cheeni"**, **"Khushi"**, and configurable aliases. |
+| 🧠 **Multi-LLM Intelligence** | Seamless fallback chain: OpenRouter (Direct LLM) → Local Python Command Router → Node.js Multi-Provider AI (Gemini, Mistral, Groq, Cohere, DeepSeek). |
+| 🛡️ **Execution Security Guard** | 3-tier action security classifier (`SAFE`, `RISKY`, `BLOCKED`) protecting against dangerous shell commands and file destruction. |
+| 🖥️ **Native System Control** | Application launching & closing, window tiling/minimizing/focusing, master audio control & muting, system telemetry (CPU, RAM, Battery). |
+| 🌐 **Live Web Intelligence** | DuckDuckGo search integration, web page content extraction, summarization, and live browsing. |
+| 📁 **File & Document Reader** | File search, directory exploration, and automated parsing for `.txt`, `.pdf`, and `.docx` documents. |
+| ⚡ **Real-time Glassmorphism UI** | React 19 + Vite dashboard featuring WebSocket telemetry, live audio visualizer, conversation transcript, quick action triggers, and dark mode. |
 
 ---
 
-## 🏗️ System Architecture
+## 🎙️ Hands-Free Voice Pipeline
+
+Cheeni implements an autonomous, non-blocking 2-way conversational state machine that runs locally on Windows:
 
 ```mermaid
-graph TD
-    subgraph Frontend["Frontend — React 19 + Vite 7 (Port 5173)"]
-        UI["🎯 Voice Dashboard & Orb Interface"]
-        SpeechHooks["useSpeechRecognition / useSpeechSynthesis"]
-        ActionRunner["Agentic Action Runner"]
-        PrepMode["Interview Prep Mode (Cards · Timer · Roadmap)"]
-        ChatDrawer["Chat History Drawer"]
+stateDiagram-v2
+    [*] --> IDLE
+    IDLE --> ACTIVATED: Wake Word Detected ("Hey Sam", etc.)
+    ACTIVATED --> LISTENING: Play chime / Mic engaged
+    LISTENING --> PROCESSING: Speech captured via STT (WebRTC VAD)
+    PROCESSING --> SPEAKING: Action executed / TTS Response ready
+    SPEAKING --> LISTENING: Mic re-opened for follow-up (45s window)
+    LISTENING --> IDLE: Silence timeout (45s) / Goodbye phrase
+    SPEAKING --> IDLE: User says "Goodbye" / "Stop"
+```
+
+### Voice Components
+- **Wake Word Engine (`voice/wakeword.py`)**: Uses energy thresholding and fuzzy phonetic matching in background threads (`listen_in_background`), listening for configured keywords without hogging CPU.
+- **Speech-to-Text (`voice/listener.py`)**: WebRTC VAD voice activity detection combined with Google STT (tuned with `pause_threshold=0.6s` for conversational speed).
+- **Text-to-Speech (`voice/speaker.py`)**: High-performance, non-blocking `pyttsx3` native Windows speech synthesizer (Microsoft Zira / David) with thread-safe queue management.
+- **Session Manager (`voice/session.py`)**: Thread-safe state tracker emitting real-time WebSocket state broadcasts (`IDLE`, `ACTIVATED`, `LISTENING`, `PROCESSING`, `SPEAKING`).
+- **Sliding Memory (`voice/memory.py`)**: Tracks rolling multi-turn conversation context (default 10 turns) so follow-ups retain context.
+- **LLM Fallback Router (`voice/conversation.py`)**:
+  1. **Direct Fast LLM**: Queries OpenRouter (`inclusionai/ling-3.0-flash-sante:free` or user choice) for low latency.
+  2. **Local Tool Router**: Matches system tasks directly (volume, apps, windows, stats).
+  3. **Backend Fallback**: Delegates complex tasks to the Node.js assistant orchestrator.
+
+---
+
+## 🏗️ Architecture
+
+```mermaid
+graph TB
+    subgraph Frontend ["Frontend (Port 5173)"]
+        UI[React 19 + Vite Dashboard]
+        WS_Client[WebSocket Telemetry Client]
     end
 
-    subgraph Backend["Node.js / Express Gateway (Port 2025)"]
-        AuthService["🔐 Auth — JWT + Refresh Token Rotation"]
-        RateLimit["express-rate-limit (per-user per-route)"]
-        AssistantEngine["🤖 4-Stage AI Orchestration Engine"]
-        ConvStore[("💬 Conversation Collection (MongoDB)")]
-        UserStore[("👤 User + Preferences (MongoDB)")]
-        Cloudinary["☁️ Cloudinary — Avatar Upload"]
+    subgraph NodeBackend ["Node.js Backend (Port 5000)"]
+        Server[Express Server]
+        AI_Orchestrator[Multi-LLM Orchestrator<br/>Gemini / Mistral / Groq]
+        DB[(MongoDB Conversation Store)]
     end
 
-    subgraph AIEngine["AI Pipeline (ai.service.js)"]
-        Preflight["Stage 1 · Pre-flight Rule Engine (0ms)"]
-        GeminiFn["Stage 2 · Gemini Native Function Calling (~400ms)"]
-        OpenRouter["Stage 3 · OpenRouter JSON Fallback (~2-3s)"]
-        Offline["Stage 4 · Emergency Offline Rules (0ms)"]
+    subgraph PythonAgent ["Cheeni Agent (Port 2026)"]
+        FastAPI[FastAPI Service + WebSocket]
+        
+        subgraph VoiceSubsystem ["Voice Pipeline"]
+            Wake[WakeWord Engine]
+            Listener[VAD & STT Listener]
+            Speaker[Native TTS Speaker]
+            Session[Session State Machine]
+            Memory[Sliding Context Memory]
+        end
+
+        subgraph ToolSubsystem ["Automation & Security"]
+            Router[Command Router]
+            Security[Security Classifier]
+            AppControl[App & Window Control]
+            VolControl[Audio & System Control]
+            WebIntel[Web & Search Intel]
+            FileControl[Filesystem & Docs]
+        end
     end
 
-    subgraph DesktopAgent["Python Desktop Agent — FastAPI (Port 2026)"]
-        Router["Central Command Router"]
-        WinCtrl["Win32 Window Snapping / Focus"]
-        SysTelemetry["psutil Battery & CPU Telemetry"]
-        VisionEngine["Screenshot + Gemini Vision"]
-        FileOps["File Search · Create · Rename · Move"]
-        WebScraper["Live Web Scraper & News Fetcher"]
-        Security["🔒 Security Classifier (BLOCKED · RISKY · SAFE)"]
-    end
-
-    subgraph Cloud["AI & Cloud Services"]
-        GeminiCloud["Google Gemini 2.0 Flash (Function Calling)"]
-        OpenRouterCloud["OpenRouter (DeepSeek · Laguna · free models)"]
-    end
-
-    UI --> SpeechHooks
-    SpeechHooks --> Backend
-    ActionRunner --> DesktopAgent
-    Backend --> AIEngine
-    Backend --> ConvStore
-    Backend --> UserStore
-    Backend --> Cloudinary
-    AIEngine --> GeminiCloud
-    AIEngine --> OpenRouterCloud
-    Backend <-->|Secure Loopback HTTP| Router
+    UI <-->|HTTP / WS| FastAPI
+    UI <-->|HTTP REST| Server
+    FastAPI <-->|REST API| Server
+    Wake --> Session
+    Session --> Listener
+    Listener --> Router
     Router --> Security
-    Router --> WinCtrl
-    Router --> SysTelemetry
-    Router --> VisionEngine
-    Router --> FileOps
-    Router --> WebScraper
-    VisionEngine --> GeminiCloud
+    Security --> AppControl
+    Security --> VolControl
+    Security --> WebIntel
+    Security --> FileControl
+    Router --> Speaker
 ```
 
 ---
 
-## 🧠 4-Stage AI Pipeline
-
-The heart of Cheeni — a resilient, zero-failure response chain that delivers instant actions while maintaining intelligent conversation.
-
-```mermaid
-flowchart TD
-    P([User Prompt]) --> S1
-
-    S1{"Stage 1\nPre-flight Rule Engine\n0ms"}
-    S1 -->|HIT — pattern matched| A1["Return immediately\nNo LLM cost, zero latency"]
-    S1 -->|MISS — conversational| S2
-
-    S2{"Stage 2\nGemini Native Function Calling\n~400ms"}
-    S2 -->|Tool called| A2["Execute action\nStructurally forced — can NEVER say I-cant"]
-    S2 -->|No tool| A2b["Natural Markdown reply"]
-    S2 -->|API overload| S3
-
-    S3{"Stage 3\nOpenRouter JSON Fallback\n~2-3s"}
-    S3 -->|DeepSeek / Laguna| A3["Parsed response\nXML toolcall leakage auto-stripped"]
-    S3 -->|All models exhausted| S4
-
-    S4{"Stage 4\nEmergency Offline Rules\n0ms"}
-    S4 --> A4["Rule-based response\nAlways works, zero dependencies"]
-```
-
-### Stage routing reference
-
-| Stage | Catches | Latency |
-|---|---|---|
-| **Pre-flight** | `play X on youtube`, `open notepad`, `check battery`, `watch X on youtube` | **0 ms** |
-| **Gemini FC** | `open dhanda newly wala song on youtube`, ambiguous/complex requests | **~400 ms** |
-| **OpenRouter** | When Gemini quota exhausted or overloaded | **~2–3 s** |
-| **Offline** | Zero internet / total connectivity failure | **0 ms** |
-
----
-
-## 🚀 Quick Start
+## 🚀 Getting Started
 
 ### Prerequisites
+- **OS**: Windows 10 or 11 (required for native Windows audio and window control APIs)
+- **Node.js**: v18.0 or higher
+- **Python**: 3.10+
+- **MongoDB**: Local or Atlas connection URI
 
-| Tool | Version |
-|---|---|
-| Windows | 10 / 11 (64-bit) |
-| Node.js | 18+ |
-| Python | 3.10+ |
-| MongoDB | Local `27017` or Atlas URI |
+### 1. Installation
 
-### 1-Click Launch
-
-```cmd
-start_cheeni.bat
-```
-
-Starts all three services and opens Cheeni in your browser:
-
-1. 🐍 Python Desktop Agent → `http://127.0.0.1:2026`
-2. ⚙️ Node.js Backend → `http://localhost:2025`
-3. ⚛️ Vite Frontend → `http://localhost:5173`
-
----
-
-### Manual Setup
-
-#### 1. Backend (Node.js / Express)
+Clone the repository and install all dependencies:
 
 ```bash
+git clone https://github.com/wraith-klu/Cheeni.git
+cd Cheeni
+
+# 1. Install Node.js Backend dependencies
 cd backend
 npm install
-cp .env.example .env
-npm run dev
-```
 
-**Required `.env` keys:**
+# 2. Install Frontend dependencies
+cd ../frontend
+npm install
 
-```env
-PORT=2025
-MONGO_URI=mongodb://localhost:27017/cheeni
-JWT_SECRET=your_super_secret_key
-GEMINI_API_KEY=your_gemini_key          # Primary — Gemini Function Calling
-OPENROUTER_API_KEY=your_openrouter_key  # Fallback — DeepSeek / Laguna
-ALLOWED_ORIGINS=http://localhost:5173   # CORS whitelist
-CLOUDINARY_CLOUD_NAME=...
-CLOUDINARY_API_KEY=...
-CLOUDINARY_API_SECRET=...
-```
-
-#### 2. Python Desktop Agent
-
-```bash
-cd cheeni-agent
+# 3. Setup Python Agent environment
+cd ../cheeni-agent
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
-python main.py
 ```
 
-#### 3. Frontend (React + Vite)
+### 2. Environment Configuration
+
+Create `.env` files in each project directory:
+
+#### **Node Backend** (`backend/.env`):
+```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/cheeni
+JWT_SECRET=your_jwt_secret_key
+GEMINI_API_KEY=your_gemini_api_key
+GROQ_API_KEY=your_groq_api_key
+MISTRAL_API_KEY=your_mistral_api_key
+```
+
+#### **Python Agent** (`cheeni-agent/.env`):
+```env
+PORT=2026
+AGENT_NAME=Sam
+BACKEND_URL=http://localhost:5000
+OPENROUTER_API_KEY=your_openrouter_api_key
+OPENROUTER_MODEL=inclusionai/ling-3.0-flash-sante:free
+CONVERSATION_MEMORY_TURNS=10
+AUTO_START_VOICE=true
+VOICE_RATE=185
+VOICE_VOLUME=1.0
+DEBUG=false
+```
+
+#### **Frontend** (`frontend/.env`):
+```env
+VITE_BACKEND_URL=http://localhost:5000
+VITE_AGENT_URL=http://localhost:2026
+VITE_AGENT_WS_URL=ws://localhost:2026/ws
+```
+
+### 3. Launching the Entire System
+
+Run the consolidated Windows batch script to launch all 3 microservices simultaneously:
 
 ```bash
-cd frontend
-npm install
-npm run dev
+# In the root directory:
+start_cheeni.bat
 ```
+
+Or run them individually in separate terminals:
+
+```bash
+# Terminal 1: Node.js Backend
+cd backend && npm run dev
+
+# Terminal 2: Cheeni Python Agent
+cd cheeni-agent && venv\Scripts\activate && uvicorn main:app --host 0.0.0.0 --port 2026 --reload
+
+# Terminal 3: Vite Frontend
+cd frontend && npm run dev
+```
+
+Visit **http://localhost:5173** to view the live dashboard.
 
 ---
 
-## 🧪 Testing
+## 🗣️ Voice Interaction & Commands
 
-**21 tests passing** across three layers.
+### Wake Word
+Simply speak naturally into your microphone:
+- *"Hey Sam"* / *"Hi Sam"* / *"Okay Sam"*
+- Supported phonetics: `Sam`, `Sem`, `Saem`, `Shyam`, `Khushi`, `Cheeni`
+- *(Configurable via `AGENT_NAME` in `.env`)*
 
-### Frontend Hook Tests (Vitest + Testing Library)
-
-Tests `useSpeechRecognition`, `useSpeechSynthesis`, voice cleaner, mute toggle:
-
-```bash
-cd frontend && npm run test
-# ✓ 12 tests passing
-```
-
-### Backend API Integration Tests (Supertest + Vitest)
-
-Tests auth flows, JWT, protected routes, agent proxy, rate limiting:
-
-```bash
-cd backend && npm run test
-# ✓ 9 tests passing
-```
-
-### Python Agent Functional Tests (Pytest)
-
-Tests security classifier, intent detection, router, FastAPI endpoints:
-
-```bash
-cd cheeni-agent
-pytest tests/test_phase3.py tests/test_phase4.py tests/test_phase6.py -v
-```
+### Example Natural Language Commands
+- **App Management**:
+  - *"Open Chrome and launch Spotify"*
+  - *"Close Notepad"*
+  - *"Bring VS Code to front"*
+- **Audio & Media Control**:
+  - *"Mute audio"* / *"Set volume to 40 percent"*
+  - *"Turn up the volume"*
+- **System Telemetry**:
+  - *"What is my CPU usage?"*
+  - *"Check my battery status and RAM usage"*
+- **Web & Information**:
+  - *"Search DuckDuckGo for the latest SpaceX launch"*
+  - *"Summarize the current news about artificial intelligence"*
+- **Document Reading**:
+  - *"Read the file notes.txt on my desktop"*
+  - *"Summarize report.pdf in Documents"*
+- **Conversation Termination**:
+  - *"Goodbye"*, *"Bye Sam"*, *"Stop listening"*, *"Sleep"*
 
 ---
 
-## 🤖 Supported Voice Commands
+## 🛡️ Security System
 
-| Category | Examples |
+Cheeni includes a built-in safety gate (`cheeni-agent/security/command_security.py`) to prevent catastrophic OS changes:
+
+- 🟢 **SAFE**: Reading system metrics, audio volume adjustment, window focus, standard application launching.
+- 🟡 **RISKY**: Modifying configuration files, batch operations, web scraping unknown domains.
+- 🔴 **BLOCKED**: Format drive commands, modifying Windows registry, deletion of critical directories (`System32`, `Program Files`), destructive bash/cmd script execution.
+
+---
+
+## 🧰 Tech Stack
+
+| Domain | Technologies & Libraries |
 |---|---|
-| 🎵 **YouTube** | `play song of arijit singh` · `open kesariya on youtube` · `play python tutorial on youtube` |
-| 🖥️ **Apps** | `open notepad` · `launch calculator` · `open vscode` · `open file explorer` |
-| 🔋 **System** | `check battery` · `what time is it` · `system specs` |
-| 🔊 **Volume** | `set volume to 60` · `mute audio` · `turn up the volume` |
-| 🪟 **Windows** | `minimize window` · `maximize` · `snap left` · `snap right` |
-| 🌐 **Web** | `search google for react hooks` · `search youtube for DSA tutorial` |
-| 📁 **Files** | `search for a file named resume` · `create folder Projects` |
-| 👁️ **Vision** | `what's on my screen` · `analyze my screen` |
-| 💬 **AI Chat** | `explain binary search` · `give me a DSA mock question` |
+| **Frontend** | React 19, Vite, Tailwind CSS, Lucide React, WebSocket API |
+| **Backend** | Node.js, Express.js, MongoDB (Mongoose), JWT, Axios |
+| **Agent Core** | Python 3.10+, FastAPI, Uvicorn, Pydantic, WebSockets |
+| **Voice & Speech** | `SpeechRecognition`, `pyttsx3`, `webrtcvad`, `sounddevice`, `pyaudio` |
+| **Automation** | `pywin32`, `pyautogui`, `psutil`, `pycaw`, `comtypes` |
+| **Intelligence** | OpenRouter, Google Gemini, Groq, Mistral, DuckDuckGo Search, BeautifulSoup4 |
+| **Document Parsing**| `PyPDF2`, `python-docx` |
 
 ---
 
-## ⌨️ Keyboard Shortcuts
+## 📂 Project Directory Structure
 
-| Shortcut | Action |
-|---|---|
-| <kbd>Space</kbd> / <kbd>Alt</kbd>+<kbd>M</kbd> | Toggle microphone |
-| <kbd>Escape</kbd> | Stop speech / close modals |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd> | Focus prompt input |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>H</kbd> | Toggle chat history drawer |
-
----
-
-## 📁 Project Structure
-
+```text
+Cheeni/
+├── backend/                      # Node.js Express server
+│   ├── src/
+│   │   ├── controllers/          # Chat and user controllers
+│   │   ├── routes/               # API endpoint definitions
+│   │   ├── services/             # Multi-LLM provider connectors
+│   │   └── index.js              # Server entry point
+│   └── package.json
+│
+├── frontend/                     # React 19 + Vite dashboard
+│   ├── src/
+│   │   ├── components/           # VoiceVisualizer, SystemStats, ChatWindow, etc.
+│   │   ├── context/              # Agent WebSocket and state contexts
+│   │   └── App.jsx
+│   └── package.json
+│
+├── cheeni-agent/                 # Native Python Desktop Agent
+│   ├── voice/                    # 2-way conversation pipeline
+│   │   ├── wakeword.py           # Background wake word listener
+│   │   ├── listener.py           # WebRTC VAD + STT engine
+│   │   ├── speaker.py            # Non-blocking TTS synthesizer
+│   │   ├── session.py            # Conversational state machine
+│   │   ├── memory.py             # Sliding context window
+│   │   └── conversation.py       # Main continuous conversation loop
+│   ├── tools/                    # Native Windows automation
+│   │   ├── router.py             # Command parser and tool dispatcher
+│   │   ├── app_control.py        # Launch/kill/focus processes
+│   │   ├── window_control.py     # Win32 window management
+│   │   ├── volume_control.py     # Pycaw audio level control
+│   │   ├── system_status.py      # Psutil CPU/RAM/Battery metrics
+│   │   ├── web_intelligence.py   # Web search and scraping
+│   │   └── filesystem_control.py # Document reading and file ops
+│   ├── security/                 # Security boundary checker
+│   ├── main.py                   # FastAPI service and WebSocket server
+│   └── requirements.txt
+│
+├── start_cheeni.bat              # One-click start script
+└── README.md
 ```
-cheeni/
-├── start_cheeni.bat             # 1-click launcher
-│
-├── frontend/                    # React 19 + Vite 7
-│   ├── src/components/home/     # Orb, Navbar, StatusBar, Toolbar
-│   ├── src/hooks/               # useSpeechRecognition, useSpeechSynthesis
-│   ├── src/pages/               # Home, Auth, Prep, Analytics
-│   ├── src/utils/actionRunner.js
-│   └── src/hooks/*.test.js      # Vitest unit tests
-│
-├── backend/                     # Node.js / Express 5
-│   ├── services/ai.service.js   # 4-stage AI pipeline + Gemini FC
-│   ├── controllers/             # assistant, auth, user
-│   ├── model/                   # User (preferences), Conversation, FlaggedPrompt
-│   ├── middlewares/             # JWT, rate limiting, sanitization
-│   └── tests/                   # Supertest integration tests
-│
-└── cheeni-agent/                # Python FastAPI desktop agent
-    ├── tools/router.py          # Central router (21+ intents)
-    ├── security/                # BLOCKED / RISKY / SAFE classifier
-    ├── tools/                   # Volume, Window, Files, Web, Vision
-    └── tests/                   # Pytest functional suites
-```
 
 ---
 
-## 🔒 Security
+## 🤝 Contributing
 
-- **Rate Limiting** — `express-rate-limit` per-user per-route, prevents Gemini quota abuse
-- **CORS Whitelist** — `ALLOWED_ORIGINS` env var, never hardcoded localhost
-- **JWT + Refresh Rotation** — Access tokens in-memory (XSS safe), server-side revoke via `tokenVersion`
-- **Prompt Injection Defense** — `sanitizeUserInput()` + structural LLM isolation
-- **Security Classifier** — Every desktop command classified `SAFE / RISKY / BLOCKED` before execution
-- **Avatar Upload Validation** — MIME type + 5 MB limit enforced before Cloudinary upload
-- **Flagged Prompt Logging** — Async DB logging of detected injection patterns
-- **Local Loopback Only** — Desktop agent bound to `127.0.0.1:2026` exclusively
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-| Library | Version | Purpose |
-|---|---|---|
-| React | 19.2 | UI framework |
-| Vite | 7.2 | Build tool / Dev server |
-| Framer Motion | 14.0 | Animations |
-| Axios | 1.13 | HTTP client |
-| Vitest + Testing Library | 3.2 | Unit testing |
-
-### Backend
-| Library | Version | Purpose |
-|---|---|---|
-| Express | 5.1 | HTTP server |
-| @google/genai | 2.23 | Gemini Function Calling |
-| Mongoose | 9.0 | MongoDB ODM |
-| Cloudinary | 2.8 | Avatar storage |
-| express-rate-limit | 8.7 | Rate limiting |
-| Vitest + Supertest | 3.2 | Integration testing |
-
-### Python Desktop Agent
-| Library | Purpose |
-|---|---|
-| FastAPI + Uvicorn | Local HTTP server |
-| psutil | Battery / CPU / RAM telemetry |
-| pygetwindow | Window focus & snapping |
-| pycaw | Audio volume control |
-| Pillow | Screenshot capture |
-| pytest | Functional testing |
-
----
-
-## 📄 License
-
-Licensed under the [ISC License](LICENSE).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/wraith-klu/Cheeni/issues).
 
 ---
 
 <div align="center">
 
-Built with ❤️ by **Naitik** &nbsp;|&nbsp; Powered by **Google Gemini 2.0 Flash**
+Built with ❤️ by **[Naitik](https://github.com/wraith-klu)**
 
 </div>

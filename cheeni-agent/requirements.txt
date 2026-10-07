@@ -1,5 +1,5 @@
 # Cheeni Desktop Agent - Requirements
-# Windows Assistant OS Layer (V1 - V5 Architecture)
+# Windows Assistant OS Layer (V1 - V9 Architecture)
 
 # API & WebSocket Bridge
 fastapi>=0.110.0
@@ -21,3 +21,13 @@ python-docx>=1.1.0
 # Web Intelligence & Scraping (V5)
 beautifulsoup4>=4.12.3
 duckduckgo-search>=5.0.0
+
+# Voice Pipeline -- Wake Word & TTS (V6+)
+SpeechRecognition>=3.10.0
+sounddevice>=0.4.6
+pyttsx3>=2.90
+numpy>=1.26.0
+
+# 2-Way Conversation Engine (V9)
+webrtcvad>=2.0.10   # WebRTC Voice Activity Detection -- precise speech boundary detection
+httpx>=0.27.0       # Async-capable HTTP client for LLM API calls (OpenRouter / Node backend)

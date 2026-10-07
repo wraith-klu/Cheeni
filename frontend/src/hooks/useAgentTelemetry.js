@@ -114,6 +114,47 @@ export function useAgentTelemetry(serverURL) {
     }
   };
 
+  const [isWakeWordOn, setIsWakeWordOn] = useState(true);
+
+  // Check agent voice listening mode directly from agent port 2026
+  useEffect(() => {
+    const fetchVoiceStatus = async () => {
+      try {
+        const res = await axios.get("http://127.0.0.1:2026/api/voice/status", { timeout: 2500 });
+        if (res.data?.success && res.data.wake_word) {
+          setIsWakeWordOn(res.data.wake_word.enabled !== false);
+        }
+      } catch {
+        // Agent not reachable directly, fallback to default
+      }
+    };
+    fetchVoiceStatus();
+    const interval = setInterval(fetchVoiceStatus, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Start listening mode (wake word ON)
+  const startWakeWord = async (agentName) => {
+    setIsWakeWordOn(true);
+    try {
+      await axios.post("http://127.0.0.1:2026/api/voice/start-listening", {
+        agent_name: agentName || "Sam",
+      }, { timeout: 3000 });
+    } catch (err) {
+      console.warn("Could not start wake word on desktop agent:", err);
+    }
+  };
+
+  // Exit / Stop listening mode (wake word OFF)
+  const stopWakeWord = async () => {
+    setIsWakeWordOn(false);
+    try {
+      await axios.post("http://127.0.0.1:2026/api/voice/stop-listening", {}, { timeout: 3000 });
+    } catch (err) {
+      console.warn("Could not stop wake word on desktop agent:", err);
+    }
+  };
+
   return {
     isAgentConnected,
     telemetry,
@@ -121,5 +162,8 @@ export function useAgentTelemetry(serverURL) {
     setIsTelemetryOpen,
     handleVolumeChange,
     handleQuickAction,
+    isWakeWordOn,
+    startWakeWord,
+    stopWakeWord,
   };
 }

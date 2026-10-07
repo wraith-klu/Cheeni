@@ -82,6 +82,9 @@ function Home() {
     setIsTelemetryOpen,
     handleVolumeChange,
     handleQuickAction,
+    isWakeWordOn,
+    startWakeWord,
+    stopWakeWord,
   } = useAgentTelemetry(serverURL);
 
   // Fetch Conversation History with in-memory caching and silent reconciliation
@@ -673,6 +676,9 @@ function Home() {
           streamingText={streamingText}
           latestReply={latestReply}
           lastAction={lastAction}
+          isWakeWordOn={isWakeWordOn}
+          onStartWakeWord={() => startWakeWord(assistantName)}
+          onStopWakeWord={stopWakeWord}
           onTriggerGreeting={triggerGreeting}
           onToggleListening={toggleListening}
           onStopSpeaking={stopSpeaking}

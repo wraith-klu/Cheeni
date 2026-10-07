@@ -1,12 +1,13 @@
 """
-Cheeni Desktop Agent -- Voice Session State Manager (Step 5)
+Cheeni Desktop Agent -- Voice Session State Manager (Step 5, Updated Phase 8)
 Manages the hands-free conversation lifecycle:
 
   IDLE        : Waiting for wake word
   ACTIVATED   : Wake word heard, greeting spoken, waiting for command
   LISTENING   : Microphone is actively recording user speech
   PROCESSING  : Query sent to Cheeni, awaiting AI response
-  COOLDOWN    : Brief pause after response before going back to IDLE
+  SPEAKING    : Cheeni is speaking the response via native TTS
+  COOLDOWN    : Brief pause after response before looping back to LISTENING
 
 Termination phrases: "goodbye", "bye cheeni", "go to sleep", "stop listening"
 Auto-timeout: returns to IDLE after SESSION_TIMEOUT_SEC of silence.
@@ -23,6 +24,7 @@ class VoiceState(str, Enum):
     ACTIVATED   = "activated"
     LISTENING   = "listening"
     PROCESSING  = "processing"
+    SPEAKING    = "speaking"    # Cheeni is speaking the reply via native TTS
     COOLDOWN    = "cooldown"
 
 
@@ -33,7 +35,7 @@ TERMINATION_PHRASES = [
     "thanks cheeni", "exit", "quiet",
 ]
 
-SESSION_TIMEOUT_SEC  = 20   # Return to IDLE after 20s of inactivity
+SESSION_TIMEOUT_SEC  = 30   # Return to IDLE after 30s of inactivity (extended for 2-way chat)
 ACTIVATED_TIMEOUT_SEC = 8   # If no speech after wake, go back to IDLE in 8s
 
 
@@ -90,6 +92,17 @@ class VoiceSessionManager:
             logger.info(f"Session PROCESSING: '{transcript}'")
             return True  # signal: continue to AI
 
+    def on_speaking_start(self):
+        """Called when Cheeni's TTS starts speaking the response."""
+        with self._lock:
+            self._cancel_timeout()
+            self._set_state(VoiceState.SPEAKING)
+            logger.info("Session SPEAKING")
+
+    def on_speaking_end(self):
+        """Called when Cheeni's TTS finishes speaking. Alias: on_response_complete."""
+        self.on_response_complete()
+
     def on_response_complete(self):
         """Called after Cheeni finishes speaking the response."""
         with self._lock:
@@ -122,6 +135,7 @@ class VoiceSessionManager:
     # ── Internal ───────────────────────────────────────────────────────────────
 
     def _set_state(self, new_state: VoiceState):
+        """Internal state transition. Also callable by ConversationLoop for fine-grained control."""
         if self._state != new_state:
             old = self._state
             self._state = new_state
@@ -144,7 +158,7 @@ class VoiceSessionManager:
 
     def _timeout_to_idle(self):
         with self._lock:
-            if self._state in (VoiceState.ACTIVATED, VoiceState.COOLDOWN):
+            if self._state in (VoiceState.ACTIVATED, VoiceState.COOLDOWN, VoiceState.LISTENING):
                 logger.info("Session timeout -- returning to IDLE.")
                 self._set_state(VoiceState.IDLE)
 

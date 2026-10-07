@@ -87,6 +87,9 @@ export function OrbSection({
   streamingText,
   latestReply,
   lastAction,
+  isWakeWordOn,
+  onStartWakeWord,
+  onStopWakeWord,
   onTriggerGreeting,
   onToggleListening,
   onStopSpeaking,
@@ -207,8 +210,67 @@ export function OrbSection({
       </motion.div>
 
       {/* AudioWave — dynamic waveform animation while speaking or listening */}
-      <div style={{ marginTop: 24, marginBottom: 12 }}>
+      <div style={{ marginTop: 24, marginBottom: 8 }}>
         <AudioWave isSpeaking={isSpeaking} isListening={isListening} barCount={11} size="md" />
+      </div>
+
+      {/* Hands-Free Wake Word Control: Start & Exit Buttons */}
+      <div style={{ marginTop: 4, marginBottom: 16, display: "flex", alignItems: "center", gap: 10 }}>
+        {!isWakeWordOn ? (
+          <button
+            onClick={onStartWakeWord}
+            id="start-wake-word-btn"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "9px 20px",
+              borderRadius: 30,
+              background: "#2A7A3B",
+              color: "#ffffff",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "var(--land-sans)",
+              fontSize: 13,
+              fontWeight: 600,
+              boxShadow: "0 4px 14px rgba(42, 122, 59, 0.35)",
+              transition: "all 0.2s ease",
+            }}
+            title={`Turn ON continuous listening: say 'Hey ${assistantName}' anytime without touching laptop`}
+          >
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#ffffff", display: "inline-block", animation: "pulse 1.5s infinite" }} />
+            Start Hands-Free ({assistantName})
+          </button>
+        ) : (
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "var(--land-bg-2)", padding: "4px 6px 4px 16px", borderRadius: 30, border: "1px solid var(--land-rule)" }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 600, color: "#2A7A3B" }}>
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#2A7A3B", display: "inline-block", boxShadow: "0 0 8px #2A7A3B" }} />
+              Active: Say &ldquo;Hey {assistantName}&rdquo;
+            </span>
+            <button
+              onClick={onStopWakeWord}
+              id="exit-wake-word-btn"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                padding: "6px 14px",
+                borderRadius: 20,
+                background: "#C0392B",
+                color: "#ffffff",
+                border: "none",
+                cursor: "pointer",
+                fontFamily: "var(--land-sans)",
+                fontSize: 12,
+                fontWeight: 600,
+                boxShadow: "0 2px 8px rgba(192, 57, 43, 0.3)",
+              }}
+              title="Exit listening mode: Calling out the agent will do nothing"
+            >
+              Exit / Stop
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Live transcript */}

@@ -143,9 +143,11 @@ class NativeSpeaker:
                     break  # stop sentinel
                 self._is_speaking = True
                 try:
+                    logger.info(f"[Speaker] Speaking: {text[:70]}...")
                     self._apply_settings()
                     self._engine.say(text)
                     self._engine.runAndWait()
+                    logger.debug("[Speaker] Speech completed.")
                 except Exception as e:
                     logger.error(f"Speech error: {e}")
                 finally:

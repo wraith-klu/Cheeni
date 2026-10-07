@@ -88,6 +88,7 @@ from tools.web_intelligence import (
 from voice.wakeword import get_engine as get_wake_engine
 from voice.session import get_session, VoiceState
 from voice.speaker import get_speaker
+from voice.conversation import get_conversation_loop
 from tools.router import route_command, RouterResult
 from security.command_security import classify, SecurityTier
 from security.confirmation import get_confirmation_manager
@@ -98,38 +99,56 @@ async def lifespan(app: FastAPI):
     """Start voice services on startup, shut them down gracefully on exit."""
     speaker = get_speaker()
     speaker.start()
-    speaker.speak("Cheeni Desktop Agent is online and ready!", interrupt=False)
+    speaker.speak(f"{settings.AGENT_NAME} Desktop Agent is online and ready!", interrupt=False)
 
     session = get_session()
+    current_loop = asyncio.get_event_loop()
 
-    # Wire wake word -> session + WebSocket broadcast
+    # Wire ConversationLoop with broadcast access
+    conv_loop = get_conversation_loop(broadcast_fn=broadcast_ws)
+    conv_loop._loop = current_loop
+
+    # ── Wake word handler: fires ConversationLoop automatically ───────────────
     def on_wake_word(phrase: str):
-        session.on_wake_word()
+        # Broadcast to Web UI immediately
         asyncio.run_coroutine_threadsafe(
             broadcast_ws({"event": "wake_word_detected", "phrase": phrase, "session_state": session.state.value}),
-            asyncio.get_event_loop(),
+            current_loop,
         )
-        speaker.speak("Yes? I'm listening!", interrupt=True)
 
+        # If loop already running, just log (don't double-start)
+        if conv_loop.is_running:
+            logger.info("[Server] Wake word fired but conversation already active.")
+            return
+
+        # Activate session + start 2-way conversation loop fully automatically
+        session.on_wake_word()
+        conv_loop.start(user_name="friend", event_loop=current_loop)
+
+    # ── State change broadcaster ───────────────────────────────────────────────
     def on_state_change(new_state: VoiceState):
         asyncio.run_coroutine_threadsafe(
             broadcast_ws({"event": "voice_state_changed", "state": new_state.value}),
-            asyncio.get_event_loop(),
+            current_loop,
         )
 
     session._on_state_change = on_state_change
 
+    # Build dynamic wake words and start the engine
     wake_engine = get_wake_engine()
     wake_engine.on_detected = on_wake_word
     wake_engine.start()
 
-    logger.info("Phase 2 voice services started.")
+    logger.info(f"[Server] Wake word engine active. Say 'Hey {settings.AGENT_NAME}' to begin!")
+    logger.info("Phase 2 voice services + 2-way conversation loop ready.")
     yield  # ─── Server is running ───
 
+    conv_loop.stop(reason="server_shutdown")
     wake_engine.stop()
     speaker.stop_speaking()
     speaker.stop()
     logger.info("Phase 2 voice services stopped.")
+
 
 
 # ── App Setup ─────────────────────────────────────────────────────────────────
@@ -379,12 +398,84 @@ async def voice_status():
         "success": True,
         "wake_word": {
             "running": wake.is_running,
+            "enabled": wake.is_enabled,
+            "paused": wake.is_paused,
             "mode": wake.mode,   # "oww" | "sr" | "none"
-            "wake_phrases": ["hey cheeni", "cheeni", "hi cheeni"],
+            "agent_name": settings.AGENT_NAME,
         },
         "session": session.get_status(),
         "speaker": speaker.get_status(),
     }
+
+
+class StartListeningRequest(BaseModel):
+    agent_name: Optional[str] = None
+    user_name: Optional[str] = None
+
+
+@app.post("/api/voice/start-listening", tags=["Voice"])
+async def enable_wake_word(req: Optional[StartListeningRequest] = None):
+    """
+    Start Button: Enables continuous background wake word listening.
+    User can now speak the wake word ('Hey Sam', 'Hey Khushi', etc.) without touching laptop.
+    """
+    if req and req.agent_name and req.agent_name.strip():
+        new_name = req.agent_name.strip()
+        settings.AGENT_NAME = new_name
+        logger.info(f"[Server] Updated AGENT_NAME to '{new_name}' from UI request.")
+
+    wake = get_wake_engine()
+    wake.enable()
+    speaker = get_speaker()
+    speaker.speak(f"Listening mode enabled! Just say Hey {settings.AGENT_NAME} anytime.", interrupt=True)
+    await broadcast_ws({
+        "event": "wake_word_mode_changed",
+        "enabled": True,
+        "agent_name": settings.AGENT_NAME,
+        "message": f"Listening for 'Hey {settings.AGENT_NAME}'"
+    })
+    return {
+        "success": True,
+        "enabled": True,
+        "agent_name": settings.AGENT_NAME,
+        "message": f"Wake word listening is ON for {settings.AGENT_NAME}."
+    }
+
+
+@app.post("/api/voice/sync-name", tags=["Voice"])
+async def sync_agent_name(req: StartListeningRequest):
+    """Dynamically sync agent name from the Web UI without needing server restart."""
+    if req.agent_name and req.agent_name.strip():
+        settings.AGENT_NAME = req.agent_name.strip()
+        wake = get_wake_engine()
+        # Refresh wake engine keywords
+        wake._init_model()
+        logger.info(f"[Server] Synced agent name to '{settings.AGENT_NAME}'")
+        return {"success": True, "agent_name": settings.AGENT_NAME}
+    return {"success": False, "message": "agent_name required"}
+
+
+@app.post("/api/voice/stop-listening", tags=["Voice"])
+async def disable_wake_word():
+    """
+    Exit Button: Disables wake word listening and stops any active conversation.
+    If user calls out the name, nothing will happen.
+    """
+    wake = get_wake_engine()
+    wake.disable()
+    conv_loop = get_conversation_loop(broadcast_fn=broadcast_ws)
+    if conv_loop.is_running:
+        conv_loop.stop(reason="user_exit_button")
+    session = get_session()
+    session.force_idle()
+    speaker = get_speaker()
+    speaker.speak("Listening mode disabled. Agent will ignore wake words.", interrupt=True)
+    await broadcast_ws({
+        "event": "wake_word_mode_changed",
+        "enabled": False,
+        "message": "Listening mode stopped"
+    })
+    return {"success": True, "enabled": False, "message": "Wake word listening is OFF."}
 
 
 @app.post("/api/voice/wake", tags=["Voice"])
@@ -812,3 +903,69 @@ async def capture_screenshot():
         logger.error(f"Screenshot error: {e}")
         return {"success": False, "error": str(e)}
 
+
+# ── Phase 9: 2-Way Conversation Endpoints ─────────────────────────────────────
+
+class StartConversationRequest(BaseModel):
+    user_name: str = "friend"
+
+
+@app.get("/api/conversation/status", tags=["Conversation"])
+async def conversation_status():
+    """
+    Returns the current status of the 2-way conversation loop:
+    running state, turn count, session memory summary, and voice state.
+    """
+    loop = get_conversation_loop(broadcast_fn=broadcast_ws)
+    return {"success": True, **loop.get_status()}
+
+
+@app.post("/api/conversation/start", tags=["Conversation"])
+async def start_conversation(req: StartConversationRequest):
+    """
+    Manually start a 2-way conversation session (same as saying 'Hey Cheeni').
+    Useful for triggering from a web UI button without speaking the wake word.
+    """
+    loop = get_conversation_loop(broadcast_fn=broadcast_ws)
+    if loop.is_running:
+        return {"success": False, "message": "Conversation already active.", "running": True}
+
+    current_loop = asyncio.get_event_loop()
+    loop._loop = current_loop
+    get_session().on_wake_word()
+    loop.start(user_name=req.user_name, event_loop=current_loop)
+    await broadcast_ws({"event": "conversation_started", "user": req.user_name, "trigger": "manual"})
+    return {"success": True, "message": f"Conversation started for '{req.user_name}'!", "running": True}
+
+
+@app.post("/api/conversation/stop", tags=["Conversation"])
+async def stop_conversation():
+    """
+    Gracefully end the active 2-way conversation session.
+    Equivalent to the user saying 'Goodbye Cheeni'.
+    """
+    loop = get_conversation_loop(broadcast_fn=broadcast_ws)
+    if not loop.is_running:
+        return {"success": False, "message": "No active conversation to stop.", "running": False}
+
+    loop.stop(reason="api_request")
+    speaker = get_speaker()
+    speaker.speak("Conversation ended. Call me anytime!", interrupt=True)
+    await broadcast_ws({"event": "conversation_ended", "reason": "api_stop"})
+    return {"success": True, "message": "Conversation stopped.", "running": False}
+
+
+@app.get("/api/conversation/history", tags=["Conversation"])
+async def conversation_history():
+    """
+    Returns the current session's conversation history (last N turns from memory).
+    Useful for displaying the conversation in the web UI chat drawer.
+    """
+    from voice.memory import get_memory
+    memory = get_memory(settings.CONVERSATION_MEMORY_TURNS)
+    return {
+        "success": True,
+        "turn_count": memory.turn_count,
+        "summary": memory.summary(),
+        "history": memory.get_context(),
+    }

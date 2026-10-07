@@ -18,6 +18,17 @@ class Settings:
         "http://127.0.0.1:2025",
     ]
 
+    # Agent Identity
+    AGENT_NAME: str = os.getenv("AGENT_NAME", "Cheeni")
+
+    # 2-Way Conversation Settings
+    CONVERSATION_MEMORY_TURNS: int = int(os.getenv("CONVERSATION_MEMORY_TURNS", "10"))
+
+    # LLM API Keys (fallback for when Node backend is unavailable)
+    OPENROUTER_API_KEY: str = os.getenv("OPENROUTER_API_KEY", "")
+    OPENROUTER_MODEL: str = os.getenv("OPENROUTER_MODEL", "deepseek/deepseek-v3-0324:free")
+    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
+
     # Security Configuration
     REQUIRE_CONFIRMATION_FOR_RISKY: bool = True
     MAX_FILE_READ_SIZE_MB: int = 15  # Limit PDF/file reading size
