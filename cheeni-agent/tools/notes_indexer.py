@@ -34,12 +34,15 @@ except ImportError:
     EMBEDDER_OK = False
     logger.warning("[NotesIndexer] sentence-transformers not installed. Run: pip install sentence-transformers")
 
+PDF_ENGINE = None
 try:
-    import PyPDF2
+    import pypdf  # type: ignore[import-untyped]
+    PDF_ENGINE = "pypdf"
     PDF_OK = True
 except ImportError:
     try:
-        import pypdf
+        import PyPDF2  # type: ignore[import-untyped]
+        PDF_ENGINE = "PyPDF2"
         PDF_OK = True
     except ImportError:
         PDF_OK = False
@@ -136,15 +139,12 @@ class NotesIndexer:
         elif ext == ".pdf" and PDF_OK:
             try:
                 text_parts = []
-                try:
-                    import pypdf
+                if PDF_ENGINE == "pypdf":
                     reader = pypdf.PdfReader(str(file_path))
-                    for page in reader.pages:
-                        text_parts.append(page.extract_text() or "")
-                except ImportError:
+                else:
                     reader = PyPDF2.PdfReader(str(file_path))
-                    for page in reader.pages:
-                        text_parts.append(page.extract_text() or "")
+                for page in reader.pages:
+                    text_parts.append(page.extract_text() or "")
                 return "\n".join(text_parts)
             except Exception as e:
                 logger.warning(f"[NotesIndexer] PDF read failed {file_path}: {e}")
