@@ -44,6 +44,8 @@ export function MicInputBar({
   isThinking    = false,
   isStreaming   = false,
   onToggleListening,
+  voiceLanguage = "en-IN",
+  onVoiceLanguageChange,
   onSendPrompt,
 }) {
   const [text, setText] = React.useState("");
@@ -68,6 +70,13 @@ export function MicInputBar({
       }}
     >
       <div className="hidden sm:flex items-center gap-3 mb-2 flex-wrap justify-center">
+        <label style={{ fontFamily: "var(--land-sans)", fontSize: 11, color: "var(--land-ink-3)" }}>
+          Voice language{" "}
+          <select value={voiceLanguage} onChange={(event) => onVoiceLanguageChange?.(event.target.value)} disabled={isListening} aria-label="Voice recognition language" style={{ marginLeft: 5 }}>
+            <option value="en-IN">English</option>
+            <option value="hi-IN">हिन्दी</option>
+          </select>
+        </label>
         <p style={{ fontFamily: "var(--land-sans)", fontSize: 11, color: "var(--land-ink-3)", margin: 0 }}>
           <kbd style={{ fontSize: 10, fontFamily: "monospace", padding: "1px 5px", border: "1px solid var(--land-rule)", borderRadius: 4, background: "var(--land-bg-2)" }}>Enter</kbd> to send
         </p>
@@ -84,6 +93,14 @@ export function MicInputBar({
           <kbd style={{ fontSize: 10, fontFamily: "monospace", padding: "1px 5px", border: "1px solid var(--land-rule)", borderRadius: 4, background: "var(--land-bg-2)" }}>Esc</kbd> stop
         </p>
       </div>
+
+      <label className="sm:hidden" style={{ width: "100%", maxWidth: 640, marginBottom: 6, fontSize: 11, color: "var(--land-ink-3)" }}>
+        Voice language{" "}
+        <select value={voiceLanguage} onChange={(event) => onVoiceLanguageChange?.(event.target.value)} disabled={isListening} aria-label="Voice recognition language">
+          <option value="en-IN">English</option>
+          <option value="hi-IN">हिन्दी</option>
+        </select>
+      </label>
 
       <div style={{
         width: "100%", maxWidth: 640,

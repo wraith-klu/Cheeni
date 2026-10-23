@@ -12,6 +12,11 @@ cheeni-agent/__pycache__/
 
 # Local logs & data
 *.log
+*.db
+*.sqlite
+*.sqlite3
+cheeni-agent/data/*.db
+cheeni-agent/data/connectors/*.json
 dist/
 build/
 .vscode/

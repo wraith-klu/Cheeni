@@ -151,7 +151,7 @@ class WakeWordEngine:
         self.on_detected = on_detected or (lambda phrase: None)
         self._running = False
         self._paused = False
-        self._enabled = True  # Master switch (toggleable from UI Start/Exit buttons)
+        self._enabled = False  # Requires an explicit user action before listening is enabled
         self._thread = None
         self._audio_queue = queue.Queue()
         self._oww_model = None
@@ -163,6 +163,9 @@ class WakeWordEngine:
 
     def start(self):
         """Start background wake word listening."""
+        if not self._enabled:
+            logger.info("Wake word engine start ignored until explicitly enabled.")
+            return
         if self._running:
             return
         self._running = True
@@ -180,6 +183,7 @@ class WakeWordEngine:
     def stop(self):
         """Stop listening thread completely."""
         self._running = False
+        self._enabled = False
         self._paused = False
         if self._thread and self._thread.is_alive():
             self._thread.join(timeout=3)
@@ -198,7 +202,8 @@ class WakeWordEngine:
     def disable(self):
         """Disable wake word listening (Exit button in UI). Calling wake word will do nothing."""
         self._enabled = False
-        logger.info("[WakeWord] Engine DISABLED via Exit button. Wake words will be ignored.")
+        self.stop()
+        logger.info("[WakeWord] Engine stopped via Exit button; microphone capture is off.")
 
     def pause(self):
         """Pause wake word detection while conversation loop holds the mic."""

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 
 /*
@@ -76,6 +77,21 @@ const IcoPuzzle = () => (
     <path d="M20.5 14.99l-4.5 4.5M9 5H5a2 2 0 0 0-2 2v4M9 5a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4z"/>
     <path d="M15 5h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/>
     <path d="M5 15h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z"/>
+  </svg>
+);
+
+const IcoLink = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+  </svg>
+);
+
+const IcoBrowser = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
   </svg>
 );
 
@@ -190,6 +206,10 @@ export function Navbar({
   onOpenInterviewPrep,
   onOpenAnalytics,
   onOpenPlugins,
+  onOpenIntegrations,
+  integrationCount = 0,
+  onOpenBrowser,
+  onOpenReminders,
   onToggleMute,
   onOpenSettings,
   onNavigateLanding,
@@ -296,6 +316,27 @@ export function Navbar({
             <span className="hidden sm:inline" style={{ fontSize: 13, fontWeight: 600 }}>Prep</span>
           </button>
 
+          {/* V16 Unified Desktop Dashboard Launcher */}
+          <Link
+            to="/dashboard"
+            title="Unified Agent Dashboard & Remote Control (V16)"
+            style={{
+              ...iconBtn,
+              display: "flex",
+              gap: 6,
+              padding: "0 10px",
+              width: "auto",
+              background: "rgba(6, 182, 212, 0.12)",
+              borderColor: "rgba(6, 182, 212, 0.4)",
+              color: "#06b6d4",
+              textDecoration: "none",
+            }}
+            id="nav-agent-dashboard"
+          >
+            <span>⚡</span>
+            <span className="hidden sm:inline" style={{ fontSize: 13, fontWeight: 600 }}>OS Hub</span>
+          </Link>
+
           <button onClick={onOpenChat} title="Notes and chat" style={{ ...iconBtn, display: "flex", gap: 6, padding: "0 10px", width: "auto" }} id="nav-chat">
             <IcoChat />
             <span className="hidden sm:inline" style={{ fontSize: 13, fontWeight: 500 }}>Chat</span>
@@ -337,6 +378,50 @@ export function Navbar({
             className="hidden md:flex"
           >
             <IcoPuzzle />
+          </button>
+
+          {/* Connected Services / Integrations (Phase 7) */}
+          <button
+            onClick={onOpenIntegrations}
+            title="Connected Services (Google Calendar & more)"
+            id="nav-integrations"
+            style={{
+              ...iconBtn,
+              position: "relative",
+              ...(integrationCount > 0
+                ? { background: "rgba(42,122,59,0.07)", borderColor: "rgba(42,122,59,0.35)", color: "#2A7A3B" }
+                : {}),
+            }}
+            className="hidden md:flex"
+          >
+            <IcoLink />
+            {integrationCount > 0 && (
+              <span style={{
+                position: "absolute", top: -4, right: -4,
+                width: 14, height: 14, borderRadius: 7,
+                background: "#2A7A3B", color: "#fff",
+                fontSize: 9, fontWeight: 700,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                border: "2px solid var(--land-bg)",
+              }}>
+                {integrationCount > 9 ? "9+" : integrationCount}
+              </span>
+            )}
+          </button>
+
+          {/* Controlled Browser Workflows (Phase 5) */}
+          <button
+            onClick={onOpenBrowser}
+            title="Controlled Browser Workflows (Read-only web research)"
+            style={iconBtn}
+            id="nav-browser"
+            className="hidden sm:flex"
+          >
+            <IcoBrowser />
+          </button>
+
+          <button onClick={onOpenReminders} title="Reminders" style={iconBtn} aria-label="Open reminders" id="nav-reminders">
+            <span aria-hidden="true">⏰</span>
           </button>
 
           <button onClick={onToggleCornerMode} title="Switch to corner widget"

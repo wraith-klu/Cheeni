@@ -60,34 +60,8 @@ export function useAgentTelemetry(serverURL) {
     checkAgent();
     pollTimer = setInterval(checkAgent, 8000);
 
-    // Try WebSocket connection for live telemetry stream
-    try {
-      ws = new WebSocket("ws://127.0.0.1:2026/ws");
-      ws.onmessage = (event) => {
-        try {
-          const payload = JSON.parse(event.data);
-          if (payload.event === "telemetry" || payload.event === "connected") {
-            setTelemetry((prev) => ({
-              ...prev,
-              cpu: payload.cpu?.usage_percent ?? prev.cpu,
-              ram: payload.ram?.usage_percent ?? prev.ram,
-              battery: payload.battery?.level ?? prev.battery,
-              volume: payload.volume?.volume ?? prev.volume,
-              isMuted: payload.volume?.muted ?? prev.isMuted,
-            }));
-          }
-        } catch {
-          // ignore parse errors
-        }
-      };
-      ws.onerror = () => {};
-    } catch {
-      // ignore
-    }
-
     return () => {
       clearInterval(pollTimer);
-      if (ws) ws.close();
     };
   }, [serverURL]);
 
@@ -106,52 +80,22 @@ export function useAgentTelemetry(serverURL) {
   };
 
   // Handle Quick Actions
-  const handleQuickAction = async (endpoint, payload = {}) => {
-    try {
-      await axios.post(`${serverURL}${endpoint}`, payload, { withCredentials: true });
-    } catch (err) {
-      console.error(`Quick action failed for ${endpoint}:`, err);
-    }
-  };
-
-  const [isWakeWordOn, setIsWakeWordOn] = useState(true);
-
-  // Check agent voice listening mode directly from agent port 2026
-  useEffect(() => {
-    const fetchVoiceStatus = async () => {
-      try {
-        const res = await axios.get("http://127.0.0.1:2026/api/voice/status", { timeout: 2500 });
-        if (res.data?.success && res.data.wake_word) {
-          setIsWakeWordOn(res.data.wake_word.enabled !== false);
-        }
-      } catch {
-        // Agent not reachable directly, fallback to default
-      }
+  const handleQuickAction = async (action, payload = {}) => {
+    const directEndpoints = {
+      lock: "/api/agent/system/lock",
+      mute: "/api/agent/volume/mute",
+      show_desktop: "/api/agent/windows/desktop",
     };
-    fetchVoiceStatus();
-    const interval = setInterval(fetchVoiceStatus, 6000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Start listening mode (wake word ON)
-  const startWakeWord = async (agentName) => {
-    setIsWakeWordOn(true);
     try {
-      await axios.post("http://127.0.0.1:2026/api/voice/start-listening", {
-        agent_name: agentName || "Sam",
-      }, { timeout: 3000 });
+      if (action === "launch_app") {
+        await axios.post(`${serverURL}/api/agent/tool`, { name: "launch_app", arguments: payload }, { withCredentials: true });
+        return;
+      }
+      const endpoint = directEndpoints[action];
+      if (!endpoint) return;
+      await axios.post(`${serverURL}${endpoint}`, {}, { withCredentials: true });
     } catch (err) {
-      console.warn("Could not start wake word on desktop agent:", err);
-    }
-  };
-
-  // Exit / Stop listening mode (wake word OFF)
-  const stopWakeWord = async () => {
-    setIsWakeWordOn(false);
-    try {
-      await axios.post("http://127.0.0.1:2026/api/voice/stop-listening", {}, { timeout: 3000 });
-    } catch (err) {
-      console.warn("Could not stop wake word on desktop agent:", err);
+      console.error(`Quick action failed for ${action}:`, err);
     }
   };
 
@@ -162,8 +106,5 @@ export function useAgentTelemetry(serverURL) {
     setIsTelemetryOpen,
     handleVolumeChange,
     handleQuickAction,
-    isWakeWordOn,
-    startWakeWord,
-    stopWakeWord,
   };
 }

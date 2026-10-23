@@ -27,16 +27,18 @@ except ImportError:
 # ── Filesystem Sandbox ────────────────────────────────────────────────────────
 
 def _get_sandbox_root() -> Path:
-    """Return the base user directory to sandbox file operations."""
+    """Return the user home path used to derive approved data folders."""
     return Path.home().resolve()
+
+def _get_allowed_roots() -> tuple[Path, ...]:
+    home = _get_sandbox_root()
+    return tuple((home / name).resolve() for name in ("Desktop", "Documents", "Downloads"))
 
 def _is_safe_path(target_path: str | Path) -> bool:
     """Ensure the target path is within the user's home directory."""
     try:
         target = Path(target_path).expanduser().resolve()
-        sandbox = _get_sandbox_root()
-        # Ensure target is a subpath of sandbox
-        return sandbox in target.parents or target == sandbox
+        return any(root == target or root in target.parents for root in _get_allowed_roots())
     except Exception:
         return False
 
@@ -52,8 +54,10 @@ def _resolve_and_verify(target_path: str) -> Optional[Path]:
 
 # ── File & Folder Operations ──────────────────────────────────────────────────
 
-def search_files(query: str, directory: str = "~") -> Dict[str, Any]:
+def search_files(query: str, directory: str = "~/Downloads") -> Dict[str, Any]:
     """Recursively search for files matching a query inside the directory."""
+    if not isinstance(query, str) or not query.strip() or len(query) > 120:
+        return {"success": False, "error": "Search query must contain 1 to 120 characters"}
     base_dir = _resolve_and_verify(directory)
     if not base_dir or not base_dir.is_dir():
         return {"success": False, "error": "Invalid or unsafe search directory"}
@@ -61,7 +65,7 @@ def search_files(query: str, directory: str = "~") -> Dict[str, Any]:
     results = []
     try:
         # Search down to 3 levels deep to avoid massive latency
-        q = query.lower()
+        q = query.strip().lower()
         for i, path in enumerate(base_dir.rglob("*")):
             if i > 5000:  # limit search space
                 break
@@ -78,7 +82,7 @@ def search_files(query: str, directory: str = "~") -> Dict[str, Any]:
             "count": len(results),
         }
     except Exception as e:
-        logger.error(f"Search files error: {e}")
+        logger.error("Search files failed")
         return {"success": False, "error": str(e)}
 
 
@@ -97,7 +101,7 @@ def create_folder(folder_path: str) -> Dict[str, Any]:
             "message": f"Folder '{target.name}' created successfully.",
         }
     except Exception as e:
-        logger.error(f"Create folder error: {e}")
+        logger.error("Create folder failed")
         return {"success": False, "error": str(e)}
 
 
@@ -107,7 +111,17 @@ def rename_file(old_path: str, new_name: str) -> Dict[str, Any]:
     if not src or not src.exists():
         return {"success": False, "error": "Source file not found or unsafe"}
 
-    dest = src.with_name(new_name)
+    if (
+        not isinstance(new_name, str)
+        or not new_name.strip()
+        or new_name in {".", ".."}
+        or Path(new_name).name != new_name
+        or "/" in new_name
+        or "\\" in new_name
+    ):
+        return {"success": False, "error": "New name must be a single file or folder name"}
+
+    dest = src.with_name(new_name.strip())
     if not _is_safe_path(dest):
         return {"success": False, "error": "Destination is unsafe"}
 
@@ -124,7 +138,7 @@ def rename_file(old_path: str, new_name: str) -> Dict[str, Any]:
             "message": f"Renamed to '{new_name}'.",
         }
     except Exception as e:
-        logger.error(f"Rename file error: {e}")
+        logger.error("Rename file failed")
         return {"success": False, "error": str(e)}
 
 
@@ -154,7 +168,7 @@ def move_file(src_path: str, dest_dir: str) -> Dict[str, Any]:
             "message": f"Moved '{src.name}' to '{dest.name}'.",
         }
     except Exception as e:
-        logger.error(f"Move file error: {e}")
+        logger.error("Move file failed")
         return {"success": False, "error": str(e)}
 
 
@@ -179,7 +193,9 @@ def read_document(file_path: str, max_chars: int = 5000) -> Dict[str, Any]:
                 return {"success": False, "error": "PyPDF2 is not installed"}
             with open(target, "rb") as f:
                 reader = PyPDF2.PdfReader(f)
-                for page in reader.pages:
+                for page_number, page in enumerate(reader.pages):
+                    if page_number >= 50:
+                        break
                     extracted = page.extract_text()
                     if extracted:
                         text += extracted + "\n"
@@ -209,5 +225,5 @@ def read_document(file_path: str, max_chars: int = 5000) -> Dict[str, Any]:
         }
 
     except Exception as e:
-        logger.error(f"Read document error: {e}")
+        logger.error("Read document failed")
         return {"success": False, "error": str(e)}

@@ -218,8 +218,22 @@ class MicrophoneListener:
 
     def _transcribe(self, raw_pcm: bytes) -> str | None:
         """
-        Convert raw PCM bytes to text using Google STT via SpeechRecognition.
+        Convert raw PCM bytes to text.
+        Primary:  faster-whisper (V10 — local, offline, high accuracy)
+        Fallback: Google STT via SpeechRecognition
         """
+        # V10: try Whisper first (local model, no internet required)
+        try:
+            from voice.whisper_listener import get_whisper_listener
+            wl = get_whisper_listener()
+            text = wl.transcribe(raw_pcm)
+            if text:
+                return text
+            # Whisper returned empty — let Google SR try
+        except Exception as e:
+            logger.warning(f"[Listener] Whisper STT error: {e} — falling back to SR")
+
+        # Fallback: Google Cloud STT
         if not SR_OK:
             logger.error("[Listener] SpeechRecognition unavailable for transcription.")
             return None
@@ -227,7 +241,7 @@ class MicrophoneListener:
             recognizer = sr.Recognizer()
             audio_data = sr.AudioData(raw_pcm, SAMPLE_RATE, 2)  # 2 bytes = int16
             text = recognizer.recognize_google(audio_data, language="en-IN").strip()
-            logger.info(f"[Listener] Transcript: '{text}'")
+            logger.info(f"[Listener] [SR Fallback] Transcript: '{text}'")
             return text if text else None
         except sr.UnknownValueError:
             logger.debug("[Listener] STT: Could not understand audio.")

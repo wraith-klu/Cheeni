@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import Customize from "./pages/Customize";
 import Customize2 from "./pages/Customize2";
 import Home from "./pages/Home";
+import AgentDashboard from "./pages/AgentDashboard";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 
@@ -68,6 +69,13 @@ function App() {
         }
       />
       <Route path="/home" element={<Navigate to="/app" />} />
+
+      {/* ── Unified Agent Dashboard & Remote Control (V16) ── */}
+      <Route
+        path="/dashboard"
+        element={userData ? <AgentDashboard /> : <Navigate to="/signin" />}
+      />
+      <Route path="/agent-dashboard" element={<Navigate to="/dashboard" />} />
 
       {/* ── Legal Pages ── */}
       <Route path="/privacy" element={<Privacy />} />

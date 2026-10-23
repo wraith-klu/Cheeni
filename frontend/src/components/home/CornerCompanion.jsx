@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AudioWave from "../AudioWave";
+import TaskPlanCard from "./TaskPlanCard";
 
 // Minimal inline SVGs
 const IcoMic = () => (
@@ -116,8 +117,14 @@ export function CornerCompanion({
   streamingText,
   transcript,
   latestReply,
+  taskPlan,
+  taskActionBusy,
+  onTaskPlanAction,
   lastAction,
+  actionExecution,
   micError,
+  voiceLanguage = "en-IN",
+  onVoiceLanguageChange,
   history,
   isMuted,
   showSplash,
@@ -453,6 +460,19 @@ export function CornerCompanion({
                   [{lastAction.type}]
                 </span>
               )}
+              {actionExecution?.status && (
+                <span role="status" style={{ display: "block", marginTop: 3, fontSize: 10, color: actionExecution.status === "succeeded" ? "#2A7A3B" : actionExecution.status === "running" ? "var(--land-accent)" : "#A33A32" }}>
+                  {actionExecution.status === "outcome_unknown"
+                    ? (voiceLanguage === "hi-IN" ? "स्थिति अनिश्चित — दोबारा चलाने से पहले जाँचें" : "Outcome unknown — check before retrying")
+                    : actionExecution.status === "agent_unavailable"
+                      ? (voiceLanguage === "hi-IN" ? "डेस्कटॉप एजेंट उपलब्ध नहीं" : "Desktop agent unavailable")
+                      : actionExecution.status === "succeeded"
+                        ? (voiceLanguage === "hi-IN" ? "पूरा हुआ" : "Completed")
+                        : actionExecution.status === "running"
+                          ? (voiceLanguage === "hi-IN" ? "चल रहा है…" : "Running…")
+                          : (voiceLanguage === "hi-IN" ? "पूरा नहीं हुआ" : "Action not completed")}
+                </span>
+              )}
             </div>
           ) : (
             <div
@@ -472,6 +492,7 @@ export function CornerCompanion({
               <span>Tap microphone or speak freely</span>
             </div>
           )}
+          <TaskPlanCard task={taskPlan} busyAction={taskActionBusy} onAction={onTaskPlanAction} />
 
           {micError && (
             <div
@@ -500,6 +521,13 @@ export function CornerCompanion({
 
         {/* Central Large Mic Button */}
         <div style={{ margin: "10px 0 4px 0" }}>
+          <label style={{ display: "block", marginBottom: 8, fontSize: 11, color: "var(--land-ink-3)" }}>
+            Voice language{" "}
+            <select value={voiceLanguage} onChange={(event) => onVoiceLanguageChange?.(event.target.value)} disabled={isListening} aria-label="Voice recognition language">
+              <option value="en-IN">English</option>
+              <option value="hi-IN">हिन्दी</option>
+            </select>
+          </label>
           <button
             onClick={onToggleListening}
             disabled={isThinking || isStreaming}

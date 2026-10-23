@@ -39,6 +39,11 @@ describe('useSpeechRecognition hook', () => {
     expect(result.current.error).toBeNull();
   });
 
+  it('uses the selected Hindi recognition locale', () => {
+    renderHook(() => useSpeechRecognition({ lang: 'hi-IN' }));
+    expect(mockRecognitionInstance.lang).toBe('hi-IN');
+  });
+
   it('starts listening and updates state when startListening is called', async () => {
     const { result } = renderHook(() => useSpeechRecognition());
 
@@ -74,6 +79,29 @@ describe('useSpeechRecognition hook', () => {
 
     expect(result.current.transcript).toBe('Hello Cheeni');
     expect(onResultMock).toHaveBeenCalledWith('Hello Cheeni');
+  });
+
+  it('keeps final transcript segments when later recognition events arrive', async () => {
+    const { result } = renderHook(() => useSpeechRecognition());
+
+    await act(async () => {
+      await result.current.startListening();
+    });
+
+    act(() => {
+      const mockEvent = {
+        resultIndex: 1,
+        results: [
+          [{ transcript: 'Open ' }],
+          [{ transcript: 'Notepad' }],
+        ],
+      };
+      mockEvent.results[0].isFinal = true;
+      mockEvent.results[1].isFinal = true;
+      mockRecognitionInstance.onresult(mockEvent);
+    });
+
+    expect(result.current.transcript).toBe('Open Notepad');
   });
 
   it('stops listening and triggers onEnd callback', async () => {
@@ -118,6 +146,43 @@ describe('useSpeechRecognition hook', () => {
 
     expect(result.current.isListening).toBe(false);
     expect(result.current.error).toContain('Microphone permission blocked');
+  });
+
+  it('does not open transcript review after a recognition error', async () => {
+    const onEndMock = vi.fn();
+    const { result } = renderHook(() => useSpeechRecognition({ onEnd: onEndMock }));
+
+    await act(async () => {
+      await result.current.startListening();
+    });
+
+    act(() => {
+      const mockEvent = { resultIndex: 0, results: [[{ transcript: 'Open Notepad' }]] };
+      mockEvent.results[0].isFinal = true;
+      mockRecognitionInstance.onresult(mockEvent);
+      mockRecognitionInstance.onerror({ error: 'network' });
+      mockRecognitionInstance.onend();
+    });
+
+    expect(onEndMock).not.toHaveBeenCalled();
+    expect(result.current.error).toContain('network');
+  });
+
+  it('reports silence without submitting an empty review', async () => {
+    const onEndMock = vi.fn();
+    const { result } = renderHook(() => useSpeechRecognition({ onEnd: onEndMock }));
+
+    await act(async () => {
+      await result.current.startListening();
+    });
+
+    act(() => {
+      mockRecognitionInstance.onerror({ error: 'no-speech' });
+      mockRecognitionInstance.onend();
+    });
+
+    expect(onEndMock).not.toHaveBeenCalled();
+    expect(result.current.error).toContain('No speech was detected');
   });
 
   it('resets transcript when resetTranscript is called', () => {

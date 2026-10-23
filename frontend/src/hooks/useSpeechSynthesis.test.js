@@ -61,6 +61,18 @@ describe('useSpeechSynthesis hook', () => {
     expect(window.speechSynthesis.speak).toHaveBeenCalled();
   });
 
+  it('sets Hindi speech locale for Devanagari responses', () => {
+    const { result } = renderHook(() => useSpeechSynthesis());
+
+    act(() => {
+      result.current.speak('नमस्ते, मैं आपकी मदद कर सकती हूँ।');
+    });
+
+    const utterance = window.speechSynthesis.speak.mock.calls.at(-1)[0];
+    expect(utterance.lang).toBe('hi-IN');
+    expect(utterance.voice).toBeNull();
+  });
+
   it('cancels speech when stop is called', () => {
     const { result } = renderHook(() => useSpeechSynthesis());
 
