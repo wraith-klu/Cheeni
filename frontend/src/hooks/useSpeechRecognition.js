@@ -19,6 +19,7 @@ export function useSpeechRecognition({
   const silenceTimerRef = useRef(null);
   const isListeningRef = useRef(false);
   const latestTranscriptRef = useRef("");
+  const shouldReviewOnEndRef = useRef(false);
 
   // Keep mutable references to callbacks so closures are never stale
   const onResultRef = useRef(onResult);
@@ -56,6 +57,7 @@ export function useSpeechRecognition({
     recognition.onstart = () => {
       setIsListening(true);
       isListeningRef.current = true;
+      shouldReviewOnEndRef.current = false;
       setError(null);
     };
 
@@ -63,19 +65,20 @@ export function useSpeechRecognition({
       let interim = "";
       let final = "";
 
-      for (let i = event.resultIndex; i < event.results.length; ++i) {
+      for (let i = 0; i < event.results.length; ++i) {
         const result = event.results[i];
         if (result.isFinal) {
-          final += result[0].transcript;
+          final += `${result[0].transcript} `;
         } else {
-          interim += result[0].transcript;
+          interim += `${result[0].transcript} `;
         }
       }
 
-      const currentText = (final || interim).trim();
+      const currentText = (final || interim).replace(/\s+/g, " ").trim();
       if (currentText) {
         setTranscript(currentText);
         latestTranscriptRef.current = currentText;
+        shouldReviewOnEndRef.current = true;
 
         if (onResultRef.current) {
           onResultRef.current(currentText);
@@ -94,8 +97,12 @@ export function useSpeechRecognition({
     };
 
     recognition.onerror = (event) => {
-      // 'no-speech' is common when silence occurs, don't treat as fatal error
+      shouldReviewOnEndRef.current = false;
       if (event.error === "no-speech") {
+        setError("No speech was detected. Please try again.");
+        setIsListening(false);
+        isListeningRef.current = false;
+        clearSilenceTimer();
         return;
       }
       console.warn("Speech recognition error:", event.error);
@@ -114,8 +121,9 @@ export function useSpeechRecognition({
       isListeningRef.current = false;
       clearSilenceTimer();
 
-      if (onEndRef.current && latestTranscriptRef.current) {
+      if (shouldReviewOnEndRef.current && onEndRef.current && latestTranscriptRef.current) {
         const textToSend = latestTranscriptRef.current;
+        shouldReviewOnEndRef.current = false;
         onEndRef.current(textToSend);
       }
     };
@@ -124,6 +132,7 @@ export function useSpeechRecognition({
 
     return () => {
       clearSilenceTimer();
+      shouldReviewOnEndRef.current = false;
       if (recognitionRef.current) {
         try {
           recognitionRef.current.abort();
@@ -166,6 +175,7 @@ export function useSpeechRecognition({
     setError(null);
     setTranscript("");
     latestTranscriptRef.current = "";
+    shouldReviewOnEndRef.current = false;
 
     // Test microphone permission if blocked earlier
     if (error && error.includes("denied")) {
@@ -194,12 +204,21 @@ export function useSpeechRecognition({
   }, [hasSupport, error, requestMicPermission]);
 
   // Stop listening handler
-  const stopListening = useCallback(() => {
+  const stopListening = useCallback((options = {}) => {
     clearSilenceTimer();
+    if (options?.discard) {
+      shouldReviewOnEndRef.current = false;
+      latestTranscriptRef.current = "";
+      setTranscript("");
+    }
     if (!recognitionRef.current || !isListeningRef.current) return;
 
     try {
-      recognitionRef.current.stop();
+      if (options?.discard) {
+        recognitionRef.current.abort();
+      } else {
+        recognitionRef.current.stop();
+      }
     } catch {
       // ignore
     }
@@ -220,6 +239,7 @@ export function useSpeechRecognition({
   const resetTranscript = useCallback(() => {
     setTranscript("");
     latestTranscriptRef.current = "";
+    shouldReviewOnEndRef.current = false;
   }, []);
 
   return {

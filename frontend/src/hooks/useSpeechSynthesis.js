@@ -182,17 +182,19 @@ export function useSpeechSynthesis({ defaultPitch = 1.0, defaultRate = 1.02 } = 
 
         const chunkText = chunks[queueState.index];
         const utterance = new SpeechSynthesisUtterance(chunkText);
+        const isHindiText = /[\u0900-\u097F]/.test(chunkText);
+        const languagePrefix = isHindiText ? "hi" : "en";
+        const availableVoices = window.speechSynthesis.getVoices();
 
-        let activeVoice = selectedVoice;
-        if (!activeVoice && "speechSynthesis" in window) {
-          const avail = window.speechSynthesis.getVoices();
-          if (avail && avail.length > 0) {
-            activeVoice = pickSweetestFemaleVoice(avail);
-          }
+        let activeVoice = selectedVoice?.lang?.toLowerCase().startsWith(languagePrefix) ? selectedVoice : null;
+        activeVoice ||= availableVoices.find((voice) => voice.lang?.toLowerCase().startsWith(languagePrefix));
+        if (!activeVoice && !isHindiText) {
+          activeVoice = pickSweetestFemaleVoice(availableVoices) || selectedVoice;
         }
         if (activeVoice) {
           utterance.voice = activeVoice;
         }
+        utterance.lang = isHindiText ? "hi-IN" : (activeVoice?.lang || "en-IN");
 
         utterance.pitch = pitch;
         utterance.rate = rate;

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import apiClient from "../utils/api";
+import CommandAliasManager from "./CommandAliasManager";
+import FileOperationsPanel from "./FileOperationsPanel";
 
 // Inline SVGs
 const IcoSettings = () => (
@@ -65,6 +67,7 @@ export function SettingsModal({
   isOpen,
   onClose,
   userData,
+  aliasStorageKey,
   setUserData,
   voices = [],
   selectedVoice,
@@ -457,6 +460,9 @@ export function SettingsModal({
             <span>Change Avatar Gallery</span>
           </button>
         </div>
+
+        <CommandAliasManager key={aliasStorageKey} storageKey={aliasStorageKey} />
+        <FileOperationsPanel key={aliasStorageKey} storageKey={aliasStorageKey} />
 
         {/* SECTION 3: USER PERSONA & MEMORY PREFERENCES (Task 29) */}
         <div

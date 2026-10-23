@@ -21,11 +21,13 @@ def test_is_safe_path():
     assert _is_safe_path(unsafe1) is False
     
 def test_create_and_rename_and_move_and_search(tmp_path, monkeypatch):
-    # Mock home directory to tmp_path for isolated testing
+    # Mock home directory and use an approved user data folder.
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
+    downloads = tmp_path / "Downloads"
+    downloads.mkdir()
     
     # 1. Create Folder
-    folder_path = str(tmp_path / "cheeni_test_dir")
+    folder_path = str(downloads / "cheeni_test_dir")
     res = create_folder(folder_path)
     assert res["success"] is True
     assert Path(folder_path).exists()
@@ -53,8 +55,17 @@ def test_create_and_rename_and_move_and_search(tmp_path, monkeypatch):
     assert str(new_path) in res["matches"]
     
     # 5. Move File
-    dest_dir = str(tmp_path / "cheeni_dest_dir")
+    dest_dir = str(downloads / "cheeni_dest_dir")
     res = move_file(str(new_path), dest_dir)
     assert res["success"] is True
     moved_path = Path(dest_dir) / renamed_file
     assert moved_path.exists()
+
+def test_paths_outside_approved_folders_are_rejected(tmp_path, monkeypatch):
+    monkeypatch.setattr(Path, "home", lambda: tmp_path)
+    outside = tmp_path / "private.txt"
+    outside.write_text("private")
+
+    assert _is_safe_path(outside) is False
+    assert search_files("private", directory=str(tmp_path))["success"] is False
+    assert read_document(str(outside))["success"] is False

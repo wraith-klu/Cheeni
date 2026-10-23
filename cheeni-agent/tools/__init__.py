@@ -1,5 +1,5 @@
 """
-Cheeni Desktop Agent — Tools Package (Phase 4 Updated)
+Cheeni Desktop Agent — Tools Package (V1–V20)
 """
 from .system_status import (
     get_full_system_status,
@@ -30,6 +30,9 @@ from .volume_control import (
     toggle_mute,
 )
 from .router import route_command, RouterResult, detect_intent
+from .digest_agent import get_digest_agent
+from .connectors import get_connector_registry
+from .notes_indexer import get_notes_indexer
 
 __all__ = [
     # System Status & Telemetry
@@ -62,4 +65,10 @@ __all__ = [
     "route_command",
     "RouterResult",
     "detect_intent",
+    # V17: Morning Digest
+    "get_digest_agent",
+    # V18: Connectors
+    "get_connector_registry",
+    # V20: Notes Indexer
+    "get_notes_indexer",
 ]

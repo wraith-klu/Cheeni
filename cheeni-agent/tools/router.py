@@ -87,18 +87,18 @@ from tools.window_control import (
     show_desktop,
     switch_virtual_desktop,
 )
-from tools.filesystem_control import (
-    search_files,
-    create_folder,
-    rename_file,
-    move_file,
-    read_document,
-)
+from tools.file_operations import read_approved_document, search_approved_files
 from tools.web_intelligence import (
     search_web,
     get_latest_news,
     scrape_webpage,
 )
+from tools.desktop_vision import (
+    analyze_screen_with_gemini,
+    find_and_click,
+    type_at_element,
+)
+from tools.screen_agent import execute_screen_goal
 
 
 # ── Router Result ──────────────────────────────────────────────────────────────
@@ -124,6 +124,9 @@ _INTENT_RULES = [
     ("sleep_pc",              [r"\b(put to sleep|go to sleep|sleep mode)\b", r"\bhibernate\b"]),
     ("restart_pc",            [r"\b(restart|reboot)\s*(my\s+|the\s+)?(laptop|computer|pc|system)?\b"]),
     ("shutdown_pc",           [r"\b(shutdown|shut down|power off|turn off)\s*(my\s+|the\s+)?(laptop|computer|pc|system)?\b"]),
+
+    # Multi-Step GUI Automation Goals (Phase 12)
+    ("screen_agent_goal",     [r"\b(automate|screen\s+goal|screen\s+task)\s*:\s*(?P<goal>.+)", r"\b(open\s+calculator\s+and\s+compute\s+.+)\b"]),
 
     # App Control
     ("close_app",             [r"(close|quit|exit|terminate|kill)\s+(app\s+|process\s+|window\s+)?(notepad|calculator|chrome|browser|vscode|vs code|paint|spotify|word|excel|terminal|cmd|edge|firefox|brave|discord|\w[\w.-]+)"]),
@@ -180,6 +183,18 @@ _INTENT_RULES = [
     ("web_intelligence_search", [r"\b(search|find)\s+(the\s+)?(web|internet)\s+(for\s+)?(?P<query>.+)"]),
     ("web_intelligence_news",   [r"\b(what.?s?|show\s+me)\s+(the\s+)?(latest\s+)?news(\s+about\s+(?P<topic>.+))?"]),
     ("web_intelligence_scrape", [r"\b(scrape|extract|read)\s+(the\s+)?(website|webpage|page|article)\s*(?P<url>https?://\S+)"]),
+    # Screen Vision & GUI Automation (Phase 12)
+    ("screen_vision",         [r"\b(look\s+at|inspect|what\s*(is|.?s)?\s*(shown\s+)?on|check|read|see)\s+(my\s+|the\s+)?(screen|display|error|code|terminal)\b", r"\bexplain\s+(this\s+|the\s+)?(screen|error|code)\b"]),
+    ("screen_type",           [r"\b(type|write|enter)\s+(?P<text>.+?)\s+(in|into|on)\s+(the\s+)?(?P<target>[a-zA-Z0-9\s_.-]+)"]),
+    ("screen_click",          [r"\b(click|press|tap)\s+(on\s+|the\s+)?(?P<target>[a-zA-Z0-9\s_.-]+)"]),
+    # V17: Morning Digest
+    ("morning_digest",        [r"\b(morning\s+brief|morning\s+digest|daily\s+brief|read\s+my\s+(emails|mail|briefing)|what.?s\s+(happening|new)|brief\s+me|daily\s+summary)\b"]),
+    # V18: Connectors
+    ("check_gmail",           [r"\b(check|read|show)\s+(my\s+)?(gmail|emails?|inbox|unread\s+emails?)\b"]),
+    ("check_calendar",        [r"\b(check|show|what.?s\s+on)\s+(my\s+)?(calendar|schedule|events?\s+(today|for\s+today))\b"]),
+    # V20: Notes Search
+    ("search_notes",          [r"\b(search|find|look\s+up)\s+(my\s+)?(notes?|documents?|files?|knowledge)\s+(for\s+|about\s+)?(?P<query>.+)", r"\bfind\s+in\s+(my\s+)?notes?\b"]),
+    ("index_notes",           [r"\b(index|scan|add)\s+(my\s+)?(notes?|documents?|folder)\b"]),
     ("search_web",            [r"\b(search|google|look up|find)\s+(for\s+)?.+"]),
 ]
 
@@ -307,7 +322,7 @@ def resolve_youtube_top_video(query: str) -> tuple[str, Optional[str]]:
 
 # ── Tool Executor ──────────────────────────────────────────────────────────────
 
-def _execute_intent(intent: str, raw_text: str) -> dict:
+async def _execute_intent(intent: str, raw_text: str) -> dict:
     """Execute the resolved intent and return a structured result dict."""
     import webbrowser
 
@@ -489,39 +504,34 @@ def _execute_intent(intent: str, raw_text: str) -> dict:
     if intent == "search_files":
         args = _extract_file_args(intent, raw_text)
         query = args.get("query", "").strip()
-        res = search_files(query)
+        try:
+            res = search_approved_files(query, "Downloads")
+        except ValueError as error:
+            res = {"success": False, "error": str(error)}
         speech = f"Found {res.get('count', 0)} files matching {query}." if res.get('success') else res.get('error', 'Search failed.')
         return {"type": "file_control", "data": res, "speech": speech, "ui_action": None}
         
     if intent == "read_document":
         args = _extract_file_args(intent, raw_text)
         file_path = args.get("file", "").strip()
-        res = read_document(file_path)
+        try:
+            res = read_approved_document(file_path)
+        except ValueError as error:
+            res = {"success": False, "error": str(error)}
         speech = f"Read document {file_path}." if res.get('success') else res.get('error', 'Read failed.')
         return {"type": "file_control", "data": res, "speech": speech, "ui_action": None}
         
     if intent == "create_folder":
-        args = _extract_file_args(intent, raw_text)
-        folder = args.get("folder", "").strip()
-        res = create_folder(folder)
-        speech = res.get("message", f"Created folder {folder}.") if res.get('success') else res.get('error', 'Create folder failed.')
-        return {"type": "file_control", "data": res, "speech": speech, "ui_action": None}
+        message = "Folder changes are temporarily disabled. Use the file preview and confirmation workflow."
+        return {"type": "file_control", "data": {"success": False, "error": message}, "speech": message, "ui_action": None}
         
     if intent == "rename_file":
-        args = _extract_file_args(intent, raw_text)
-        old = args.get("old", "").strip()
-        new = args.get("new", "").strip()
-        res = rename_file(old, new)
-        speech = res.get("message", f"Renamed to {new}.") if res.get('success') else res.get('error', 'Rename failed.')
-        return {"type": "file_control", "data": res, "speech": speech, "ui_action": None}
+        message = "Folder changes are temporarily disabled. Use the file preview and confirmation workflow."
+        return {"type": "file_control", "data": {"success": False, "error": message}, "speech": message, "ui_action": None}
         
     if intent == "move_file":
-        args = _extract_file_args(intent, raw_text)
-        src = args.get("src", "").strip()
-        dest = args.get("dest", "").strip()
-        res = move_file(src, dest)
-        speech = res.get("message", f"Moved to {dest}.") if res.get('success') else res.get('error', 'Move failed.')
-        return {"type": "file_control", "data": res, "speech": speech, "ui_action": None}
+        message = "Folder changes are temporarily disabled. Use the file preview and confirmation workflow."
+        return {"type": "file_control", "data": {"success": False, "error": message}, "speech": message, "ui_action": None}
 
     # ── Web Intelligence & Live Scraping (Phase 7) ──
     if intent == "web_intelligence_search":
@@ -605,6 +615,96 @@ def _execute_intent(intent: str, raw_text: str) -> dict:
             "ui_action": {"type": "play_music", "url": url, "query": song, "label": f'Playing "{song}"'},
         }
 
+    # ── Screen Vision & GUI Automation (Phase 12) ──
+    if intent == "screen_vision":
+        res = await analyze_screen_with_gemini(raw_text)
+        speech = res.get("observation") if res.get("success") else res.get("error", "Screen inspection failed.")
+        return {"type": "screen_vision", "data": res, "speech": speech, "ui_action": None}
+
+    if intent == "screen_click":
+        m = re.search(r"\b(click|press|tap)\s+(on\s+|the\s+)?(?P<target>[a-zA-Z0-9\s_.-]+)", raw_text, re.IGNORECASE)
+        target = m.group("target").strip() if m else raw_text
+        res = await find_and_click(target)
+        if res.get("needs_confirmation"):
+            return {
+                "type": "screen_click",
+                "data": res,
+                "speech": f"I see the {target} button, but this action is sensitive. Should I click it?",
+                "ui_action": None,
+            }
+        speech = f"Clicked {target}." if res.get("success") else res.get("error", f"Could not find {target} on screen.")
+        return {"type": "screen_click", "data": res, "speech": speech, "ui_action": None}
+
+    if intent == "screen_type":
+        m = re.search(r"\b(type|write|enter)\s+(?P<text>.+?)\s+(in|into|on)\s+(the\s+)?(?P<target>[a-zA-Z0-9\s_.-]+)", raw_text, re.IGNORECASE)
+        if m:
+            text = m.group("text").strip().strip('"\'')
+            target = m.group("target").strip()
+        else:
+            text = raw_text
+            target = "active window"
+        res = await type_at_element(target, text)
+        speech = f"Typed '{text}' into {target}." if res.get("success") else res.get("error", f"Could not type into {target}.")
+        return {"type": "screen_type", "data": res, "speech": speech, "ui_action": None}
+
+    if intent == "screen_agent_goal":
+        m = re.search(r"\b(automate|screen\s+goal|screen\s+task)\s*:\s*(?P<goal>.+)", raw_text, re.IGNORECASE)
+        goal = m.group("goal").strip() if m else raw_text
+        res = await execute_screen_goal(goal)
+        speech = res.get("message") or ("Goal completed." if res.get("success") else res.get("reason", "Could not complete goal."))
+        return {"type": "screen_agent_goal", "data": res, "speech": speech, "ui_action": None}
+
+    # ── V17: Morning Digest ────────────────────────────────────────────────────
+    if intent == "morning_digest":
+        from tools.digest_agent import get_digest_agent
+        result = await get_digest_agent().build_digest(text_only=False)
+        speech = result.get("text", "Your digest is ready.")[:300]
+        return {"type": "morning_digest", "data": result, "speech": "Your morning briefing is ready.", "ui_action": None}
+
+    # ── V18: Connectors ───────────────────────────────────────────────────────
+    if intent == "check_gmail":
+        from tools.connectors import get_connector_registry
+        emails = await get_connector_registry().gmail_unread(max_results=10)
+        if emails and "error" not in emails[0]:
+            count = len(emails)
+            subjects = ", ".join(e["subject"][:40] for e in emails[:3])
+            speech = f"You have {count} unread emails. The top ones are: {subjects}."
+        else:
+            speech = "Gmail isn't connected yet. Connect it from the dashboard."
+        return {"type": "check_gmail", "data": {"emails": emails}, "speech": speech, "ui_action": None}
+
+    if intent == "check_calendar":
+        from tools.connectors import get_connector_registry
+        events = await get_connector_registry().calendar_today()
+        if events and "error" not in events[0]:
+            count = len(events)
+            if count == 0:
+                speech = "Your calendar is clear for today."
+            else:
+                first = events[0]
+                start = first.get("start", "").split("T")[-1][:5] if "T" in first.get("start", "") else ""
+                speech = f"You have {count} event(s) today. First up: {first['summary']} at {start}."
+        else:
+            speech = "Google Calendar isn't connected yet. Connect it from the dashboard."
+        return {"type": "check_calendar", "data": {"events": events}, "speech": speech, "ui_action": None}
+
+    # ── V20: Notes Search ─────────────────────────────────────────────────────
+    if intent == "search_notes":
+        from tools.notes_indexer import get_notes_indexer
+        m = re.search(r"(?:for|about|on)\s+(?P<query>.+)$", raw_text, re.IGNORECASE)
+        query = m.group("query").strip() if m else raw_text
+        results = get_notes_indexer().search(query, top_k=3)
+        if results and "info" not in results[0]:
+            snippets = " / ".join(r["snippet"][:80] for r in results[:2])
+            speech = f"Found {len(results)} matches in your notes: {snippets}"
+        else:
+            speech = "No notes indexed yet. Index a folder from the dashboard first."
+        return {"type": "search_notes", "data": {"results": results}, "speech": speech, "ui_action": None}
+
+    if intent == "index_notes":
+        speech = "To index your notes, go to the Agent Dashboard → Notes tab and enter your folder path."
+        return {"type": "index_notes", "data": {}, "speech": speech, "ui_action": None}
+
     return {"type": "unknown", "speech": "I'm not sure how to handle that command yet.", "ui_action": None}
 
 
@@ -672,7 +772,7 @@ async def route_command(
     logger.info(f"[ROUTER] intent={intent}")
 
     try:
-        exec_result = _execute_intent(intent, text)
+        exec_result = await _execute_intent(intent, text)
         speech = exec_result.get("speech", "Done!")
         ui_action = exec_result.get("ui_action")
 

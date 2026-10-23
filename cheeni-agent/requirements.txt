@@ -1,33 +1,71 @@
 # Cheeni Desktop Agent - Requirements
-# Windows Assistant OS Layer (V1 - V9 Architecture)
+# Windows Assistant OS Layer (V1 - V20 Architecture)
 
-# API & WebSocket Bridge
+# ── API & WebSocket Bridge (V2) ───────────────────────────────────────────────
 fastapi>=0.110.0
 uvicorn[standard]>=0.28.0
 pydantic>=2.6.0
 python-dotenv>=1.0.0
 requests>=2.31.0
 
-# System Control & Hardware Telemetry (V3)
+# ── System Control & Hardware Telemetry (V3) ──────────────────────────────────
 psutil>=5.9.8
 pyautogui>=0.9.54
 pycaw>=20240210
 comtypes>=1.4.1
 
-# Document Intelligence & Filesystem (V4)
+# ── Document Intelligence & Filesystem (V4) ───────────────────────────────────
 pypdf2>=3.0.1
 python-docx>=1.1.0
 
-# Web Intelligence & Scraping (V5)
+# ── Web Intelligence & Scraping (V5) ─────────────────────────────────────────
 beautifulsoup4>=4.12.3
 duckduckgo-search>=5.0.0
 
-# Voice Pipeline -- Wake Word & TTS (V6+)
+# ── Voice Pipeline -- Wake Word & TTS (V6+) ───────────────────────────────────
 SpeechRecognition>=3.10.0
 sounddevice>=0.4.6
 pyttsx3>=2.90
 numpy>=1.26.0
 
-# 2-Way Conversation Engine (V9)
-webrtcvad>=2.0.10   # WebRTC Voice Activity Detection -- precise speech boundary detection
-httpx>=0.27.0       # Async-capable HTTP client for LLM API calls (OpenRouter / Node backend)
+# ── 2-Way Conversation Engine (V9) ───────────────────────────────────────────
+webrtcvad>=2.0.10   # WebRTC VAD -- precise speech boundary detection
+httpx>=0.27.0       # Async HTTP client for LLM API calls
+
+# ── V10: Whisper STT (local, offline, high-accuracy) ─────────────────────────
+faster-whisper>=1.0.0
+ctranslate2>=4.0.0
+
+# ── V11: Browser Automation ───────────────────────────────────────────────────
+playwright>=1.44.0
+# After install run: playwright install chromium
+
+# ── V12: Screen Vision & GUI Grounding ────────────────────────────────────────
+opencv-python>=4.9.0
+
+# ── V13: Edge TTS (neural voice) ─────────────────────────────────────────────
+edge-tts>=6.1.9
+
+# ── V15: Personal Memory (semantic search) ────────────────────────────────────
+sentence-transformers>=2.7.0
+scikit-learn>=1.4.0
+
+# ── V17: Morning Digest ───────────────────────────────────────────────────────
+# (no extra deps -- uses connectors + llm_router + TTS already installed)
+
+# ── V18: Cloud Connectors (optional -- install only what you need) ─────────────
+# Google (Gmail + Calendar + Drive):
+#   pip install google-api-python-client google-auth-oauthlib google-auth-httplib2
+# Slack:
+#   pip install slack-sdk
+# Notion: (uses httpx, already installed)
+
+# ── V19: Kokoro TTS (local neural voice, free) ────────────────────────────────
+# pip install kokoro sounddevice
+# kokoro>=0.9.2           # uncomment to hard-pin
+# (sounddevice already listed above)
+
+# ── V20: Notes Memory Indexer ─────────────────────────────────────────────────
+# (sentence-transformers already listed above)
+# PDF support (modern, replaces PyPDF2):
+pypdf>=4.0.0

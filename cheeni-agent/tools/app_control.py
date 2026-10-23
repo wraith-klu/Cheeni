@@ -226,11 +226,7 @@ def launch_app(app_name: str) -> dict:
     except Exception:
         pass
 
-    try:
-        subprocess.Popen(query, shell=True)
-        return {"success": True, "message": f"Attempted to launch {app_name}.", "app": app_name}
-    except Exception as e:
-        return {"success": False, "message": f"Could not find or launch '{app_name}'. Make sure it is installed."}
+    return {"success": False, "message": f"Could not find '{app_name}' in the approved application catalog."}
 
 
 # ── Terminate / Close Application ──────────────────────────────────────────────

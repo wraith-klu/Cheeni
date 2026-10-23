@@ -38,6 +38,7 @@ from tools.system_status import (
 from tools.router import detect_intent, route_command
 from fastapi.testclient import TestClient
 from core.server import app
+from config.settings import settings
 
 
 # ── 1. App Controller Tests ───────────────────────────────────────────────────
@@ -141,18 +142,16 @@ def test_phase4_intent_detection():
     assert detect_intent("decrease sound") == "volume_down"
 
 
-@pytest.mark.asyncio
-async def test_router_system_specs_execution():
-    res = await route_command("what are my computer specs")
+def test_router_system_specs_execution():
+    res = asyncio.run(route_command("what are my computer specs"))
     assert res.success is True
     assert res.intent == "system_specs"
     assert "processor" in res.result
     assert "ram" in res.speech.lower() or "laptop" in res.speech.lower()
 
 
-@pytest.mark.asyncio
-async def test_router_list_running_apps_execution():
-    res = await route_command("list running apps")
+def test_router_list_running_apps_execution():
+    res = asyncio.run(route_command("list running apps"))
     assert res.success is True
     assert res.intent == "list_running_apps"
     assert "count" in res.result
@@ -161,11 +160,14 @@ async def test_router_list_running_apps_execution():
 
 # ── 5. FastAPI Endpoints Verification ─────────────────────────────────────────
 
-def test_fastapi_phase4_endpoints():
+def test_fastapi_phase4_endpoints(monkeypatch):
+    token = "t" * 40
+    monkeypatch.setattr(settings, "API_TOKEN", token)
     client = TestClient(app)
+    headers = {"Authorization": f"Bearer {token}"}
 
     # 1. GET /api/system/specs
-    res_specs = client.get("/api/system/specs")
+    res_specs = client.get("/api/system/specs", headers=headers)
     assert res_specs.status_code == 200
     data_specs = res_specs.json()
     assert data_specs["success"] is True
@@ -173,15 +175,33 @@ def test_fastapi_phase4_endpoints():
     assert "processor" in data_specs["specs"]
 
     # 2. GET /api/apps/running
-    res_apps = client.get("/api/apps/running")
+    res_apps = client.get("/api/apps/running", headers=headers)
     assert res_apps.status_code == 200
     data_apps = res_apps.json()
     assert data_apps["success"] is True
     assert len(data_apps["apps"]) > 0
 
     # 3. POST /api/volume/delta
-    res_vol = client.post("/api/volume/delta", json={"delta": 0})
+    res_vol = client.post("/api/volume/delta", headers=headers, json={"delta": 0})
     assert res_vol.status_code == 200
+
+
+def test_fastapi_high_impact_routes_are_disabled(monkeypatch):
+    token = "t" * 40
+    monkeypatch.setattr(settings, "API_TOKEN", token)
+    client = TestClient(app)
+    headers = {"Authorization": f"Bearer {token}"}
+
+    for path, payload in (
+        ("/api/apps/close", {"app": "notepad", "force": False}),
+        ("/api/windows/close", {}),
+        ("/api/system/lock", None),
+        ("/api/system/sleep", None),
+        ("/api/system/restart", {}),
+        ("/api/system/shutdown", {}),
+    ):
+        response = client.post(path, headers=headers, json=payload)
+        assert response.status_code == 410
 
 
 if __name__ == "__main__":

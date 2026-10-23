@@ -30,8 +30,13 @@ from config.settings import settings
 
 from voice.memory import get_memory
 from voice.listener import get_listener
-from voice.speaker import get_speaker
 from voice.session import get_session, VoiceState
+
+# V13: Use EdgeSpeaker (neural TTS) as primary; falls back to pyttsx3 automatically
+try:
+    from voice.edge_speaker import get_edge_speaker as _get_speaker
+except Exception:
+    from voice.speaker import get_speaker as _get_speaker  # type: ignore
 
 # ── Dynamic phrase helpers ───────────────────────────────────────────────────
 def get_goodbye_phrases() -> list[str]:
@@ -144,7 +149,7 @@ class ConversationLoop:
         Main conversation loop.
         Runs in its own daemon thread. Exits on goodbye, timeout, or stop().
         """
-        speaker = get_speaker()
+        speaker = _get_speaker()
         listener = get_listener()
         session = get_session()
         memory = get_memory(settings.CONVERSATION_MEMORY_TURNS)

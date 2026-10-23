@@ -293,7 +293,7 @@ export function StatusBar({
         }}
       >
         <button
-          onClick={() => onQuickAction("/api/agent/system/lock")}
+          onClick={() => onQuickAction("lock")}
           style={quickActionBtnStyle}
           title="Lock PC"
         >
@@ -301,7 +301,7 @@ export function StatusBar({
           <span>Lock PC</span>
         </button>
         <button
-          onClick={() => onQuickAction("/api/agent/volume/mute")}
+          onClick={() => onQuickAction("mute")}
           style={quickActionBtnStyle}
           title="Mute Audio"
         >
@@ -309,7 +309,7 @@ export function StatusBar({
           <span>Mute Audio</span>
         </button>
         <button
-          onClick={() => onQuickAction("/api/agent/windows/desktop")}
+          onClick={() => onQuickAction("show_desktop")}
           style={quickActionBtnStyle}
           title="Show Desktop"
         >
@@ -317,7 +317,7 @@ export function StatusBar({
           <span>Show Desktop</span>
         </button>
         <button
-          onClick={() => onQuickAction("/api/agent/launch", { app: "notepad" })}
+          onClick={() => onQuickAction("launch_app", { app_name: "notepad" })}
           style={quickActionBtnStyle}
           title="Open Notepad"
         >

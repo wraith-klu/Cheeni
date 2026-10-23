@@ -10,6 +10,7 @@ class Settings:
     # Server & Bridge
     HOST: str = os.getenv("AGENT_HOST", "127.0.0.1")
     PORT: int = int(os.getenv("AGENT_PORT", "2026"))
+    API_TOKEN: str = os.getenv("AGENT_API_TOKEN", "")
     NODE_BACKEND_URL: str = os.getenv("NODE_BACKEND_URL", "http://localhost:2025")
     CORS_ORIGINS: list = [
         "http://localhost:5173",
@@ -43,5 +44,30 @@ class Settings:
     DESKTOP_DIR: Path = USER_HOME / "Desktop"
     DOCUMENTS_DIR: Path = USER_HOME / "Documents"
     DOWNLOADS_DIR: Path = USER_HOME / "Downloads"
+
+    # V10: Whisper STT
+    WHISPER_MODEL_SIZE: str = os.getenv("WHISPER_MODEL_SIZE", "base")
+    WHISPER_DEVICE: str = os.getenv("WHISPER_DEVICE", "cpu")
+    WHISPER_COMPUTE_TYPE: str = os.getenv("WHISPER_COMPUTE_TYPE", "int8")
+    WHISPER_LANGUAGE: str = os.getenv("WHISPER_LANGUAGE", "en")
+
+    # V12: Screen Vision & GUI Grounding Agent
+    SCREEN_VISION_MODEL: str = os.getenv("SCREEN_VISION_MODEL", "gemini-3.5-flash")
+    SCREEN_AGENT_MAX_STEPS: int = int(os.getenv("SCREEN_AGENT_MAX_STEPS", "8"))
+    SCREEN_AGENT_STEP_DELAY: float = float(os.getenv("SCREEN_AGENT_STEP_DELAY", "1.0"))
+
+    # V13: Edge TTS
+    EDGE_TTS_ENABLED: bool = os.getenv("EDGE_TTS_ENABLED", "true").lower() != "false"
+    EDGE_TTS_VOICE: str = os.getenv("EDGE_TTS_VOICE", "en-IN-NeerjaNeural")
+    EDGE_TTS_RATE: str = os.getenv("EDGE_TTS_RATE", "+0%")
+
+    # V14: Ollama Local LLM
+    OLLAMA_HOST: str = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+    OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "phi3:mini")
+    OLLAMA_ENABLED: bool = os.getenv("OLLAMA_ENABLED", "true").lower() != "false"
+
+    # V15: Personal Memory
+    MEMORY_EMBED_MODEL: str = os.getenv("MEMORY_EMBED_MODEL", "all-MiniLM-L6-v2")
+
 
 settings = Settings()
