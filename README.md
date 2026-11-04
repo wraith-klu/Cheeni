@@ -17,7 +17,7 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Windows_10_|_11-0078D6?logo=windows&logoColor=white)](https://microsoft.com/windows)
 
-[Key Features](#what-is-cheeni) • [Architecture Diagrams](#system-architecture--diagrams) • [OpenJarvis 5-Step Guide](#openjarvis-zero-rupee-setup-guide) • [Getting Started](#getting-started) • [Voice & Commands](#voice-interaction--commands) • [Security Guard](#3-tier-execution-security-guard) • [Tech Stack](#technology-stack)
+[Key Features](#what-is-cheeni) • [🧠 ML & AI Pipeline](#-ml--ai-pipeline-deep-dive) • [Architecture Diagrams](#system-architecture--diagrams) • [OpenJarvis 5-Step Guide](#openjarvis-zero-rupee-setup-guide) • [Getting Started](#getting-started) • [Voice & Commands](#voice-interaction--commands) • [Security Guard](#3-tier-execution-security-guard) • [Tech Stack](#technology-stack)
 
 ---
 
@@ -29,6 +29,452 @@
 **Cheeni** is an open-source, local-first personal AI assistant built for everyday laptops. Inspired by Stanford's OpenJarvis framework, it runs entirely on your own hardware without mandatory cloud subscriptions, while offering optional cloud LLM bridges for heavy lifting.
 
 It combines an always-on **low-power wake word detector**, **sub-second local speech-to-text** via `faster-whisper`, a **multi-backend fallback LLM router** (Ollama ↔ OpenRouter ↔ Gemini ↔ Node.js), **neural voices** (Edge-TTS & Kokoro-82M), **browser automation** via Playwright, **screen vision grounding** with Gemini 2.0 Flash, **local OAuth connectors** for Gmail, Calendar, Slack, and Notion, and an automated **Jarvis morning brief engine**.
+
+---
+
+<a id="-ml--ai-pipeline-deep-dive"></a>
+## 🧠 ML & AI Pipeline Deep Dive
+
+This section explains every machine learning model, algorithm, and AI pipeline powering Cheeni — from raw audio bytes to spoken responses.
+
+---
+
+### 📊 Complete ML Pipeline Overview
+
+```mermaid
+flowchart TD
+    A["🎤 Raw Microphone Audio\n(PCM 16kHz mono)"] --> B
+
+    subgraph ML1["⚡ ML Stage 1 — Wake Word Detection"]
+        B["OpenWakeWord ONNX Model\nhey_jarvis (40ms chunks)"] --> C{Score ≥ 0.40?}
+        C -- No --> B
+        C -- Yes --> D["🔔 Wake Event Triggered"]
+    end
+
+    D --> E
+
+    subgraph ML2["🎙️ ML Stage 2 — Speech-to-Text (STT)"]
+        E["WebRTC VAD\nEnergy-based silence detection"] --> F["Audio Buffer\nCapture complete utterance"]
+        F --> G["faster-whisper Transformer\n(CTranslate2 int8 quantized)\nWhisper base/small/medium"]
+        G --> H["📝 Transcribed Text"]
+    end
+
+    H --> I
+
+    subgraph ML3["🛡️ ML Stage 3 — Intent Classification & Security"]
+        I["Regex + Keyword Classifier\n3-Tier Security Gate"] --> J{Intent Tier}
+        J -- Tier 1 Safe --> K["✅ Dispatch Immediately"]
+        J -- Tier 2 Risky --> L["⚠️ Request Confirmation"]
+        J -- Tier 3 Blocked --> M["🚫 Deny & Explain"]
+    end
+
+    K --> N
+
+    subgraph ML4["🤖 ML Stage 4 — LLM Reasoning & Tool Calling"]
+        N["LLM Router\nFallback Chain"] --> O["Gemini 2.0 Flash\nReAct Tool-Calling Loop"]
+        O --> P{Tool Call?}
+        P -- Yes --> Q["🔧 Execute Local Tool\nDesktop / Browser / Memory"]
+        Q --> R["📋 Observation"]
+        R --> O
+        P -- No --> S["💬 Direct Reply Text"]
+    end
+
+    S --> T
+    subgraph ML5["🧬 ML Stage 5 — Semantic Memory (RAG)"]
+        T["SentenceTransformer\nall-MiniLM-L6-v2\n384-dim embeddings"] --> U["Cosine Similarity Search\nSQLite Vector Store"]
+        U --> V["🔍 Top-K Relevant Facts"]
+    end
+
+    V --> W
+
+    subgraph ML6["🗣️ ML Stage 6 — Neural TTS"]
+        W["Kokoro-82M\nLocal Neural Voice Model\nOR Microsoft Edge-TTS"] --> X["🔊 Spoken Audio Output"]
+    end
+
+    style ML1 fill:#1a1a2e,stroke:#e94560,color:#fff
+    style ML2 fill:#16213e,stroke:#0f3460,color:#fff
+    style ML3 fill:#0f3460,stroke:#533483,color:#fff
+    style ML4 fill:#533483,stroke:#e94560,color:#fff
+    style ML5 fill:#1a1a2e,stroke:#00b4d8,color:#fff
+    style ML6 fill:#023e8a,stroke:#90e0ef,color:#fff
+```
+
+---
+
+### 🔬 ML Stage 1: Wake Word Detection
+
+**Model:** OpenWakeWord (`hey_jarvis` ONNX) + SpeechRecognition fallback
+
+```mermaid
+flowchart LR
+    A["🎤 Microphone\n16kHz PCM"] --> B["Chunk Audio\n80ms = 1,280 samples"]
+    B --> C["ONNX Runtime\nInference Engine"]
+    C --> D["hey_jarvis\nPre-trained Neural Net"]
+    D --> E{Confidence\nScore}
+    E -- "< 0.40\n(miss)" --> B
+    E -- "≥ 0.40\n(hit!)" --> F["🔔 Wake Detected\n2s cooldown applied"]
+    F --> G["Pause WakeWord Engine\nRelease Mic for STT"]
+
+    style A fill:#e94560,color:#fff
+    style D fill:#533483,color:#fff
+    style F fill:#06d6a0,color:#000
+```
+
+| Property | Value |
+|---|---|
+| **Audio Sample Rate** | 16,000 Hz |
+| **Chunk Size** | 80 ms = 1,280 samples |
+| **Model Type** | Pre-trained ONNX Neural Network |
+| **Confidence Threshold** | ≥ 0.40 |
+| **Cooldown After Detection** | 2 seconds |
+| **CPU Usage at Idle** | < 1% (daemon thread) |
+| **Fallback** | Google SpeechRecognition + keyword regex matching |
+
+**How the ONNX model works:**
+1. Raw audio frames at 16kHz are sliced into 80ms overlapping chunks.
+2. Each chunk is passed through the pre-trained `hey_jarvis` neural net via ONNX Runtime.
+3. The model outputs a probability score (0.0–1.0) for the target phrase.
+4. When score ≥ threshold, the wake event fires and the microphone is handed to the STT engine.
+5. A 2-second cooldown prevents the same phrase re-triggering the pipeline.
+
+**Fallback Algorithm (SpeechRecognition):**
+When OpenWakeWord is unavailable, a background listener calls Google STT and runs phonetic regex matching. Names like `Sam` get expanded into alias lists (`sharma`, `shama`, `swayam`, etc.) to handle Indian-accent STT transcription errors.
+
+---
+
+### 🎙️ ML Stage 2: Speech-to-Text (STT) — faster-whisper
+
+**Model:** OpenAI Whisper (CTranslate2 quantized, int8)
+
+```mermaid
+flowchart TD
+    A["🎤 Raw PCM Audio Buffer"] --> B["WebRTC VAD\nVoice Activity Detection"]
+    B --> C{Speech\nDetected?}
+    C -- No --> B
+    C -- Yes --> D["Accumulate Frames\nuntil silence"]
+    D --> E["PCM → WAV\nIn-memory byte buffer"]
+    E --> F["WhisperModel.transcribe()\nCTranslate2 Runtime"]
+
+    subgraph Whisper["Whisper Transformer Architecture"]
+        F --> G["Audio Encoder\n(CNN + Multi-Head Attention)\n80-dim Log-Mel Spectrogram"]
+        G --> H["Transformer Decoder\n(Autoregressive Token Generation)"]
+        H --> I["Beam Search\nbeam_size = 5"]
+    end
+
+    I --> J["📝 Transcribed Text + Language"]
+    J --> K{Confidence\nCheck}
+    K -- High --> L["✅ Pass to Intent Router"]
+    K -- Low --> M["🔄 Fallback: Google STT Cloud"]
+
+    style Whisper fill:#1a1a2e,stroke:#7057ff,color:#fff
+    style G fill:#533483,color:#fff
+    style H fill:#0f3460,color:#fff
+```
+
+**Whisper Model Sizes Available:**
+
+| Model | Parameters | VRAM | Speed | Accuracy |
+|---|---|---|---|---|
+| `tiny` | 39M | ~1 GB | Fastest | Basic |
+| `base` ✅ | 74M | ~1 GB | Fast | Good |
+| `small` | 244M | ~2 GB | Medium | Better |
+| `medium` | 769M | ~5 GB | Slow | Great |
+| `large-v3` | 1550M | ~10 GB | Slowest | Best |
+
+**How Whisper Works Internally:**
+
+1. **Log-Mel Spectrogram**: Raw PCM audio → 80 frequency bins × time frames using Short-Time Fourier Transform (STFT). This converts the waveform into a 2D image that the neural net can process.
+
+2. **CNN Encoder**: Two convolutional layers extract local temporal features from the spectrogram, converting it to a dense representation.
+
+3. **Multi-Head Self-Attention**: Transformer encoder layers learn long-range dependencies across the full utterance — which parts of the audio are related to which.
+
+4. **Autoregressive Decoder**: Token by token, the decoder generates transcribed text. Each new token attends to all encoder outputs (cross-attention) and all previously generated tokens (causal self-attention).
+
+5. **Beam Search (k=5)**: Instead of greedily picking the highest-probability next token, the decoder keeps the top-5 partial sequences at each step, selecting the globally best sequence at the end.
+
+6. **CTranslate2 int8 Quantization**: Model weights are quantized from 32-bit float to 8-bit integer, making inference ~4x faster on CPU with minimal accuracy loss.
+
+---
+
+### 🤖 ML Stage 3: LLM Router — Multi-Backend Fallback
+
+**Algorithm:** Priority-ordered async fallback chain with 4 backends
+
+```mermaid
+flowchart TD
+    IN["📝 User Prompt\n+ System Context"] --> N1
+
+    N1["🔵 Backend 1\nNode.js Backend :2025\n(full memory + user auth)"] -- Success --> OUT
+    N1 -- Fail/Timeout --> N2
+
+    N2["☁️ Backend 2\nOpenRouter API\nFast free-tier models"] -- Success --> OUT
+    N2 -- Fail/Timeout --> N3
+
+    N3["🟢 Backend 3\nGoogle Gemini API\n1.5-flash / 2.0-flash"] -- Success --> OUT
+    N3 -- Fail/Timeout --> N4
+
+    N4["🟤 Backend 4\nLocal Ollama (OFFLINE)\nphi3:mini / llama3.2:3b"] -- Success --> OUT
+    N4 -- All Fail --> ERR
+
+    OUT["💬 LLM Response Text"]
+    ERR["❌ All backends exhausted\nReturn None"]
+
+    style N1 fill:#0f3460,color:#fff
+    style N2 fill:#533483,color:#fff
+    style N3 fill:#1a472a,color:#fff
+    style N4 fill:#3d1a0f,color:#fff
+    style OUT fill:#06d6a0,color:#000
+    style ERR fill:#e94560,color:#fff
+```
+
+**LLM Parameters Used:**
+
+| Parameter | Value | Purpose |
+|---|---|---|
+| `temperature` | 0.75 | Creativity/randomness balance |
+| `max_tokens` | 300 | Response length cap |
+| `timeout` | 20s (cloud) / 60s (Ollama) | Per-backend deadline |
+| `beam_size` (Ollama) | Model default | Quality of local generation |
+
+---
+
+### 🤖 ML Stage 4: ReAct (Reason + Act) Agent Loop
+
+**Architecture:** Gemini 2.0 Flash with Function Calling + Local Tool Dispatch
+
+```mermaid
+sequenceDiagram
+    participant U as 👤 User Voice
+    participant R as 🔄 ReAct Loop
+    participant G as 🧠 Gemini 2.0 Flash
+    participant T as 🔧 Local Tools
+
+    U->>R: "What is my battery level?"
+    R->>G: Prompt + Tool Schemas (6 tools)
+    G-->>R: FunctionCall{name: "get_system_telemetry", args: {metric: "battery"}}
+    R->>T: dispatch_local_tool("get_system_telemetry", {metric: "battery"})
+    T-->>R: {battery_percent: 78, plugged: true}
+    R->>G: Observation = {battery_percent: 78} → "Generate voice response"
+    G-->>R: "Your battery is at 78%, and you're plugged in — you're all good!"
+    R->>U: 🔊 Speak via Neural TTS
+```
+
+**Tool Schema Pattern (Function Calling):**
+
+```json
+{
+  "name": "control_volume",
+  "description": "Adjust or query the master system audio volume on Windows.",
+  "parameters": {
+    "type": "OBJECT",
+    "properties": {
+      "action": { "type": "STRING", "enum": ["set","mute","unmute","increase","decrease","get"] },
+      "level":  { "type": "INTEGER", "description": "Volume 0-100" }
+    },
+    "required": ["action"]
+  }
+}
+```
+
+**Available ReAct Tools:**
+
+| Tool | Function | ML/AI Used |
+|---|---|---|
+| `control_volume` | Win32 pycaw audio API | Deterministic |
+| `launch_app` / `close_app` | Process manager | Deterministic |
+| `manage_window` | Win32 window snap | Deterministic |
+| `get_system_telemetry` | psutil metrics | Deterministic |
+| `inspect_screen_vision` | Screenshot + Gemini Vision | Multimodal LLM |
+| `search_web` | DuckDuckGo + BeautifulSoup | Web scraping |
+
+---
+
+### 🧬 ML Stage 5: Semantic Memory — Sentence Transformers + Vector Search
+
+**Model:** `all-MiniLM-L6-v2` (22M parameters, 384-dimensional embeddings)
+
+```mermaid
+flowchart LR
+    subgraph WRITE["📥 Memory Write Path"]
+        A1["User says:\n'Remember my college\nportal is kluniversity.in'"] --> B1["SentenceTransformer\nencode(text)"]
+        B1 --> C1["384-dim float32 vector\n[-0.021, 0.147, ..., 0.063]"]
+        C1 --> D1["JSON serialize vector\nStore in SQLite embeddings table"]
+    end
+
+    subgraph READ["📤 Memory Read Path (Recall)"]
+        A2["User asks:\n'Where is my college site?'"] --> B2["SentenceTransformer\nencode(query)"]
+        B2 --> C2["Query vector\n[-0.018, 0.142, ..., 0.071]"]
+        C2 --> D2["Cosine Similarity\nagainst all stored vectors"]
+        D2 --> E2["Top-K Ranked Results\nscore > 0.70 threshold"]
+        E2 --> F2["✅ Return: kluniversity.in"]
+    end
+
+    style WRITE fill:#1a1a2e,stroke:#00b4d8,color:#fff
+    style READ fill:#023e8a,stroke:#90e0ef,color:#fff
+```
+
+**How Sentence Transformers Work:**
+
+1. **Tokenization**: Text is split into WordPiece tokens (e.g., `"college portal"` → `["college", "port", "##al"]`).
+2. **BERT Encoder**: 6 transformer layers with multi-head self-attention create contextual token representations.
+3. **Mean Pooling**: Token embeddings are averaged across all positions → one 384-dimensional sentence vector.
+4. **Cosine Similarity Search**: The dot product of two L2-normalized vectors, giving a score from –1 to +1 (higher = more semantically similar).
+
+$$\text{similarity}(A, B) = \frac{A \cdot B}{\|A\| \cdot \|B\|}$$
+
+**Memory Tables (SQLite):**
+
+| Table | Purpose | Semantic Search |
+|---|---|---|
+| `preferences` | User settings, habits | ✅ Yes |
+| `contacts` | Name → phone/email | ✅ Yes |
+| `shortcuts` | Phrase → URL mapping | ✅ Yes |
+| `interaction_log` | Voice command history | No |
+| `embeddings` | Shared vector cache | — |
+
+---
+
+### 📂 ML Stage 5b: Notes RAG Indexer (V20)
+
+**Pipeline:** Chunk → Embed → Store → Semantic Retrieve
+
+```mermaid
+flowchart TD
+    A["📁 Local Folder\n(.md / .txt / .pdf)"] --> B["File Walker\nrglob('*')"]
+    B --> C["Text Extractor\n(pypdf / plain text)"]
+    C --> D["Paragraph Chunker\n~500 chars per chunk"]
+    D --> E["SentenceTransformer\nencode each chunk"]
+    E --> F["SQLite chunks table\n{content, vector JSON}"]
+
+    G["User: 'Search notes for\nmachine learning'"] --> H["encode(query)"]
+    H --> I["Cosine similarity\nall stored chunks"]
+    I --> J["Top-5 results\nscore > 0.10"]
+    J --> K["📄 Relevant note snippets\n+ source file path"]
+
+    style A fill:#1a1a2e,stroke:#e94560,color:#fff
+    style F fill:#0f3460,color:#fff
+    style K fill:#06d6a0,color:#000
+```
+
+**RAG (Retrieval-Augmented Generation) Architecture:**
+- Documents are pre-processed and stored as semantic vectors.
+- At query time, the user's question is embedded and compared against all document chunks using cosine similarity.
+- The most relevant chunks are returned and injected into the LLM prompt as context.
+- This lets Cheeni answer questions about your personal notes **without hallucinating** — answers are grounded in actual document content.
+
+---
+
+### 🗣️ ML Stage 6: Neural Text-to-Speech
+
+**Primary Model:** Kokoro-82M (Local)  |  **Fallback:** Microsoft Edge-TTS (Cloud)
+
+```mermaid
+flowchart LR
+    A["📝 Response Text\n'Your battery is at 78%'"] --> B{TTS Engine\nSelector}
+
+    B -- Local --> C["Kokoro-82M\nNeural TTS Model"]
+    C --> D["Phoneme Converter\nText → IPA phonemes"]
+    D --> E["Duration Model\nPredict phoneme timings"]
+    E --> F["HiFi-GAN Vocoder\nMel-spectrogram → Waveform"]
+    F --> G["🔊 Audio Output\n22050 Hz WAV"]
+
+    B -- Cloud --> H["Edge-TTS API\nen-IN-NeerjaNeural\nbm_george (British)"]
+    H --> G
+
+    style C fill:#533483,color:#fff
+    style H fill:#0f3460,color:#fff
+    style G fill:#06d6a0,color:#000
+```
+
+**Kokoro-82M Architecture:**
+- **82M parameters** — small enough for real-time CPU inference.
+- Uses a **duration model** to predict how long each phoneme should be spoken.
+- **HiFi-GAN vocoder** generates the final audio waveform from a Mel spectrogram.
+- Supports multiple voice presets: `bm_george` (British male), `af_heart` (American female), and others.
+- Average latency: **~400ms** for a typical sentence.
+
+---
+
+### 🏗️ Full ML Architecture — All Models at a Glance
+
+```mermaid
+graph TB
+    subgraph Models["🧠 All ML Models in Cheeni"]
+        M1["OpenWakeWord\nhey_jarvis ONNX\n~1MB, 40ms inference"]
+        M2["Whisper (CTranslate2)\nbase/small/medium\n74M–769M params"]
+        M3["all-MiniLM-L6-v2\nSentence Transformer\n22M params, 384-dim"]
+        M4["Kokoro-82M\nNeural TTS\n82M params"]
+        M5["Gemini 2.0 Flash\nCloud LLM\n(ReAct + Vision)"]
+        M6["Ollama Local LLM\nphi3:mini / llama3.2\n~2-7B params"]
+    end
+
+    subgraph Flow["🔄 Data Flow"]
+        Audio["🎤 Mic Audio"] --> M1
+        M1 --> M2
+        M2 --> M3
+        M3 --> M5
+        M3 --> M6
+        M5 --> M4
+        M6 --> M4
+        M4 --> Speaker["🔊 Speaker"]
+    end
+
+    style Models fill:#1a1a2e,stroke:#e94560,color:#fff
+    style M1 fill:#e94560,color:#fff
+    style M2 fill:#7057ff,color:#fff
+    style M3 fill:#00b4d8,color:#000
+    style M4 fill:#06d6a0,color:#000
+    style M5 fill:#533483,color:#fff
+    style M6 fill:#3d1a0f,color:#fff
+```
+
+---
+
+### ⚡ ML Performance Benchmarks
+
+| ML Component | Model | Latency | Runs On |
+|---|---|---|---|
+| Wake Word Detection | OpenWakeWord ONNX | < 10ms/chunk | CPU (< 1% idle) |
+| Speech-to-Text | faster-whisper base | ~800ms | CPU int8 |
+| Semantic Embedding | all-MiniLM-L6-v2 | < 20ms/query | CPU |
+| Memory Recall (top-5) | Cosine similarity | < 80ms | CPU |
+| Notes RAG Search | Cosine similarity | < 100ms | CPU |
+| LLM Response (cloud) | Gemini / OpenRouter | ~1-2s | Cloud |
+| LLM Response (local) | Ollama phi3:mini | ~3-8s | CPU (varies) |
+| TTS Synthesis (local) | Kokoro-82M | ~400ms | CPU |
+| TTS Synthesis (cloud) | Edge-TTS | ~600ms | Cloud API |
+| Screen Vision | Gemini 2.0 Flash | ~1.5s | Cloud |
+
+---
+
+### 🔄 End-to-End Voice Interaction — Step by Step
+
+```mermaid
+sequenceDiagram
+    participant Mic as 🎤 Microphone
+    participant OWW as OpenWakeWord<br/>(ONNX, 40ms chunks)
+    participant VAD as WebRTC VAD
+    participant STT as faster-whisper<br/>(CTranslate2 int8)
+    participant SEC as 3-Tier Security<br/>(Regex Classifier)
+    participant MEM as SentenceTransformer<br/>(Memory Recall)
+    participant LLM as LLM Router<br/>(Gemini/Ollama)
+    participant TTS as Kokoro-82M<br/>(Neural TTS)
+    participant Spk as 🔊 Speaker
+
+    Mic->>OWW: PCM 16kHz stream (continuous)
+    OWW->>OWW: Score ≥ 0.40 → Wake!
+    OWW->>VAD: Hand off microphone
+    VAD->>STT: Captured utterance bytes
+    STT->>STT: Mel Spectrogram → Beam Search
+    STT->>SEC: "Search my notes for ML algorithms"
+    SEC->>SEC: Tier 1 SAFE — dispatch
+    SEC->>MEM: Embed query → cosine search
+    MEM->>LLM: Inject top-3 memory context + prompt
+    LLM->>LLM: ReAct loop (tool calls if needed)
+    LLM->>TTS: "I found 3 notes about ML algorithms..."
+    TTS->>Spk: 400ms audio synthesis → playback
+```
 
 ---
 
