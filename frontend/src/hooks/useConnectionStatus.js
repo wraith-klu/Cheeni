@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../utils/api";
 
 /**
  * useConnectionStatus
@@ -13,12 +14,12 @@ import axios from "axios";
  * Backoff schedule: 2s → 4s → 8s → 16s → 30s (capped).
  * After a successful ping, resets to 2s and fires onReconnect callback.
  *
- * @param {string} serverURL  - Backend base URL (e.g. "http://localhost:2025").
+ * @param {string} serverURL  - Backend base URL (e.g. "http://localhost:2026").
  * @param {object} [options]
  * @param {Function} [options.onReconnect] - Fired when status transitions back to 'online'.
  * @returns {{ status, isOnline, isReconnecting, isOffline, triggerRetry, markNetworkError }}
  */
-export function useConnectionStatus(serverURL = "http://localhost:2025", { onReconnect } = {}) {
+export function useConnectionStatus(serverURL = API_BASE_URL, { onReconnect } = {}) {
   const [status, setStatus] = useState(() => (navigator.onLine ? "online" : "offline"));
 
   // Use refs for the retry loop so the callback always sees current state

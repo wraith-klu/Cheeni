@@ -98,6 +98,13 @@ export function useSpeechRecognition({
 
     recognition.onerror = (event) => {
       shouldReviewOnEndRef.current = false;
+      // "aborted" fires when we call recognition.abort() intentionally — ignore silently
+      if (event.error === "aborted") {
+        setIsListening(false);
+        isListeningRef.current = false;
+        clearSilenceTimer();
+        return;
+      }
       if (event.error === "no-speech") {
         setError("No speech was detected. Please try again.");
         setIsListening(false);
@@ -105,10 +112,11 @@ export function useSpeechRecognition({
         clearSilenceTimer();
         return;
       }
-      console.warn("Speech recognition error:", event.error);
       if (event.error === "not-allowed" || event.error === "service-not-allowed") {
         setError("Microphone permission blocked. Please grant microphone access to communicate.");
       } else {
+        // Log transient errors (network, audio-capture, etc.) but still surface them
+        console.warn("Speech recognition error:", event.error);
         setError(`Speech recognition error: ${event.error}`);
       }
       setIsListening(false);

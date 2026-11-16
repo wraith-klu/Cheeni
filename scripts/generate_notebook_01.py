@@ -1,0 +1,257 @@
+"""
+Generates the Google Colab / Kaggle Training Notebook for Capability 1:
+Fine-tuning microsoft/deberta-v3-large on the Amazon MASSIVE Benchmark Dataset (en-US + hi-IN).
+Fixed for DeBERTa-v3 FP16 gradient scaler issue (uses fp16=False, max_grad_norm=1.0, batch_size=8).
+"""
+
+import json
+from pathlib import Path
+
+NOTEBOOK_PATH = Path("c:/BTech/AI Based Projects/Cheeni/notebooks/01_intent_classifier_deberta.ipynb")
+
+cells = [
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "# 🧠 Cheeni Capability 1: Intent Classification (Amazon MASSIVE Benchmark)\n",
+            "### Fine-Tuning `microsoft/deberta-v3-large` on Amazon Alexa Voice Utterances (English & Hindi)\n",
+            "\n",
+            "**Dataset**: Official Amazon MASSIVE (`en-US` + `hi-IN` subsets) from Amazon Science S3  \n",
+            "**Target Hugging Face Model**: `wraith-klu/cheeni-intent-deberta`  \n",
+            "**Compute**: Google Colab (A100 or T4 GPU) / Kaggle (P100 / A100)"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# 1. Install Hugging Face & ML libraries\n",
+            "!pip install -q transformers datasets evaluate accelerate scikit-learn huggingface_hub"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# 2. Authenticate with your Hugging Face account\n",
+            "from huggingface_hub import login\n",
+            "import os\n",
+            "\n",
+            "# Paste your write token from https://huggingface.co/settings/tokens\n",
+            "HF_TOKEN = os.getenv(\"HF_TOKEN\", \"YOUR_HF_TOKEN_HERE\")\n",
+            "if HF_TOKEN != \"YOUR_HF_TOKEN_HERE\":\n",
+            "    login(token=HF_TOKEN)\n",
+            "else:\n",
+            "    login()"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# 3. Download Official Amazon MASSIVE JSONL (Direct from Amazon S3 - No Script Errors!)\n",
+            "!wget -q -nc https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.0.tar.gz\n",
+            "!tar -xzf amazon-massive-dataset-1.0.tar.gz\n",
+            "\n",
+            "from datasets import load_dataset, concatenate_datasets\n",
+            "\n",
+            "print(\"📥 Loading English (en-US) and Indian Hindi (hi-IN) JSONL files...\")\n",
+            "massive_en = load_dataset(\"json\", data_files=\"1.0/data/en-US.jsonl\", split=\"train\")\n",
+            "massive_hi = load_dataset(\"json\", data_files=\"1.0/data/hi-IN.jsonl\", split=\"train\")\n",
+            "\n",
+            "# Combine English and Hindi for bilingual voice comprehension\n",
+            "full_dataset = concatenate_datasets([massive_en, massive_hi])\n",
+            "\n",
+            "# Split into Train (train partition) and Validation (dev partition)\n",
+            "train_dataset = full_dataset.filter(lambda x: x[\"partition\"] == \"train\")\n",
+            "eval_dataset = full_dataset.filter(lambda x: x[\"partition\"] == \"dev\")\n",
+            "\n",
+            "print(f\"✅ Successfully loaded: {len(train_dataset):,} training samples, {len(eval_dataset):,} validation samples.\")\n",
+            "print(f\"Sample utterance: '{train_dataset[0]['utt']}' -> Intent: '{train_dataset[0]['intent']}'\")"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# 4. Build Label Mappings (60 Intent Classes)\n",
+            "unique_intents = sorted(list(set(train_dataset[\"intent\"])))\n",
+            "num_classes = len(unique_intents)\n",
+            "\n",
+            "id2label = {i: label for i, label in enumerate(unique_intents)}\n",
+            "label2id = {label: i for i, label in enumerate(unique_intents)}\n",
+            "\n",
+            "print(f\"Total unique intents: {num_classes}\")\n",
+            "\n",
+            "# Map label strings to integers\n",
+            "def encode_labels(example):\n",
+            "    example[\"label\"] = label2id[example[\"intent\"]]\n",
+            "    return example\n",
+            "\n",
+            "train_dataset = train_dataset.map(encode_labels)\n",
+            "eval_dataset = eval_dataset.map(encode_labels)"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# 5. Tokenize using DeBERTa-v3-large\n",
+            "from transformers import AutoTokenizer\n",
+            "\n",
+            "MODEL_NAME = \"microsoft/deberta-v3-large\"\n",
+            "print(f\"Loading tokenizer for {MODEL_NAME}...\")\n",
+            "tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)\n",
+            "\n",
+            "def tokenize_fn(batch):\n",
+            "    return tokenizer(batch[\"utt\"], truncation=True, max_length=128, padding=\"max_length\")\n",
+            "\n",
+            "train_encoded = train_dataset.map(tokenize_fn, batched=True)\n",
+            "eval_encoded = eval_dataset.map(tokenize_fn, batched=True)"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# 6. Metrics evaluation (Accuracy & Macro F1)\n",
+            "import evaluate\n",
+            "import numpy as np\n",
+            "\n",
+            "accuracy_metric = evaluate.load(\"accuracy\")\n",
+            "f1_metric = evaluate.load(\"f1\")\n",
+            "\n",
+            "def compute_metrics(eval_pred):\n",
+            "    logits, labels = eval_pred\n",
+            "    preds = np.argmax(logits, axis=1)\n",
+            "    acc = accuracy_metric.compute(predictions=preds, references=labels)[\"accuracy\"]\n",
+            "    f1 = f1_metric.compute(predictions=preds, references=labels, average=\"macro\")[\"f1\"]\n",
+            "    return {\"accuracy\": acc, \"f1_macro\": f1}"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# 7. Initialize Model & Train with Trainer\n",
+            "# DeBERTa-v3 uses disentangled attention which is unstable in FP16, so we use FP32 (fp16=False) + gradient clipping.\n",
+            "from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer\n",
+            "import torch\n",
+            "\n",
+            "model = AutoModelForSequenceClassification.from_pretrained(\n",
+            "    MODEL_NAME,\n",
+            "    num_labels=num_classes,\n",
+            "    id2label=id2label,\n",
+            "    label2id=label2id\n",
+            ")\n",
+            "\n",
+            "training_args = TrainingArguments(\n",
+            "    output_dir=\"./cheeni-deberta-checkpoints\",\n",
+            "    eval_strategy=\"epoch\",\n",
+            "    save_strategy=\"epoch\",\n",
+            "    learning_rate=2e-5,\n",
+            "    per_device_train_batch_size=8,\n",
+            "    gradient_accumulation_steps=2,\n",
+            "    per_device_eval_batch_size=16,\n",
+            "    num_train_epochs=4,\n",
+            "    weight_decay=0.01,\n",
+            "    max_grad_norm=1.0,\n",
+            "    fp16=False,\n",
+            "    load_best_model_at_end=True,\n",
+            "    metric_for_best_model=\"accuracy\",\n",
+            "    report_to=\"none\"\n",
+            ")\n",
+            "\n",
+            "trainer = Trainer(\n",
+            "    model=model,\n",
+            "    args=training_args,\n",
+            "    train_dataset=train_encoded,\n",
+            "    eval_dataset=eval_encoded,\n",
+            "    compute_metrics=compute_metrics,\n",
+            ")\n",
+            "\n",
+            "print(\"🚀 Starting Training on GPU...\")\n",
+            "trainer.train()"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# 8. Test the Fine-Tuned Model with Voice Prompts\n",
+            "test_utterances = [\n",
+            "    \"open spotify and play party music\",\n",
+            "    \"kripya kal ka mausam batao\",\n",
+            "    \"set a reminder for my assignment at five pm\",\n",
+            "    \"turn off the lights in the bedroom\",\n",
+            "    \"what is on my schedule today\"\n",
+            "]\n",
+            "\n",
+            "model.eval()\n",
+            "device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n",
+            "model.to(device)\n",
+            "\n",
+            "for text in test_utterances:\n",
+            "    inputs = tokenizer(text, return_tensors=\"pt\", truncation=True, max_length=128).to(device)\n",
+            "    with torch.no_grad():\n",
+            "        logits = model(**inputs).logits\n",
+            "        probs = torch.softmax(logits, dim=-1)[0]\n",
+            "        idx = torch.argmax(probs).item()\n",
+            "        print(f\"Query: '{text}' -> Intent: {id2label[idx]} ({probs[idx]:.2%})\")"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# 9. Push Directly to your Hugging Face Hub (wraith-klu/cheeni-intent-deberta)\n",
+            "HF_REPO_ID = \"wraith-klu/cheeni-intent-deberta\"\n",
+            "\n",
+            "print(f\"Pushing trained model to https://huggingface.co/{HF_REPO_ID}...\")\n",
+            "model.push_to_hub(HF_REPO_ID)\n",
+            "tokenizer.push_to_hub(HF_REPO_ID)\n",
+            "print(f\"🎉 SUCCESS! Model is live on Hugging Face: https://huggingface.co/{HF_REPO_ID}\")"
+        ]
+    }
+]
+
+notebook = {
+    "cells": cells,
+    "metadata": {
+        "kernelspec": {
+            "display_name": "Python 3",
+            "language": "python",
+            "name": "python3"
+        },
+        "language_info": {
+            "name": "python",
+            "version": "3.10.0"
+        }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 2
+}
+
+with open(NOTEBOOK_PATH, "w", encoding="utf-8") as f:
+    json.dump(notebook, f, indent=2)
+
+print(f"✅ Updated notebook with FP16 fix at: {NOTEBOOK_PATH}")

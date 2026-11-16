@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import apiClient from "../utils/api";
+import apiClient, { API_BASE_URL } from "../utils/api";
 
 /* ── SVG icons ──────────────────────────────────────────────────────────── */
 const IcoCalendar = () => (
@@ -135,7 +135,7 @@ function IntegrationCard({ integration, onDisconnect, isActionLoading }) {
             </button>
           )}
           {isDisconnected && (
-            <a id={`connect-${integration.id}`} href={`http://localhost:2025/api/integrations/${integration.id}/connect`} title={`Connect ${integration.name}`}
+            <a id={`connect-${integration.id}`} href={`${API_BASE_URL}/api/integrations/${integration.id}/connect`} title={`Connect ${integration.name}`}
               style={{ padding: "6px 14px", borderRadius: 8, fontSize: 12, fontWeight: 600, border: "1px solid var(--land-accent, #8B5CF6)", background: "var(--land-accent-light, rgba(139,92,246,0.07))", color: "var(--land-accent, #8B5CF6)", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6, fontFamily: "var(--land-sans)", textDecoration: "none" }}>
               <IcoLink /> Connect
             </a>

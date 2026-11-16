@@ -169,18 +169,27 @@ function SignIn() {
     setLoading(true);
     setSuccessMsg("");
 
+    // ── Local user fallback for offline agent ──────────────────────────────
+    const localUser = {
+      id: "local_user_1",
+      name: email.split("@")[0] || "User",
+      email: email.trim() || "user@local",
+      assistantName: localStorage.getItem("cheeni_assistant_name") || null,
+      assistantImage: null,
+    };
+
     try {
       const result = await axios.post(
         `${serverURL}/api/auth/signin`,
         { email, password },
-        { withCredentials: true }
+        { withCredentials: true, timeout: 6000 }
       );
 
       if (result.data?.accessToken) {
         setAccessToken(result.data.accessToken);
       }
       setLoading(false);
-      setUserData(result.data.user || result.data);
+      setUserData(result.data.user || localUser);
       setSuccessMsg("Welcome back. Launching your assistant...");
 
       setEmail("");
@@ -191,6 +200,20 @@ function SignIn() {
         navigate("/app");
       }, 700);
     } catch (err) {
+      // Network error (agent offline) — allow local login
+      if (!err.response) {
+        setAccessToken("cheeni-local-session-token");
+        setUserData(localUser);
+        setLoading(false);
+        setSuccessMsg("Welcome back (offline mode). Launching your assistant...");
+        setEmail("");
+        setPassword("");
+        setTimeout(() => {
+          setSuccessMsg("");
+          navigate("/app");
+        }, 700);
+        return;
+      }
       setLoading(false);
       setUserData(null);
       setError(err.response?.data?.message || "Invalid email or password. Please verify and try again.");

@@ -72,6 +72,7 @@ function Home() {
   const [voiceLanguage, setVoiceLanguage] = useState(() => localStorage.getItem("cheeni_voice_language") === "hi-IN" ? "hi-IN" : "en-IN");
   const [history, setHistory] = useState(() => cachedConversationHistory || []);
   const [isLoadingHistory, setIsLoadingHistory] = useState(() => !cachedConversationHistory);
+  const [wakeWordActive, setWakeWordActive] = useState(true);
 
   // Boot splash & Fullscreen
   const [showSplash, setShowSplash] = useState(true);
@@ -376,7 +377,9 @@ function Home() {
         setIsThinking(false);
         setIsStreaming(false);
         setStreamingText("");
-        markNetworkError();
+        if (message && (message.includes("Could not reach") || message.includes("Connection lost"))) {
+          markNetworkError();
+        }
 
         // If the stream dropped mid-flight with partial content, clearly mark it
         const wasInterrupted = accumulated && accumulated.trim().length > 0;
@@ -447,6 +450,21 @@ function Home() {
     onResult: (text) => handleVoiceResultRef.current?.(text),
     onEnd: (text) => handleVoiceEndRef.current?.(text),
   });
+
+  // Continuous Wake Word Auto-Listen Loop (listens for "Hey Cheeni" / "Jarvis" in the background)
+  useEffect(() => {
+    if (!wakeWordActive) return;
+    const interval = setInterval(() => {
+      if (!isListening && !isSpeaking && !isThinking && !isStreaming) {
+        try {
+          startListening();
+        } catch {
+          // ignore
+        }
+      }
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [wakeWordActive, isListening, isSpeaking, isThinking, isStreaming, startListening]);
 
   // Flag to lock out trailing speech events while executing a confirmed prompt
   const isExecutingConfirmedRef = useRef(false);
@@ -590,29 +608,62 @@ function Home() {
 
   // Wire recognition callbacks to current handlers
   handleVoiceResultRef.current = (currentText) => {
-    if (isExecutingConfirmedRef.current) return;
-    const hasActiveReview = Boolean(pendingTranscriptRef.current || pendingVoiceTranscript);
-    if (hasActiveReview) {
-      handleVoiceConfirmationReply(currentText);
+    if (isExecutingConfirmedRef.current || isThinking || isStreaming) return;
+    if (!currentText || !currentText.trim()) return;
+
+    const clean = currentText.trim();
+    const cleanLower = clean.toLowerCase();
+    const nameLower = (assistantName || "cheeni").toLowerCase();
+    const wakeRegex = new RegExp(`\\b(hey\\s+${nameLower}|ok\\s+${nameLower}|hi\\s+${nameLower}|${nameLower}|hey\\s+cheeni|ok\\s+cheeni|cheeni|hey\\s+jarvis|ok\\s+jarvis|jarvis)\\b`, "i");
+
+    // Real-time wake word + command detection: e.g. "Hey Cheeni open Spotify"
+    if (wakeRegex.test(cleanLower)) {
+      const command = cleanLower.replace(wakeRegex, "").trim();
+      if (command.length >= 3) {
+        stopListening();
+        resetTranscript();
+        handleSendPrompt(command);
+      }
     }
   };
 
   handleVoiceEndRef.current = (finalText) => {
     if (!finalText || !finalText.trim()) return;
-    if (isExecutingConfirmedRef.current) return;
+    if (isExecutingConfirmedRef.current || isThinking || isStreaming) return;
 
-    const clean = finalText.trim().toLowerCase();
-    const isIsolatedConfirmWord = /^(yes|yeah|yep|yup|correct|sure|haan|sahi|bilkul|theek|execute|proceed|ok|okay)(\s+(this|it|please|that|one))?$/i.test(clean);
+    const clean = finalText.trim();
+    const cleanLower = clean.toLowerCase();
+    const nameLower = (assistantName || "cheeni").toLowerCase();
+    const wakeRegex = new RegExp(`\\b(hey\\s+${nameLower}|ok\\s+${nameLower}|hi\\s+${nameLower}|${nameLower}|hey\\s+cheeni|ok\\s+cheeni|cheeni|hey\\s+jarvis|ok\\s+jarvis|jarvis)\\b`, "i");
 
-    const hasActiveReview = Boolean(pendingTranscriptRef.current || pendingVoiceTranscript);
-    if (hasActiveReview) {
-      handleVoiceConfirmationReply(finalText);
-    } else if (!isIsolatedConfirmWord) {
-      const phrase = finalText.trim();
-      pendingTranscriptRef.current = phrase;
-      setPendingVoiceTranscript(phrase);
-      startVoiceConfirmation(phrase);
+    if (wakeRegex.test(cleanLower)) {
+      const command = cleanLower.replace(wakeRegex, "").trim();
+      if (!command) {
+        // Only the wake word was spoken: e.g. "Hey Cheeni" or "Jarvis"
+        const fridayWakeReplies = [
+          `Yes Sir, I'm listening to you! What are we working on, Boss?`,
+          `Always listening to you, Wraith! Where else would my attention be? What's the command, Sir?`,
+          `Yes Sir, I'm listening to you! You have my undivided attention, Boss. Ready!`,
+          `Right here by your side, Sir. All systems green and ears open for you!`,
+        ];
+        const wakeReply = fridayWakeReplies[Math.floor(Math.random() * fridayWakeReplies.length)];
+        speak(wakeReply);
+        resetTranscript();
+        setTimeout(() => {
+          if (!isListening && !isSpeaking) startListening();
+        }, 1200);
+        return;
+      } else {
+        // Wake word + command was spoken
+        resetTranscript();
+        handleSendPrompt(command);
+        return;
+      }
     }
+
+    // Direct speech without wake word (e.g. user pressed mic button and gave a task)
+    resetTranscript();
+    handleSendPrompt(clean);
   };
 
   const cancelVoiceReview = () => {

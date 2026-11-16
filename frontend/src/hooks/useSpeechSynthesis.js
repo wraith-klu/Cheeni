@@ -5,13 +5,14 @@ import { useState, useEffect, useRef, useCallback } from "react";
  * Calibrated specifically for Cheeni's sweet female voice persona.
  * Provides speech playback, voice filtering, volume/pitch/rate controls, and mute state.
  */
-export function useSpeechSynthesis({ defaultPitch = 1.0, defaultRate = 1.02 } = {}) {
+export function useSpeechSynthesis({ defaultPitch = 1.0, defaultRate = 1.02, defaultPersona = "cute_girl" } = {}) {
   const [voices, setVoices] = useState([]);
   const [selectedVoice, setSelectedVoice] = useState(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [pitch, setPitch] = useState(defaultPitch);
   const [rate, setRate] = useState(defaultRate);
+  const [persona, setPersonaState] = useState(defaultPersona);
 
   const utteranceRef = useRef(null);
   const isMutedRef = useRef(false);
@@ -21,20 +22,21 @@ export function useSpeechSynthesis({ defaultPitch = 1.0, defaultRate = 1.02 } = 
     isMutedRef.current = isMuted;
   }, [isMuted]);
 
-  // Find the most natural, human-sounding voice available (like Siri, Google Assistant, or a news anchor)
+  // Find the most natural, human-sounding female voice available (Sweet & Cute)
   const pickSweetestFemaleVoice = useCallback((voiceList) => {
     if (!voiceList || voiceList.length === 0) return null;
 
-    // Preferred natural, human, modern neural voices
     const preferredNames = [
       /natural.*female/i,
       /jenny.*natural/i,
       /aria.*natural/i,
+      /ana.*natural/i,
       /jenny/i,
       /aria/i,
       /samantha/i,           // Siri / Apple Samantha
       /sonia.*natural/i,
       /sonia/i,
+      /ana/i,
       /google.*us.*english/i,
       /google.*uk.*female/i,
       /google.*female/i,
@@ -52,13 +54,64 @@ export function useSpeechSynthesis({ defaultPitch = 1.0, defaultRate = 1.02 } = 
       if (match) return match;
     }
 
-    // Fallback: any English voice
     const anyEnglish = voiceList.find((v) => v.lang.startsWith("en"));
     if (anyEnglish) return anyEnglish;
 
-    // Final fallback
     return voiceList[0] || null;
   }, []);
+
+  // Find the most natural, executive British/US male voice available (JARVIS Style)
+  const pickJarvisMaleVoice = useCallback((voiceList) => {
+    if (!voiceList || voiceList.length === 0) return null;
+
+    const preferredMale = [
+      /ryan.*natural/i,
+      /george.*natural/i,
+      /daniel.*natural/i,
+      /ryan/i,
+      /george/i,
+      /daniel/i,
+      /guy/i,
+      /david/i,
+      /oliver/i,
+      /google.*uk.*male/i,
+      /google.*male/i,
+      /male/i,
+    ];
+
+    for (const pattern of preferredMale) {
+      const match = voiceList.find(
+        (v) => pattern.test(v.name) && (v.lang.startsWith("en") || !v.lang)
+      );
+      if (match) return match;
+    }
+
+    return voiceList.find((v) => v.lang.startsWith("en")) || voiceList[0] || null;
+  }, []);
+
+  const pickVoiceForPersona = useCallback((p, voiceList) => {
+    return p === "male_jarvis"
+      ? pickJarvisMaleVoice(voiceList)
+      : pickSweetestFemaleVoice(voiceList);
+  }, [pickJarvisMaleVoice, pickSweetestFemaleVoice]);
+
+  // Set persona with calibrated pitch and rate
+  const setPersona = useCallback((newPersona) => {
+    setPersonaState(newPersona);
+    if (newPersona === "male_jarvis") {
+      setPitch(0.88);
+      setRate(1.02);
+      if (voices.length > 0) {
+        setSelectedVoice(pickJarvisMaleVoice(voices));
+      }
+    } else {
+      setPitch(1.15);
+      setRate(0.98);
+      if (voices.length > 0) {
+        setSelectedVoice(pickSweetestFemaleVoice(voices));
+      }
+    }
+  }, [voices, pickJarvisMaleVoice, pickSweetestFemaleVoice]);
 
   // Populate voices
   useEffect(() => {
@@ -69,7 +122,7 @@ export function useSpeechSynthesis({ defaultPitch = 1.0, defaultRate = 1.02 } = 
       setVoices(availableVoices);
 
       if (!selectedVoice && availableVoices.length > 0) {
-        const best = pickSweetestFemaleVoice(availableVoices);
+        const best = pickVoiceForPersona(persona, availableVoices);
         setSelectedVoice(best);
       }
     };
@@ -83,7 +136,7 @@ export function useSpeechSynthesis({ defaultPitch = 1.0, defaultRate = 1.02 } = 
         window.speechSynthesis.cancel();
       }
     };
-  }, [pickSweetestFemaleVoice, selectedVoice]);
+  }, [pickVoiceForPersona, persona, selectedVoice]);
 
   // Stop speaking
   const stop = useCallback(() => {
@@ -261,6 +314,10 @@ export function useSpeechSynthesis({ defaultPitch = 1.0, defaultRate = 1.02 } = 
     setPitch,
     rate,
     setRate,
+    persona,
+    setPersona,
+    pickSweetestFemaleVoice,
+    pickJarvisMaleVoice,
   };
 }
 

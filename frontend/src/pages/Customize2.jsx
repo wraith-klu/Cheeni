@@ -26,6 +26,7 @@ function Customize2() {
   const navigate = useNavigate();
 
   const [assistantName, setAssistantName] = useState("Cheeni");
+  const [voicePersona, setVoicePersona] = useState("cute_girl"); // 'cute_girl' | 'male_jarvis'
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -33,10 +34,27 @@ function Customize2() {
   // Avatar to display
   const currentAvatar = frontendImage || selectedImage || userData?.assistantImage || defaultAvatar;
 
-  // Name suggestions
-  const nameSuggestions = ["Cheeni", "Jarvis", "Aura", "Nova", "Siri", "Maya"];
+  // Name suggestions with persona mapping
+  const nameSuggestions = [
+    { name: "Cheeni", persona: "cute_girl" },
+    { name: "Jarvis", persona: "male_jarvis" },
+    { name: "Aura", persona: "cute_girl" },
+    { name: "Alfred", persona: "male_jarvis" },
+    { name: "Maya", persona: "cute_girl" },
+    { name: "Nova", persona: "male_jarvis" },
+  ];
 
-  // Voice Preview Engine (Sweet Female Voice)
+  // Auto-detect voice persona when assistant name changes
+  const handleNameChange = (newName) => {
+    setAssistantName(newName);
+    if (/jarvis|alfred|friday|edith|titan|iron|bruce/i.test(newName)) {
+      setVoicePersona("male_jarvis");
+    } else if (/cheeni|maya|aura|anya|siri|lily|rose|chloe/i.test(newName)) {
+      setVoicePersona("cute_girl");
+    }
+  };
+
+  // Voice Preview Engine (Dynamic Cute Girl vs. British Male JARVIS)
   const handleVoicePreview = () => {
     if (!("speechSynthesis" in window)) {
       alert("Speech synthesis is not supported in this browser.");
@@ -51,25 +69,36 @@ function Customize2() {
 
     window.speechSynthesis.cancel();
 
-    const name = assistantName.trim() || "Cheeni";
+    const name = assistantName.trim() || (voicePersona === "male_jarvis" ? "JARVIS" : "Cheeni");
     const userName = userData?.name ? userData.name.split(" ")[0] : "friend";
-    const text = `Hello ${userName}! I am ${name}, your sweet personal assistant. I'm ready to help you with your laptop, interview prep, news, and anything you need!`;
+    
+    const isMale = voicePersona === "male_jarvis";
+    const text = isMale
+      ? `Greetings ${userName}! I am ${name}, your personal operating intelligence. All laptop systems are standing by for your command, Sir.`
+      : `Hello ${userName}! I am ${name}, your sweet personal assistant. I'm ready to help you with your laptop, studies, and anything you need!`;
 
     const utterance = new SpeechSynthesisUtterance(text);
     const voices = window.speechSynthesis.getVoices();
 
-    const sweetVoice = voices.find(
-      (v) =>
-        /zira|samantha|karen|victoria|natural|female/i.test(v.name) &&
-        v.lang.startsWith("en")
-    ) || voices.find((v) => v.lang.startsWith("en"));
-
-    if (sweetVoice) {
-      utterance.voice = sweetVoice;
+    if (isMale) {
+      const maleVoice = voices.find(
+        (v) =>
+          /ryan|george|daniel|guy|david|oliver|male/i.test(v.name) &&
+          v.lang.startsWith("en")
+      ) || voices.find((v) => v.lang.startsWith("en"));
+      if (maleVoice) utterance.voice = maleVoice;
+      utterance.pitch = 0.88;
+      utterance.rate = 1.02;
+    } else {
+      const sweetVoice = voices.find(
+        (v) =>
+          /zira|samantha|karen|victoria|natural|female|jenny|ana/i.test(v.name) &&
+          v.lang.startsWith("en")
+      ) || voices.find((v) => v.lang.startsWith("en"));
+      if (sweetVoice) utterance.voice = sweetVoice;
+      utterance.pitch = 1.18;
+      utterance.rate = 0.98;
     }
-
-    utterance.pitch = 1.15;
-    utterance.rate = 0.96;
 
     utterance.onstart = () => setIsSpeaking(true);
     utterance.onend = () => setIsSpeaking(false);
@@ -97,36 +126,55 @@ function Customize2() {
     setError("");
     setLoading(true);
 
+    const avatarToSave = selectedImage || currentAvatar || defaultAvatar;
+    const trimmedName = assistantName.trim();
+
+    // ── Optimistic update: set userData BEFORE the API call ──────────────────
+    // This ensures App.jsx route guard sees assistantName immediately,
+    // so navigation to /app never bounces back to /customize even if the
+    // agent backend is temporarily offline.
+    setUserData((prev) => ({
+      ...(prev || {}),
+      assistantName: trimmedName,
+      assistantImage: avatarToSave,
+    }));
+
+    // Persist locally for immediate offline / next-boot usage
+    localStorage.setItem("cheeni_voice_persona", voicePersona);
+    localStorage.setItem("cheeni_assistant_name", trimmedName);
+
     try {
       const formData = new FormData();
-      formData.append("assistantName", assistantName.trim());
+      formData.append("assistantName", trimmedName);
+      formData.append("voicePersona", voicePersona);
 
       if (backendImage) {
         formData.append("assistantImage", backendImage);
-      } else if (selectedImage) {
-        formData.append("imageUrl", selectedImage);
-      } else if (userData?.assistantImage) {
-        formData.append("imageUrl", userData.assistantImage);
       } else {
-        formData.append("imageUrl", defaultAvatar);
+        formData.append("imageUrl", avatarToSave);
+        formData.append("assistantImage", avatarToSave);
       }
 
       const res = await apiClient.post(`/api/user/update`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
+      // Sync with whatever the backend saved (may differ for uploaded images)
       if (res.data?.user) {
-        setUserData(res.data.user);
+        setUserData((prev) => ({
+          ...prev,
+          ...res.data.user,
+          assistantName: res.data.user.assistantName || trimmedName,
+          assistantImage: res.data.user.assistantImage || avatarToSave,
+        }));
       }
-
+    } catch (err) {
+      // Non-fatal: local state already updated — still navigate to /app.
+      // Show a soft warning but don't block the user.
+      console.warn("Agent offline — assistant saved locally only:", err.message);
+    } finally {
       setLoading(false);
       navigate("/app");
-    } catch (err) {
-      console.error("Error saving assistant:", err);
-      setLoading(false);
-      setError(
-        err.response?.data?.message || "Failed to awaken assistant. Please try again."
-      );
     }
   };
 
@@ -231,19 +279,19 @@ function Customize2() {
           <div className="flex flex-col gap-2">
             <span className="text-xs text-slate-400 font-medium">Suggested Names:</span>
             <div className="flex flex-wrap gap-2">
-              {nameSuggestions.map((name) => (
+              {nameSuggestions.map((s) => (
                 <button
-                  key={name}
+                  key={s.name}
                   type="button"
-                  onClick={() => setAssistantName(name)}
+                  onClick={() => { setAssistantName(s.name); setVoicePersona(s.persona); }}
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer border ${
-                    assistantName === name
+                    assistantName === s.name
                       ? "bg-cyan-500/20 border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.3)]"
                       : "glass-pill text-slate-400 hover:text-white"
                   }`}
                 >
-                  {assistantName === name && <LuCheck className="w-3.5 h-3.5 text-cyan-400" />}
-                  {name === "Cheeni" ? `🌟 ${name} (Recommended)` : name}
+                  {assistantName === s.name && <LuCheck className="w-3.5 h-3.5 text-cyan-400" />}
+                  {s.name === "Cheeni" ? `🌟 ${s.name} (Recommended)` : s.name}
                 </button>
               ))}
             </div>

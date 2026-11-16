@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
+import { API_BASE_URL } from "../utils/api";
 
 export default function BrowserWorkflowModal({ isOpen, onClose }) {
   const [workflows, setWorkflows] = useState([]);
@@ -25,20 +26,24 @@ export default function BrowserWorkflowModal({ isOpen, onClose }) {
     }
     setErrorMsg("");
     setIsLoadingWorkflows(true);
+    let cancelled = false;
     axios
-      .get("http://localhost:2025/api/browser/workflows", { withCredentials: true })
+      .get(`${API_BASE_URL}/api/browser/workflows`, { withCredentials: true })
       .then((res) => {
+        if (cancelled) return;
         if (res.data?.workflows?.length) {
           setWorkflows(res.data.workflows);
           setSelectedWorkflowId(res.data.workflows[0].id);
         }
       })
       .catch((err) => {
+        if (cancelled) return;
         setErrorMsg(err.response?.data?.message || "Failed to load browser workflows");
       })
       .finally(() => {
-        setIsLoadingWorkflows(false);
+        if (!cancelled) setIsLoadingWorkflows(false);
       });
+    return () => { cancelled = true; };
   }, [isOpen]);
 
   // Clean up polling timer
@@ -76,7 +81,7 @@ export default function BrowserWorkflowModal({ isOpen, onClose }) {
 
     try {
       const res = await axios.post(
-        "http://localhost:2025/api/browser/workflows/preview",
+        `${API_BASE_URL}/api/browser/workflows/preview`,
         { workflowId: selectedWorkflowId, url: targetUrl.trim() },
         { withCredentials: true }
       );
@@ -98,7 +103,7 @@ export default function BrowserWorkflowModal({ isOpen, onClose }) {
     setRunResult(null);
     try {
       const res = await axios.post(
-        "http://localhost:2025/api/browser/workflows/start",
+        `${API_BASE_URL}/api/browser/workflows/start`,
         {
           workflowId: preview.workflowId,
           url: preview.targetUrl,
@@ -121,7 +126,7 @@ export default function BrowserWorkflowModal({ isOpen, onClose }) {
     clearInterval(pollIntervalRef.current);
     pollIntervalRef.current = setInterval(async () => {
       try {
-        const res = await axios.get(`http://localhost:2025/api/browser/runs/${runId}`, {
+        const res = await axios.get(`${API_BASE_URL}/api/browser/runs/${runId}`, {
           withCredentials: true,
         });
         if (res.data?.success) {
@@ -142,7 +147,7 @@ export default function BrowserWorkflowModal({ isOpen, onClose }) {
   // Fetch Final Results
   const fetchRunResult = async (runId) => {
     try {
-      const res = await axios.get(`http://localhost:2025/api/browser/runs/${runId}/result`, {
+      const res = await axios.get(`${API_BASE_URL}/api/browser/runs/${runId}/result`, {
         withCredentials: true,
       });
       if (res.data?.success) {
@@ -158,7 +163,7 @@ export default function BrowserWorkflowModal({ isOpen, onClose }) {
     if (!activeRun?.runId) return;
     try {
       await axios.post(
-        `http://localhost:2025/api/browser/runs/${activeRun.runId}/stop`,
+        `${API_BASE_URL}/api/browser/runs/${activeRun.runId}/stop`,
         {},
         { withCredentials: true }
       );

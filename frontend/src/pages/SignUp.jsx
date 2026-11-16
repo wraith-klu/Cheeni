@@ -176,17 +176,26 @@ function SignUp() {
     setLoading(true);
     setSuccessMsg("");
 
+    // ── Build a local user object so signup works even when agent is offline ──
+    const localUser = {
+      id: "local_user_1",
+      name: name.trim() || "User",
+      email: email.trim() || "user@local",
+      assistantName: localStorage.getItem("cheeni_assistant_name") || null,
+      assistantImage: null,
+    };
+
     try {
       const result = await axios.post(
         `${serverURL}/api/auth/signup`,
         { name, email, password },
-        { withCredentials: true }
+        { withCredentials: true, timeout: 6000 }
       );
 
       if (result.data?.accessToken) {
         setAccessToken(result.data.accessToken);
       }
-      setUserData(result.data.user || result.data);
+      setUserData(result.data.user || localUser);
       setLoading(false);
       setSuccessMsg("Account created! Direct access granted. Loading customizer...");
 
@@ -195,6 +204,19 @@ function SignUp() {
         navigate("/customize");
       }, 700);
     } catch (err) {
+      // If the agent is offline but the network request failed, still create local session
+      if (!err.response) {
+        // Network error (agent offline) — create local session
+        setAccessToken("cheeni-local-session-token");
+        setUserData(localUser);
+        setLoading(false);
+        setSuccessMsg("Local session created. Loading customizer...");
+        setTimeout(() => {
+          setSuccessMsg("");
+          navigate("/customize");
+        }, 700);
+        return;
+      }
       setLoading(false);
       setError(err.response?.data?.message || "Something went wrong during sign up. Please try again.");
     }
