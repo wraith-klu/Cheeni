@@ -21,23 +21,29 @@ export function useAgentTelemetry(serverURL) {
 
   // Ping Desktop Agent & poll telemetry
   useEffect(() => {
-    let ws = null;
     let pollTimer = null;
+    let missedPings = 0;
 
     const checkAgent = async () => {
       try {
         const res = await axios.get(`${serverURL}/api/agent/ping`, {
           withCredentials: true,
-          timeout: 3000,
+          timeout: 6000,
         });
         const connected = res.data?.connected === true;
-        setIsAgentConnected(connected);
+        if (connected) {
+          missedPings = 0;
+          setIsAgentConnected(true);
+        } else {
+          missedPings += 1;
+          if (missedPings >= 2) setIsAgentConnected(false);
+        }
 
         if (connected) {
           try {
             const statusRes = await axios.get(`${serverURL}/api/agent/status`, {
               withCredentials: true,
-              timeout: 3000,
+              timeout: 6000,
             });
             if (statusRes.data?.cpu) {
               setTelemetry({
@@ -53,7 +59,10 @@ export function useAgentTelemetry(serverURL) {
           }
         }
       } catch {
-        setIsAgentConnected(false);
+        missedPings += 1;
+        if (missedPings >= 2) {
+          setIsAgentConnected(false);
+        }
       }
     };
 

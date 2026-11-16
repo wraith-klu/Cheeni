@@ -58,7 +58,7 @@ function App() {
         path="/app"
         element={
           userData ? (
-            userData?.assistantImage && userData?.assistantName ? (
+            userData?.assistantName || userData?.assistantImage ? (
               <Home />
             ) : (
               <Navigate to="/customize" />

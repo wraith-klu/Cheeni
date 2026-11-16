@@ -1,0 +1,16 @@
+{
+  "user": {
+    "id": "local_user_1",
+    "name": "Wraith",
+    "email": "2300039160@kluniversity.in",
+    "assistantName": "Cheeni",
+    "assistantImage": "/src/assets/image15.jpg",
+    "theme": "dark",
+    "voicePersona": "cute_girl",
+    "imageUrl": "/src/assets/image15.jpg"
+  },
+  "assistantName": "Cheeni",
+  "voicePersona": "cute_girl",
+  "imageUrl": "/src/assets/image15.jpg",
+  "assistantImage": "/src/assets/image15.jpg"
+}

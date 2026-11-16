@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_BASE_URL = "http://localhost:2025";
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:2026";
 
 // In-memory access token storage (XSS safe - never kept in localStorage)
 let inMemoryAccessToken = null;
@@ -121,6 +121,10 @@ export default apiClient;
  */
 export const streamAsk = async (prompt, { onMeta, onChunk, onDone, onError } = {}) => {
   const url = `${API_BASE_URL}/api/assistant/ask/stream`;
+  const controller = new AbortController();
+  const safetyTimeout = setTimeout(() => {
+    controller.abort();
+  }, 35000);
 
   const doFetch = async (token) => {
     const headers = {
@@ -132,10 +136,22 @@ export const streamAsk = async (prompt, { onMeta, onChunk, onDone, onError } = {
       credentials: "include",          // send httpOnly refresh-token cookie
       headers,
       body: JSON.stringify({ prompt }),
+      signal: controller.signal,
     });
   };
 
-  let res = await doFetch(inMemoryAccessToken);
+  let res;
+  try {
+    res = await doFetch(inMemoryAccessToken);
+  } catch (err) {
+    clearTimeout(safetyTimeout);
+    if (err.name === "AbortError") {
+      onError?.("Request timed out. Please try asking again.");
+    } else {
+      onError?.("Could not reach Cheeni agent. Please verify the backend is running.");
+    }
+    return;
+  }
 
   // Attempt silent token refresh on token_expired 401
   if (res.status === 401) {
@@ -211,6 +227,7 @@ export const streamAsk = async (prompt, { onMeta, onChunk, onDone, onError } = {
     // Network error mid-stream (e.g. offline, timeout)
     onError?.("Connection lost. Please check your internet and try again.");
   } finally {
-    reader.releaseLock();
+    clearTimeout(safetyTimeout);
+    try { reader.releaseLock(); } catch {}
   }
 };

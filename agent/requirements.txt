@@ -1,0 +1,48 @@
+# ── Core Framework ────────────────────────────────────────────────────────────
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+pydantic==2.10.1
+pydantic-settings==2.6.1
+python-dotenv==1.0.1
+httpx==0.28.0
+
+# ── LLM Clients ───────────────────────────────────────────────────────────────
+google-generativeai==0.8.3
+groq==0.13.0
+openai==1.57.0            # OpenRouter uses OpenAI-compatible API
+
+# ── ML / HuggingFace ──────────────────────────────────────────────────────────
+transformers==4.47.0
+torch==2.5.1
+torchaudio==2.5.1
+accelerate==1.2.1
+datasets==3.1.0
+huggingface-hub==0.26.3
+sentence-transformers==3.3.1
+optimum[onnxruntime]==1.23.3   # ONNX model export + inference
+
+# ── Voice / Audio ─────────────────────────────────────────────────────────────
+faster-whisper==1.1.0
+sounddevice==0.5.1
+soundfile==0.12.1
+edge-tts==6.1.12               # TTS fallback (always works, no install needed)
+
+# ── Screen / Vision ───────────────────────────────────────────────────────────
+pyautogui==0.9.54
+Pillow==11.0.0
+mss==9.0.2                     # Fast cross-platform screenshot
+
+# ── Browser Automation ────────────────────────────────────────────────────────
+playwright==1.49.0
+
+# ── System / File Ops ─────────────────────────────────────────────────────────
+psutil==6.1.0
+aiofiles==24.1.0
+watchdog==6.0.0
+
+# ── Database / Memory ─────────────────────────────────────────────────────────
+aiosqlite==0.20.0
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+python-multipart==0.0.20       # For file upload endpoints
+rich==13.9.4                   # Pretty logging

@@ -273,36 +273,58 @@ export function OrbSection({
         )}
       </AnimatePresence>
 
-      {/* Reply subtitle */}
+      {/* Reply subtitle — sleek modern glass card with markdown formatting */}
       <AnimatePresence>
         {latestReply?.speechText && !isListening && !isStreaming && (
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
+            initial={{ opacity: 0, y: 12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.98 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             style={{
-              marginTop: 8, maxWidth: 480, width: "100%",
-              background: "var(--land-bg-2)", border: "1px solid var(--land-rule)",
-              borderLeft: "3px solid var(--land-accent)",
-              borderRadius: 10, padding: "12px 16px",
-              fontFamily: "var(--land-sans)", fontSize: 14, lineHeight: 1.65, color: "var(--land-ink-2)",
+              marginTop: 12, maxWidth: 540, width: "100%",
+              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02))",
+              backgroundColor: "var(--land-bg-2)",
+              border: "1px solid var(--land-rule)",
+              borderLeft: "3.5px solid var(--land-accent)",
+              borderRadius: 14,
+              padding: "16px 20px",
+              fontFamily: "var(--land-sans)",
+              fontSize: 14,
+              lineHeight: 1.7,
+              color: "var(--land-ink)",
               textAlign: "left",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
+              boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.06)",
+              backdropFilter: "blur(12px)",
             }}
           >
-            &ldquo;{latestReply.speechText}&rdquo;
+            <div style={{ color: "var(--land-ink)" }}>
+              <MarkdownRenderer content={latestReply.textResponse || latestReply.speechText} />
+            </div>
+
             {isSpeaking && (
-              <button
-                onClick={onStopSpeaking}
-                style={{
-                  marginTop: 8, display: "flex", alignItems: "center", gap: 5,
-                  background: "transparent", border: "1px solid var(--land-rule)",
-                  borderRadius: 6, padding: "4px 10px", cursor: "pointer",
-                  fontFamily: "var(--land-sans)", fontSize: 12, color: "var(--land-ink-3)",
-                }}
-              >
-                <IcoStop /> Stop audio
-              </button>
+              <div style={{ marginTop: 12, display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid var(--land-rule)", paddingTop: 10 }}>
+                <span style={{ fontSize: 11.5, color: "var(--land-accent)", display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 500 }}>
+                  <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", backgroundColor: "var(--land-accent)", animation: "pulse 1.5s infinite" }} />
+                  Speaking response...
+                </span>
+                <button
+                  onClick={onStopSpeaking}
+                  style={{
+                    display: "flex", alignItems: "center", gap: 5,
+                    background: "rgba(224, 122, 56, 0.1)",
+                    border: "1px solid rgba(224, 122, 56, 0.25)",
+                    borderRadius: 8, padding: "4px 10px", cursor: "pointer",
+                    fontFamily: "var(--land-sans)", fontSize: 11.5,
+                    color: "var(--land-accent)", fontWeight: 500,
+                    transition: "all 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(224, 122, 56, 0.2)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(224, 122, 56, 0.1)"; }}
+                >
+                  <IcoStop /> Stop audio
+                </button>
+              </div>
             )}
           </motion.div>
         )}
@@ -311,17 +333,20 @@ export function OrbSection({
       {/* Action toast */}
       {lastAction && (
         <motion.div
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
           style={{
-            marginTop: 8, display: "inline-flex", alignItems: "center", gap: 8,
+            marginTop: 10, display: "inline-flex", alignItems: "center", gap: 8,
             background: "var(--land-bg-2)", border: "1px solid var(--land-rule)",
             borderRadius: 20, padding: "6px 14px",
             fontFamily: "var(--land-sans)", fontSize: 12, color: "var(--land-ink-2)",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
           }}
         >
           <IcoLaptop />
           <span>{lastAction.label || `Action: ${lastAction.type}`}</span>
           {actionExecution?.status && (
-            <span role="status" style={{ color: actionExecution.status === "succeeded" ? "#2A7A3B" : actionExecution.status === "running" ? "var(--land-accent)" : "#A33A32" }}>
+            <span role="status" style={{ fontWeight: 600, color: actionExecution.status === "succeeded" ? "#10B981" : actionExecution.status === "running" ? "var(--land-accent)" : "#EF4444" }}>
               {actionStatusLabels[actionExecution.status] || actionStatusLabels.failed}
             </span>
           )}

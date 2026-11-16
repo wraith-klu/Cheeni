@@ -7,7 +7,9 @@
 node_modules/
 backend/node_modules/
 frontend/node_modules/
-cheeni-agent/__pycache__/
+frontend/dist/
+agent/__pycache__/
+__pycache__/
 *.pyc
 
 # Local logs & data

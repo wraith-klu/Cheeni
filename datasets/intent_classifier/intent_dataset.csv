@@ -1,0 +1,3301 @@
+text,intent,language
+hey cheeni test suite execute karo jaldi,code_run,hinglish
+login button par click karo,browser_click,hinglish
+fill username and password fast,browser_fill,en
+hey cheeni browser me is page par jao please,browser_navigate,hinglish
+zarasi what is currently on my display jaldi,screen_describe,en
+please what is 45乘以12 please,math_query,en
+how do you say thank you in spanish jaldi,translation,en
+delete that memory,memory_delete,en
+hey cheeni what is today's top news now,news_query,en
+zarasi sync with remote repo bhai,git_push,en
+write a python script to parse json,code_write,en
+why is nothing working today,emotion_angry,en
+ek nayi file banao,file_create,hi
+can you push changes to origin main yaar,git_push,en
+zarasi python code likho binary search ka,code_write,hinglish
+please create a new text file,file_create,en
+please start notepad now,app_launch,en
+open chrome,app_launch,en
+zarasi clear all active reminders,reminder_cancel,en
+please github website open karo jaldi,website_open,hinglish
+sun cheeni python code likho binary search ka,code_write,hinglish
+zarasi what is 45乘以12 yaar,math_query,en
+bhai aaj ka din mast tha,emotion_happy,hinglish
+hey cheeni go to amazon and search for headphones fast,browser_navigate,en
+please set reminder for assignment submission jaldi,reminder_set,en
+start chrome browser fast,app_launch,en
+bhai find notes containing exam bhai,notes_search,en
+restart the pc now,system_restart,en
+save note,notes_create,en
+kisi ka mail aaya kya bhai,email_read,hinglish
+please bas aaram se baitha hu yaar,emotion_neutral,hinglish
+can you check latest emails,email_read,en
+zarasi translate this paragraph to french jaldi,translation,en
+zarasi press next button jaldi,browser_click,en
+please is script ko run karo jaldi,code_run,hinglish
+please open invoice.docx,file_open,en
+zarasi tell me tech news jaldi,news_query,en
+sun cheeni browser me is page par jao fast,browser_navigate,hinglish
+cheeni write a python script to parse json jaldi,code_write,en
+can you feeling super motivated fast,emotion_happy,en
+cheeni dimag kharab ho gaya hai fast,emotion_angry,hinglish
+please search youtube for lofi hip hop now,search_youtube,en
+sun cheeni check calendar for tomorrow fast,calendar_read,en
+hey cheeni check latest emails,email_read,en
+look up my study notes bhai,notes_search,en
+can you how are you feeling cheeni bhai,emotion_query,en
+clear all active reminders,reminder_cancel,en
+aaj kaunsa din hai bhai,time_query,hi
+hey cheeni youtube kholo jaldi,website_open,hi
+can you create a new text file please,file_create,en
+can you type my email in the input box yaar,browser_fill,en
+can you what did i tell you about my exam yaar,memory_recall,en
+sun cheeni switch window fast,app_switch,en
+bhai email likho leave application ka please,email_compose,hinglish
+sun cheeni debug this syntax error now,code_debug,en
+hey cheeni sound full karo please,system_volume,hinglish
+bhai maja aa gaya bhai fast,emotion_happy,hinglish
+cheeni current time in new york now,time_query,en
+sun cheeni debug this syntax error fast,code_debug,en
+can you save webpage image please,browser_screenshot,en
+can you create directory called datasets yaar,folder_create,en
+maja aa gaya bhai,emotion_happy,hinglish
+please cheeni tera mood kaisa hai now,emotion_query,hinglish
+zarasi check calendar for tomorrow now,calendar_read,en
+sun cheeni mute audio,system_volume,en
+can you are you tired fast,emotion_query,en
+hey cheeni open reddit please,website_open,en
+read this document,file_open,en
+generate a new python file,file_create,en
+please volume badhao yaar,system_volume,hi
+hey cheeni open whatsapp desktop bhai,app_launch,en
+sun cheeni erase saved info bhai,memory_delete,en
+hey cheeni thoda niche scroll karo now,browser_scroll,hinglish
+cheeni relocate this document please,file_move,en
+what did I tell you about my exam,memory_recall,en
+cheeni delete this file now,file_delete,en
+please kisi ka mail aaya kya please,email_read,hinglish
+sun cheeni is page ka screenshot lo yaar,browser_screenshot,hinglish
+hey cheeni what is written on this window bhai,screen_read,en
+wifi check karo,system_wifi,hinglish
+yaad rakhna,memory_save,hi
+please mujhe 5 baje yaad dilana,reminder_set,hi
+hey cheeni good night fast,chitchat,en
+zarasi volume kam karo please,system_volume,hinglish
+zarasi mere emails check karo jaldi,email_read,hinglish
+bhai yeh code kya kar raha hai samjhao jaldi,code_explain,hinglish
+please read my recent notes bhai,notes_read,en
+sun cheeni push changes to origin main please,git_push,en
+close chrome,app_close,en
+cheeni check calendar for tomorrow please,calendar_read,en
+hey cheeni remember that i have an exam on friday bhai,memory_save,en
+can you clear all active reminders fast,reminder_cancel,en
+please wifi on karo yaar,system_wifi,hinglish
+zarasi open youtube bhai,website_open,en
+zarasi close discord yaar,app_close,en
+sun cheeni bro i got selected for the internship!,emotion_happy,en
+please internet connected hai kya bhai,system_wifi,hinglish
+cheeni type hello world on screen yaar,screen_type,en
+zarasi set reminder for assignment submission,reminder_set,en
+cheeni compose an email to professor regarding project jaldi,email_compose,en
+bhai analyze current screen bhai,screen_describe,en
+please open notes.txt yaar,file_open,en
+calculator chalu karo please,app_launch,hinglish
+can you play ed sheeran on youtube now,search_youtube,en
+hey cheeni mujhe bohot gussa aa raha hai bhai,emotion_angry,hi
+please capture full page screenshot jaldi,browser_screenshot,en
+hey cheeni read out the error message bhai,screen_read,en
+zarasi open chatgpt yaar,website_open,en
+zarasi give this file a new name jaldi,file_rename,en
+take a screenshot of the webpage yaar,browser_screenshot,en
+please search notes for machine learning now,notes_search,en
+cheeni switch to chrome jaldi,app_switch,en
+sun cheeni rename this file to final_v2.docx bhai,file_rename,en
+sun cheeni i am so frustrated right now,emotion_angry,en
+can you go to amazon and search for headphones yaar,browser_navigate,en
+sun cheeni what is on my schedule today yaar,calendar_read,en
+hey cheeni close the browser window jaldi,browser_close,en
+zarasi screenshot kheecho now,screen_capture,hi
+cheeni what did i tell you about my exam yaar,memory_recall,en
+please look up python tutorials,search_web,en
+please search bar me query type karo bhai,browser_fill,hinglish
+cheeni commit all changes with message fix auth bhai,git_commit,en
+cheeni find notes containing exam please,notes_search,en
+bhai recall my notes on neural networks bhai,memory_recall,en
+bhai nothing special today jaldi,emotion_neutral,en
+search youtube for lofi hip hop,search_youtube,en
+hey cheeni latest headlines sunao bhai,news_query,hinglish
+hey cheeni aaj ki taza khabar kya hai now,news_query,hi
+open explorer,app_launch,en
+please kitne baje hain yaar,time_query,hi
+cheeni run this python script jaldi,code_run,en
+fix the type error in this typescript file,code_debug,en
+cheeni create a file named todo.txt yaar,file_create,en
+can you increase screen brightness please,system_brightness,en
+please suspend computer bhai,system_sleep,en
+zarasi sleep mode on karo jaldi,system_sleep,hinglish
+hey cheeni scroll to bottom,browser_scroll,en
+bhai bas aaram se baitha hu,emotion_neutral,hinglish
+draft email to Rahul,email_compose,en
+write down meeting summary,notes_create,en
+hey cheeni square root of 144 kitna hota hai please,math_query,hinglish
+cheeni square root of 144 kitna hota hai bhai,math_query,hinglish
+can you give this file a new name now,file_rename,en
+zarasi note likho: project deadline is monday,notes_create,hinglish
+create a file named todo.txt now,file_create,en
+cheeni reboot computer now,system_restart,en
+zarasi bharat ka prime minister kaun hai,general_qa,hi
+hey cheeni close this browser tab bhai,browser_close,en
+zarasi bhai temp file uda do please,file_delete,hinglish
+bhai kuch accha nahi lag raha fast,emotion_sad,hi
+zarasi look up my study notes bhai,notes_search,en
+please stage all files and commit yaar,git_commit,en
+cheeni how are you feeling cheeni fast,emotion_query,en
+please file ko documents folder me move karo please,file_move,hinglish
+enter text into field,browser_fill,en
+zarasi explain quantum entanglement,general_qa,en
+sun cheeni relocate this document please,file_move,en
+bhai login button par click karo,browser_click,hinglish
+bhai aaj kaunsa din hai,time_query,hi
+cheeni erase test.py please,file_delete,en
+hey cheeni scroll up now,browser_scroll,en
+sun cheeni rename document to project.pdf please,file_rename,en
+hey cheeni what is written on this window,screen_read,en
+zarasi show all notes,notes_read,en
+zarasi screen band karke sleep karo bhai,system_sleep,hi
+current time in new york fast,time_query,en
+hey cheeni yahan par text likho please,screen_type,hi
+hey cheeni calculate 15 percent of 4500 please,math_query,en
+cheeni go to amazon and search for headphones bhai,browser_navigate,en
+bhai test suite execute karo please,code_run,hinglish
+zarasi is code me bug dhundo fast,code_debug,hinglish
+can you what is today's top news now,news_query,en
+hey cheeni read the text on my screen fast,screen_read,en
+sun cheeni what is 45乘以12 please,math_query,en
+bhai just continuing work jaldi,emotion_neutral,en
+hey cheeni disconnect wifi please,system_wifi,en
+please aaj ki taza khabar kya hai fast,news_query,hi
+sun cheeni click the submit button now,browser_click,en
+sun cheeni fix the type error in this typescript file fast,code_debug,en
+sun cheeni bohot udas hu aaj yaar,emotion_sad,hi
+please i am feeling great today! yaar,emotion_happy,en
+sun cheeni relocate this document,file_move,en
+hey cheeni increase volume,system_volume,en
+hey cheeni type my email in the input box jaldi,browser_fill,en
+can you yahan par text likho bhai,screen_type,hi
+cheeni restart the pc yaar,system_restart,en
+cheeni weather forecast for tomorrow bhai,weather_query,en
+can you explain quantum entanglement yaar,general_qa,en
+reminder lagao kal subah 7 baje,reminder_set,hinglish
+please enter input at cursor yaar,screen_type,en
+can you i am feeling great today! bhai,emotion_happy,en
+bhai vscode band karo,app_close,hinglish
+cheeni puri screen ka screenshot le lo,screen_capture,hinglish
+please explain this recursive function fast,code_explain,en
+sun cheeni reminder lagao kal subah 7 baje,reminder_set,hinglish
+cheeni shubh ratri fast,chitchat,hi
+can you solve 2x + 5 = 15 yaar,math_query,en
+bhai file rename kar do yaar,file_rename,hinglish
+cheeni test suite execute karo jaldi,code_run,hinglish
+take a note: buy milk and eggs fast,notes_create,en
+zarasi save git changes,git_commit,en
+please transfer file to new folder bhai,file_move,en
+volume badhao fast,system_volume,hi
+zarasi thoda niche scroll karo yaar,browser_scroll,hinglish
+cheeni write a python script to parse json yaar,code_write,en
+cheeni brightness kam karo,system_brightness,hinglish
+zarasi notepad open kar yaar,app_launch,hinglish
+create a file named todo.txt please,file_create,en
+zarasi what is on my schedule today please,calendar_read,en
+is it going to rain fast,weather_query,en
+can you tu kaisa hai bhai fast,emotion_query,hinglish
+zarasi calendar me reminder add karo,calendar_add,hinglish
+hey cheeni generate fastapi login route yaar,code_write,en
+bhai show my upcoming meetings,calendar_read,en
+zarasi internet connected hai kya,system_wifi,hinglish
+cheeni check latest emails yaar,email_read,en
+notes me project search karo,notes_search,hinglish
+cheeni play arijit singh on youtube now,search_youtube,hinglish
+sun cheeni puri screen ka screenshot le lo jaldi,screen_capture,hinglish
+please run this python script yaar,code_run,en
+sun cheeni who is the ceo of google yaar,general_qa,en
+hey cheeni store this information please,memory_save,en
+please press next button fast,browser_click,en
+sun cheeni computer band karo please,system_shutdown,hi
+erase saved info,memory_delete,en
+calendar me reminder add karo now,calendar_add,hinglish
+hey cheeni cheeni tera mood kaisa hai now,emotion_query,hinglish
+please click the submit button jaldi,browser_click,en
+can you maja aa gaya bhai fast,emotion_happy,hinglish
+zarasi aaj mai bohot khush hu,emotion_happy,hi
+bhai notes me project search karo fast,notes_search,hinglish
+zarasi file open karo bhai,file_open,hinglish
+can you documents me file banao,file_create,hinglish
+sun cheeni play gaming stream on youtube fast,search_youtube,en
+bhai temp file uda do,file_delete,hinglish
+cheeni click on the icon at top right bhai,screen_click,en
+please suspend computer yaar,system_sleep,en
+bhai aaj mai bohot khush hu jaldi,emotion_happy,hi
+turn off system,system_shutdown,en
+exit browser,browser_close,en
+bhai tab band kar do please,browser_close,hi
+please fix the type error in this typescript file jaldi,code_debug,en
+cheeni type my password here bhai,screen_type,en
+can you tell me a joke yaar,chitchat,en
+band kar isko,app_close,hi
+mute audio now,system_volume,en
+bhai mere notes dikhao now,notes_read,hinglish
+bhai push changes to origin main,git_push,en
+zarasi page scroll karo,screen_scroll,hinglish
+bhai bharat ka prime minister kaun hai please,general_qa,hi
+zarasi feeling down and tired yaar,emotion_sad,en
+run this python script please,code_run,en
+cheeni look up my study notes yaar,notes_search,en
+capture desktop screen jaldi,screen_capture,en
+sun cheeni band kar isko bhai,app_close,hi
+please compose an email to professor regarding project please,email_compose,en
+cheeni bhai ek empty file bana de,file_create,hinglish
+hey cheeni set reminder for assignment submission yaar,reminder_set,en
+please delete old_notes.txt please,file_delete,en
+bhai reminder hata do bhai,reminder_cancel,hi
+dim the display,system_brightness,en
+cheeni transfer file to new folder now,file_move,en
+cheeni save webpage image jaldi,browser_screenshot,en
+bhai ek naya folder banao jaldi,folder_create,hi
+awaaz thodi kam karna,system_volume,hinglish
+zarasi tab band kar do now,browser_close,hi
+please close active window now,app_close,en
+please explain this recursive function now,code_explain,en
+sun cheeni okay i am just sitting here bhai,emotion_neutral,en
+sun cheeni show all notes yaar,notes_read,en
+bhai nothing special today fast,emotion_neutral,en
+hey cheeni are you tired bhai,emotion_query,en
+can you file ko documents folder me move karo jaldi,file_move,hinglish
+cheeni why is nothing working today bhai,emotion_angry,en
+python code likho binary search ka fast,code_write,hinglish
+bhai is code me bug dhundo,code_debug,hinglish
+cheeni i feel terrible today,emotion_sad,en
+bhai what did i tell you about my exam now,memory_recall,en
+can you transfer file to new folder jaldi,file_move,en
+yeh file hata do fast,file_delete,hi
+can you create a folder named project cheeni bhai,folder_create,en
+can you delete reminder jaldi,reminder_cancel,en
+cheeni search bar me query type karo,browser_fill,hinglish
+mera roll number kya tha,memory_recall,hinglish
+sun cheeni what is written on this window jaldi,screen_read,en
+can you save this to memory fast,memory_save,en
+cheeni sound full karo please,system_volume,hinglish
+hey cheeni is it going to rain now,weather_query,en
+sound full karo,system_volume,hinglish
+bhai feeling down and tired,emotion_sad,en
+sun cheeni go to github.com now,website_open,en
+take a screenshot of the webpage jaldi,browser_screenshot,en
+cheeni touch test.py bhai,file_create,en
+please screen par kya dikh raha hai yaar,screen_describe,hi
+hey cheeni system power off kar bhai,system_shutdown,hinglish
+file create karo,file_create,hinglish
+zarasi mera roll number kya tha,memory_recall,hinglish
+please bharat ka prime minister kaun hai now,general_qa,hi
+please exit window bhai,app_close,en
+can you screenshot kheecho,screen_capture,hi
+please what is currently on my display fast,screen_describe,en
+hey cheeni capture desktop screen bhai,screen_capture,en
+bhai how does gps work yaar,general_qa,en
+cheeni aaj ki taza khabar kya hai now,news_query,hi
+please what is the weather today please,weather_query,en
+zarasi screen ko upar karo bhai,screen_scroll,hi
+can you file ka naam badlo bhai,file_rename,hi
+file dikhao,file_open,hi
+cheeni save webpage image,browser_screenshot,en
+please create directory called datasets fast,folder_create,en
+sun cheeni kuch accha nahi lag raha now,emotion_sad,hi
+please what is on my schedule today bhai,calendar_read,en
+zarasi wifi check karo yaar,system_wifi,hinglish
+bhai temperature kitna hai please,weather_query,hinglish
+open file manager,app_launch,en
+please create calendar event jaldi,calendar_add,en
+cheeni screen band karke sleep karo fast,system_sleep,hi
+yeh code kya kar raha hai samjhao fast,code_explain,hinglish
+bhai weather forecast for tomorrow,weather_query,en
+can you take a screenshot of my whole desktop,screen_capture,en
+can you write down meeting summary now,notes_create,en
+cheeni create a function for factorial now,code_write,en
+cheeni close chrome fast,app_close,en
+login button par click karo jaldi,browser_click,hinglish
+hey cheeni launch task manager jaldi,app_launch,en
+hey cheeni look up python tutorials now,search_web,en
+cheeni generate a new python file jaldi,file_create,en
+sun cheeni what is currently on my display,screen_describe,en
+zarasi show my upcoming meetings fast,calendar_read,en
+please go to amazon and search for headphones jaldi,browser_navigate,en
+hey cheeni stage all files and commit now,git_commit,en
+hey cheeni naya folder create karo yaar,folder_create,hinglish
+zarasi delete old_notes.txt please,file_delete,en
+yeh yaad rakhna,memory_save,hi
+how are you feeling Cheeni,emotion_query,en
+cheeni fix the type error in this typescript file fast,code_debug,en
+hey cheeni push current branch to github jaldi,git_push,en
+cheeni calculate 15 percent of 4500 yaar,math_query,en
+please volume badhao,system_volume,hi
+type hello world on screen yaar,screen_type,en
+bhai find notes containing exam jaldi,notes_search,en
+bhai start notepad jaldi,app_launch,en
+bhai press the save icon now,screen_click,en
+please what is written on this window jaldi,screen_read,en
+cheeni press the save icon,screen_click,en
+can you page scroll karo now,screen_scroll,hinglish
+cheeni sync with remote repo,git_push,en
+can you who is the ceo of google yaar,general_qa,en
+cheeni bhai vscode band karo fast,app_close,hinglish
+sun cheeni vscode pe jao jaldi,app_switch,hinglish
+please close active window,app_close,en
+bore ho raha hu,chitchat,hinglish
+cheeni push current branch to github,git_push,en
+hey cheeni give me ai news updates jaldi,news_query,en
+sun cheeni take a screenshot of my whole desktop fast,screen_capture,en
+zarasi remember my wifi password is secret fast,memory_save,en
+put laptop to sleep jaldi,system_sleep,en
+hey cheeni why is nothing working today yaar,emotion_angry,en
+please make a file called notes.txt jaldi,file_create,en
+rename document to project.pdf,file_rename,en
+zarasi write down meeting summary bhai,notes_create,en
+please brightness kam karo fast,system_brightness,hinglish
+internet connected hai kya,system_wifi,hinglish
+zarasi brightness badha do,system_brightness,hi
+can you system power off kar,system_shutdown,hinglish
+cheeni forget my roll number now,memory_delete,en
+zarasi einstein kaun tha jaldi,general_qa,hinglish
+hey cheeni search google for machine learning jaldi,search_web,en
+do you remember my friend's birthday,memory_recall,en
+bhai fix the type error in this typescript file jaldi,code_debug,en
+please what is 45乘以12,math_query,en
+kitne baje hain bhai,time_query,hi
+search on internet about quantum computing now,search_web,en
+take a note: buy milk and eggs,notes_create,en
+can you fill username and password now,browser_fill,en
+hey cheeni move file to downloads jaldi,file_move,en
+bhai clear all active reminders jaldi,reminder_cancel,en
+can you save this to memory bhai,memory_save,en
+hey cheeni screen par kya dikh raha hai bhai,screen_describe,hi
+hey cheeni how are you feeling cheeni please,emotion_query,en
+zarasi add meeting with mentor tomorrow at 4pm bhai,calendar_add,en
+move report.pdf to desktop,file_move,en
+hey cheeni clear all active reminders jaldi,reminder_cancel,en
+please how do you say thank you in spanish fast,translation,en
+bhai aur batao cheeni now,chitchat,hinglish
+hey cheeni look up my study notes bhai,notes_search,en
+normal day hai,emotion_neutral,hinglish
+cheeni kya haal chaal please,chitchat,hi
+please bhai ek directory bana de now,folder_create,hinglish
+scroll screen horizontally,screen_scroll,en
+can you give this file a new name fast,file_rename,en
+please yahan par text likho please,screen_type,hi
+bhai screen pe kya likha hai padho please,screen_read,hinglish
+cheeni create a new text file,file_create,en
+mere emails check karo jaldi,email_read,hinglish
+can you screen par is icon pe click karo please,screen_click,hinglish
+please clear all active reminders,reminder_cancel,en
+hey cheeni login button par click karo jaldi,browser_click,hinglish
+zarasi cheeni tera mood kaisa hai bhai,emotion_query,hinglish
+please notes me project search karo fast,notes_search,hinglish
+hey cheeni erase saved info bhai,memory_delete,en
+bhai decrease volume by 20 percent,system_volume,en
+sun cheeni calculate 15 percent of 4500 yaar,math_query,en
+write an apology email please,email_compose,en
+please aaj mera kya schedule hai jaldi,calendar_read,hinglish
+bhai save note yaar,notes_create,en
+hey cheeni press the save icon,screen_click,en
+hey cheeni pdf file kholo bhai,file_open,hinglish
+zarasi make a file called notes.txt fast,file_create,en
+hey cheeni delete reminder bhai,reminder_cancel,en
+bhai suspend computer please,system_sleep,en
+can you dockerfile likho nodejs ke liye jaldi,code_write,hinglish
+can you who created you,chitchat,en
+zarasi read my unread emails yaar,email_read,en
+file shift karo,file_move,hinglish
+sun cheeni rename this file to final_v2.docx yaar,file_rename,en
+sun cheeni file rename kar do now,file_rename,hinglish
+please normal day hai yaar,emotion_neutral,hinglish
+can you iska english translation batao,translation,hinglish
+hey cheeni scroll screen horizontally yaar,screen_scroll,en
+bhai screen band karke sleep karo,system_sleep,hi
+bhai file ko documents folder me move karo bhai,file_move,hinglish
+tell me tech news please,news_query,en
+cheeni switch to chrome now,app_switch,en
+bhai restart my laptop fast,system_restart,en
+zarasi solve 2x + 5 = 15 jaldi,math_query,en
+cheeni capture full page screenshot,browser_screenshot,en
+sun cheeni shutdown now bhai,system_shutdown,en
+screen pe kya likha hai padho fast,screen_read,hinglish
+zarasi screen pe kya likha hai padho fast,screen_read,hinglish
+sun cheeni aaj mera kya schedule hai fast,calendar_read,hinglish
+sun cheeni scroll to bottom jaldi,browser_scroll,en
+sun cheeni tu kaisa hai bhai,emotion_query,hinglish
+zarasi how does this regex work now,code_explain,en
+bhai explain this recursive function fast,code_explain,en
+hey cheeni push current branch to github please,git_push,en
+zarasi nothing special today now,emotion_neutral,en
+aaj ka din mast tha,emotion_happy,hinglish
+cheeni maine kya yaad rakhne ko bola tha now,memory_recall,hi
+forget my roll number,memory_delete,en
+bhai aaj ki taza khabar kya hai,news_query,hi
+cheeni screen par is icon pe click karo now,screen_click,hinglish
+maine kya yaad rakhne ko bola tha please,memory_recall,hi
+please suspend computer,system_sleep,en
+please go to next window now,app_switch,en
+bhai schedule doctor appointment on monday yaar,calendar_add,en
+please run this python script please,code_run,en
+search notes for machine learning bhai,notes_search,en
+please change file name bhai,file_rename,en
+can you what time is it yaar,time_query,en
+bhai bro i got selected for the internship! fast,emotion_happy,en
+cheeni bas aaram se baitha hu please,emotion_neutral,hinglish
+bhai file shift karo yaar,file_move,hinglish
+can you click on sign in please,browser_click,en
+can you what is currently on my display,screen_describe,en
+hey cheeni shut down the laptop yaar,system_shutdown,en
+bhai compose an email to professor regarding project jaldi,email_compose,en
+zarasi git push kar do,git_push,hinglish
+cheeni push current branch to github fast,git_push,en
+hey cheeni open portal and go to grades page fast,browser_navigate,en
+mere notes dikhao,notes_read,hinglish
+zarasi navigate to twitter,website_open,en
+please make screen brighter,system_brightness,en
+sun cheeni capture desktop screen please,screen_capture,en
+bhai pc ko sleep par daal do now,system_sleep,hinglish
+cheeni open portal and go to grades page jaldi,browser_navigate,en
+zarasi change application fast,app_switch,en
+zarasi create directory called datasets fast,folder_create,en
+close the browser window,browser_close,en
+feeling down and tired,emotion_sad,en
+sun cheeni press the save icon,screen_click,en
+can you delete old_notes.txt jaldi,file_delete,en
+cheeni save this to memory bhai,memory_save,en
+bhai store this information jaldi,memory_save,en
+sun cheeni reminder hata do yaar,reminder_cancel,hi
+please yahan par text likho jaldi,screen_type,hi
+can you commit all changes with message fix auth bhai,git_commit,en
+bhai unmute audio now,system_volume,en
+can you close this browser tab please,browser_close,en
+can you solve 2x + 5 = 15 jaldi,math_query,en
+hey cheeni set reminder for assignment submission fast,reminder_set,en
+computer band karo bhai,system_shutdown,hi
+zarasi generate fastapi login route,code_write,en
+sun cheeni forget my roll number fast,memory_delete,en
+sun cheeni show all notes jaldi,notes_read,en
+please what is the capital of france bhai,general_qa,en
+hey cheeni good night jaldi,chitchat,en
+vscode chalao,app_launch,hi
+zarasi enter text into field bhai,browser_fill,en
+bhai what is on my schedule today,calendar_read,en
+sun cheeni enter input at cursor,screen_type,en
+open huggingface,website_open,en
+hey cheeni create directory called datasets yaar,folder_create,en
+erase test.py,file_delete,en
+can you einstein kaun tha yaar,general_qa,hinglish
+sun cheeni what time is it yaar,time_query,en
+wifi on karo yaar,system_wifi,hinglish
+zarasi store this information,memory_save,en
+cheeni mere notes dikhao,notes_read,hinglish
+dockerfile likho nodejs ke liye yaar,code_write,hinglish
+can you scroll screen horizontally bhai,screen_scroll,en
+take a screenshot of the webpage,browser_screenshot,en
+please push changes to origin main fast,git_push,en
+please bohot udas hu aaj please,emotion_sad,hi
+please is script ko run karo now,code_run,hinglish
+bhai i am feeling great today! please,emotion_happy,en
+bhai spotify pe gaane sunne hai app khol,app_launch,hinglish
+can you how do you say thank you in spanish fast,translation,en
+sun cheeni click the submit button,browser_click,en
+shubh ratri,chitchat,hi
+hey cheeni restart my laptop please,system_restart,en
+sun cheeni press next button,browser_click,en
+please write an apology email please,email_compose,en
+can you increase screen brightness now,system_brightness,en
+cheeni close chrome now,app_close,en
+you are awesome,chitchat,en
+zarasi erase test.py now,file_delete,en
+bhai test suite execute karo now,code_run,hinglish
+bhai disconnect wifi yaar,system_wifi,en
+bhai brightness kam karo fast,system_brightness,hinglish
+can you calculate 15 percent of 4500 yaar,math_query,en
+code execute kyu nahi ho raha,code_debug,hinglish
+how does GPS work,general_qa,en
+bhai laptop restart karo bhai,system_restart,hinglish
+bhai enter text into field bhai,browser_fill,en
+please check latest emails now,email_read,en
+bhai screen ko upar karo please,screen_scroll,hi
+bhai connect to wifi fast,system_wifi,en
+sun cheeni read out the error message fast,screen_read,en
+hey cheeni enter input at cursor now,screen_type,en
+hey cheeni how do you say thank you in spanish jaldi,translation,en
+please close the browser window now,browser_close,en
+cheeni note likho: project deadline is monday bhai,notes_create,hinglish
+hey cheeni tu kaisa hai bhai fast,emotion_query,hinglish
+can you read out the error message please,screen_read,en
+can you pichle notes padho bhai,notes_read,hi
+sun cheeni connect to wifi now,system_wifi,en
+please ek naya folder banao fast,folder_create,hi
+bhai open portal and go to grades page now,browser_navigate,en
+sun cheeni dim the display bhai,system_brightness,en
+file ko documents folder me move karo now,file_move,hinglish
+open the project report,file_open,en
+cheeni capture full page screenshot please,browser_screenshot,en
+sun cheeni folder kholo jaldi,app_launch,hi
+can you square root of 144 kitna hota hai now,math_query,hinglish
+mere emails check karo,email_read,hinglish
+zarasi pc reboot kar do,system_restart,hinglish
+browser me is page par jao,browser_navigate,hinglish
+read my recent notes,notes_read,en
+enter text into field please,browser_fill,en
+sun cheeni suspend computer fast,system_sleep,en
+zarasi system power off kar yaar,system_shutdown,hinglish
+cheeni ek note banao jaldi,notes_create,hi
+please switch window bhai,app_switch,en
+hey cheeni press the save icon fast,screen_click,en
+please net pe check karo,search_web,hinglish
+cheeni sleep mode on karo please,system_sleep,hinglish
+bhai enter text into field,browser_fill,en
+hey cheeni press next button jaldi,browser_click,en
+can you restart my laptop now,system_restart,en
+dimag kharab ho gaya hai,emotion_angry,hinglish
+please internet connected hai kya please,system_wifi,hinglish
+bhai check latest emails yaar,email_read,en
+please delete reminder,reminder_cancel,en
+sun cheeni test suite execute karo now,code_run,hinglish
+sun cheeni screenshot kheecho jaldi,screen_capture,hi
+hey cheeni okay i am just sitting here,emotion_neutral,en
+bhai einstein kaun tha,general_qa,hinglish
+open file manager please,app_launch,en
+please solve 2x + 5 = 15 jaldi,math_query,en
+can you bhai spotify pe gaane sunne hai app khol yaar,app_launch,hinglish
+cheeni sleep mode on karo yaar,system_sleep,hinglish
+launch visual studio code jaldi,app_launch,en
+please remember that i have an exam on friday please,memory_save,en
+yeh window band karo,app_close,hinglish
+tu kaisa hai bhai jaldi,emotion_query,hinglish
+zarasi scroll to bottom fast,browser_scroll,en
+remember that i have an exam on friday bhai,memory_save,en
+zarasi pdf file kholo,file_open,hinglish
+cheeni mera mood theek nahi hai yaar,emotion_sad,hinglish
+hey cheeni click on sign in fast,browser_click,en
+kisi ka mail aaya kya please,email_read,hinglish
+bhai save webpage image please,browser_screenshot,en
+please check calendar for tomorrow please,calendar_read,en
+sun cheeni dockerfile likho nodejs ke liye yaar,code_write,hinglish
+type my password here fast,screen_type,en
+turn up the sound,system_volume,en
+hey cheeni analyze current screen jaldi,screen_describe,en
+sun cheeni volume badhao now,system_volume,hi
+please file ko documents folder me move karo bhai,file_move,hinglish
+sun cheeni email likho leave application ka,email_compose,hinglish
+can you break down this sql query bhai,code_explain,en
+delete reminder jaldi,reminder_cancel,en
+cheeni push current branch to github please,git_push,en
+open word document,app_launch,en
+hey cheeni how do you say thank you in spanish,translation,en
+find information about transformers,search_web,en
+cheeni scroll up fast,browser_scroll,en
+cheeni fix the type error in this typescript file now,code_debug,en
+cheeni internet connected hai kya yaar,system_wifi,hinglish
+calendar me reminder add karo,calendar_add,hinglish
+hey cheeni open huggingface now,website_open,en
+show my upcoming meetings,calendar_read,en
+write down meeting summary bhai,notes_create,en
+bhai scroll down the page fast,browser_scroll,en
+file ka naam badlo,file_rename,hi
+can you shut down notepad fast,app_close,en
+sun cheeni ek nayi file banao jaldi,file_create,hi
+can you aaj mai bohot khush hu please,emotion_happy,hi
+hey cheeni take a screenshot of the webpage now,browser_screenshot,en
+please square root of 144 kitna hota hai jaldi,math_query,hinglish
+hey cheeni git commit karo,git_commit,hinglish
+hey cheeni open the project report jaldi,file_open,en
+zarasi aaj ki taza khabar kya hai please,news_query,hi
+can you what notes did i take today please,notes_read,en
+debug this syntax error,code_debug,en
+hey cheeni open portal and go to grades page yaar,browser_navigate,en
+sun cheeni make screen brighter please,system_brightness,en
+bhai suspend computer fast,system_sleep,en
+bhai capture full page screenshot yaar,browser_screenshot,en
+chrome band kar do,app_close,hi
+file rename kar do,file_rename,hinglish
+spotify band kar de,app_close,hinglish
+can you bhai ek empty file bana de now,file_create,hinglish
+hey cheeni resume khol ke dikhao jaldi,file_open,hinglish
+remember that I have an exam on Friday,memory_save,en
+hey cheeni notes me project search karo now,notes_search,hinglish
+check wifi status,system_wifi,en
+screen par is icon pe click karo,screen_click,hinglish
+please is it going to rain bhai,weather_query,en
+cheeni just continuing work fast,emotion_neutral,en
+hey cheeni file open karo now,file_open,hinglish
+scroll screen horizontally yaar,screen_scroll,en
+can you disconnect wifi fast,system_wifi,en
+please click on the icon at top right please,screen_click,en
+sun cheeni compose an email to professor regarding project bhai,email_compose,en
+screen par is icon pe click karo yaar,screen_click,hinglish
+hey cheeni write down meeting summary please,notes_create,en
+sun cheeni give me ai news updates,news_query,en
+zarasi close this browser tab fast,browser_close,en
+this code is driving me crazy,emotion_angry,en
+please vscode pe jao now,app_switch,hinglish
+zarasi mera mood theek nahi hai,emotion_sad,hinglish
+cancel my 5pm reminder,reminder_cancel,en
+cheeni mujhe bohot gussa aa raha hai fast,emotion_angry,hi
+sun cheeni test suite execute karo jaldi,code_run,hinglish
+bhai erase saved info fast,memory_delete,en
+memory clear karo,memory_delete,hinglish
+can you brightness badha do bhai,system_brightness,hi
+cheeni show all notes now,notes_read,en
+switch back to browser,app_switch,en
+volume kam karo,system_volume,hinglish
+can you move file to downloads fast,file_move,en
+cheeni dobara chalu karo,system_restart,hi
+sun cheeni is page ka screenshot lo please,browser_screenshot,hinglish
+zarasi mere emails check karo yaar,email_read,hinglish
+zarasi relocate this document please,file_move,en
+bhai what is written on this window fast,screen_read,en
+please explain quantum entanglement,general_qa,en
+set reminder for assignment submission,reminder_set,en
+can you add meeting with mentor tomorrow at 4pm jaldi,calendar_add,en
+cheeni debug this syntax error yaar,code_debug,en
+switch window,app_switch,en
+sun cheeni latest headlines sunao yaar,news_query,hinglish
+zarasi scroll up,browser_scroll,en
+i am feeling great today! yaar,emotion_happy,en
+bhai file shift karo fast,file_move,hinglish
+please bas aaram se baitha hu bhai,emotion_neutral,hinglish
+hey cheeni dim the display now,system_brightness,en
+scroll down the page jaldi,browser_scroll,en
+bhai browser me is page par jao now,browser_navigate,hinglish
+cheeni bhai google pe search kar now,search_web,hinglish
+sun cheeni git push kar do,git_push,hinglish
+screen ko upar karo please,screen_scroll,hi
+sun cheeni divide 1000 by 8 fast,math_query,en
+sun cheeni delete that memory jaldi,memory_delete,en
+bhai file dikhao jaldi,file_open,hi
+please save kar lo ki rahul ka birthday kal hai please,memory_save,hinglish
+bhai puri screen ka screenshot le lo bhai,screen_capture,hinglish
+how do you say thank you in Spanish,translation,en
+cheeni what is currently on my display fast,screen_describe,en
+bhai memory clear karo fast,memory_delete,hinglish
+zarasi mera mood theek nahi hai fast,emotion_sad,hinglish
+google pe search karo latest news,search_web,hinglish
+bhai google pe search kar,search_web,hinglish
+can you naya folder create karo fast,folder_create,hinglish
+can you bhai ek empty file bana de please,file_create,hinglish
+hey cheeni git push kar do please,git_push,hinglish
+restart the pc bhai,system_restart,en
+dusra tab kholo,app_switch,hi
+zarasi fill username and password fast,browser_fill,en
+please transfer file to new folder please,file_move,en
+restart my laptop yaar,system_restart,en
+cheeni who is the ceo of google now,general_qa,en
+can you click the submit button bhai,browser_click,en
+cheeni remove temp.log fast,file_delete,en
+please write down meeting summary now,notes_create,en
+sun cheeni write an apology email fast,email_compose,en
+sun cheeni describe the image on my screen,screen_describe,en
+sun cheeni turn off my pc fast,system_shutdown,en
+sun cheeni create a new text file yaar,file_create,en
+zarasi tu kaisa hai bhai please,emotion_query,hinglish
+zarasi how are you feeling cheeni,emotion_query,en
+notepad open kar,app_launch,hinglish
+what notes did i take today now,notes_read,en
+cheeni kisi ka mail aaya kya,email_read,hinglish
+I failed my exam,emotion_sad,en
+please forget my roll number fast,memory_delete,en
+cheeni find notes containing exam yaar,notes_search,en
+please delete unwanted file now,file_delete,en
+please i failed my exam please,emotion_sad,en
+view spreadsheet,file_open,en
+cheeni shubh ratri,chitchat,hi
+bhai click on the red cancel button please,screen_click,en
+sun cheeni git commit karo bhai,git_commit,hinglish
+sun cheeni feeling super motivated,emotion_happy,en
+cheeni scroll down the page fast,browser_scroll,en
+sun cheeni read out the error message yaar,screen_read,en
+cheeni read the text on my screen please,screen_read,en
+please i feel terrible today jaldi,emotion_sad,en
+press the save icon,screen_click,en
+sun cheeni file open karo please,file_open,hinglish
+zarasi delete reminder fast,reminder_cancel,en
+zarasi remind me to drink water in 30 minutes now,reminder_set,en
+hey cheeni yeh baat bhool jao,memory_delete,hi
+cheeni file dikhao fast,file_open,hi
+sun cheeni open invoice.docx please,file_open,en
+sun cheeni save note please,notes_create,en
+hey cheeni i failed my exam please,emotion_sad,en
+can you restart my laptop jaldi,system_restart,en
+solve 2x + 5 = 15,math_query,en
+can you shut down the laptop jaldi,system_shutdown,en
+bhai is page ka screenshot lo fast,browser_screenshot,hinglish
+zarasi how are you feeling cheeni now,emotion_query,en
+please mujhe bohot gussa aa raha hai fast,emotion_angry,hi
+sun cheeni yahan par text likho bhai,screen_type,hi
+zarasi divide 1000 by 8,math_query,en
+can you pc reboot kar do now,system_restart,hinglish
+can you press the save icon please,screen_click,en
+cheeni type my email in the input box bhai,browser_fill,en
+cheeni scroll up bhai,browser_scroll,en
+bhai iska english translation batao,translation,hinglish
+aaj mausam kaisa hai,weather_query,hi
+how do you say thank you in spanish,translation,en
+test suite execute karo now,code_run,hinglish
+youtube pe chalao standup comedy,search_youtube,hinglish
+can you bas aaram se baitha hu bhai,emotion_neutral,hinglish
+can you tu kaisa hai bhai bhai,emotion_query,hinglish
+zarasi bro i got selected for the internship! now,emotion_happy,en
+cheeni relocate this document yaar,file_move,en
+zarasi make screen brighter please,system_brightness,en
+zarasi close the browser window please,browser_close,en
+hey cheeni create directory called datasets fast,folder_create,en
+can you delete unwanted file please,file_delete,en
+sun cheeni browser me is page par jao now,browser_navigate,hinglish
+sun cheeni scroll to bottom fast,browser_scroll,en
+cheeni latest headlines sunao please,news_query,hinglish
+zarasi click the submit button bhai,browser_click,en
+cheeni schedule doctor appointment on monday bhai,calendar_add,en
+hey cheeni check wifi status,system_wifi,en
+bhai chrome khol de,app_launch,hinglish
+can you press next button now,browser_click,en
+push current branch to github bhai,git_push,en
+sun cheeni sync with remote repo jaldi,git_push,en
+scroll to bottom,browser_scroll,en
+zarasi login button par click karo,browser_click,hinglish
+who is the ceo of google yaar,general_qa,en
+bhai explain this recursive function bhai,code_explain,en
+can you resume khol ke dikhao bhai,file_open,hinglish
+zarasi open portal and go to grades page fast,browser_navigate,en
+bhai barish hogi kya aaj now,weather_query,hinglish
+please exit browser bhai,browser_close,en
+hey cheeni pc reboot kar do please,system_restart,hinglish
+i failed my exam bhai,emotion_sad,en
+hey cheeni this code is driving me crazy fast,emotion_angry,en
+sun cheeni mute audio yaar,system_volume,en
+shutdown now,system_shutdown,en
+can you kill notepad please,app_close,en
+aaj mai bohot khush hu jaldi,emotion_happy,hi
+current time in New York,time_query,en
+please screen ko upar karo yaar,screen_scroll,hi
+can you search bar me query type karo bhai,browser_fill,hinglish
+bhai what is the weather today now,weather_query,en
+screen band karke sleep karo,system_sleep,hi
+zarasi gmail website kholo,website_open,hinglish
+hey cheeni cheeni tera mood kaisa hai,emotion_query,hinglish
+zarasi hey what's up now,chitchat,en
+zarasi take a screenshot of my whole desktop fast,screen_capture,en
+turn off my pc,system_shutdown,en
+open notes.txt now,file_open,en
+can you aaj mausam kaisa hai yaar,weather_query,hi
+schedule doctor appointment on Monday,calendar_add,en
+cheeni push current branch to github jaldi,git_push,en
+hey cheeni navigate to docs.python.org bhai,browser_navigate,en
+hey cheeni calculate 15 percent of 4500,math_query,en
+aaj ka din mast tha yaar,emotion_happy,hinglish
+bhai yeh code kya kar raha hai samjhao,code_explain,hinglish
+cheeni einstein kaun tha now,general_qa,hinglish
+hey cheeni draft email to rahul yaar,email_compose,en
+documents me file banao,file_create,hinglish
+sun cheeni read this document bhai,file_open,en
+please read the text on my screen,screen_read,en
+please login button par click karo jaldi,browser_click,hinglish
+zarasi find information about transformers please,search_web,en
+cheeni erase saved info now,memory_delete,en
+web pe dekh ke batao,search_web,hi
+sun cheeni push current branch to github fast,git_push,en
+please divide 1000 by 8 now,math_query,en
+take a screenshot of the webpage now,browser_screenshot,en
+zarasi dim the display yaar,system_brightness,en
+can you create a function for factorial now,code_write,en
+can you divide 1000 by 8 fast,math_query,en
+please code execute kyu nahi ho raha please,code_debug,hinglish
+cheeni set reminder for assignment submission now,reminder_set,en
+feeling down and tired bhai,emotion_sad,en
+remember that my roll number is 42,memory_save,en
+hey cheeni bas aaram se baitha hu bhai,emotion_neutral,hinglish
+please screen par kya dikh raha hai fast,screen_describe,hi
+sun cheeni rename document to project.pdf bhai,file_rename,en
+can you write down meeting summary bhai,notes_create,en
+change file name,file_rename,en
+zarasi open chatgpt,website_open,en
+zarasi click the submit button fast,browser_click,en
+bhai file delete karo yaar,file_delete,hinglish
+hey cheeni mujhe bohot gussa aa raha hai jaldi,emotion_angry,hi
+zarasi screen par is icon pe click karo yaar,screen_click,hinglish
+cheeni puri screen ka screenshot le lo jaldi,screen_capture,hinglish
+zarasi remove temp.log,file_delete,en
+take a screenshot of the webpage fast,browser_screenshot,en
+translate this paragraph to French,translation,en
+how are you feeling cheeni,emotion_query,en
+zarasi what is the capital of france yaar,general_qa,en
+can you write an apology email now,email_compose,en
+zarasi page scroll karo now,screen_scroll,hinglish
+hey cheeni mujhe 5 baje yaad dilana fast,reminder_set,hi
+can you create calendar event please,calendar_add,en
+look up my study notes,notes_search,en
+please ek note banao please,notes_create,hi
+zarasi save note bhai,notes_create,en
+hey cheeni kitne baje hain fast,time_query,hi
+please i am so frustrated right now now,emotion_angry,en
+please change file name jaldi,file_rename,en
+hey cheeni close this browser tab now,browser_close,en
+give me AI news updates,news_query,en
+bhai save git changes now,git_commit,en
+sun cheeni click on sign in jaldi,browser_click,en
+cheeni what is on my schedule today fast,calendar_read,en
+please run this python script,code_run,en
+bhai i am so frustrated right now please,emotion_angry,en
+zarasi file ka naam badlo please,file_rename,hi
+zarasi push current branch to github please,git_push,en
+hey cheeni capture full page screenshot please,browser_screenshot,en
+sun cheeni play arijit singh on youtube now,search_youtube,hinglish
+transfer file to new folder,file_move,en
+hey cheeni what is today's top news fast,news_query,en
+please find notes containing exam,notes_search,en
+mere emails check karo yaar,email_read,hinglish
+notes me project search karo please,notes_search,hinglish
+please play ed sheeran on youtube fast,search_youtube,en
+cheeni pc ko sleep par daal do please,system_sleep,hinglish
+sun cheeni search youtube for python crash course please,search_youtube,en
+net pe check karo,search_web,hinglish
+bhai play arijit singh on youtube now,search_youtube,hinglish
+zarasi hello cheeni please,chitchat,en
+you are awesome please,chitchat,en
+please find information about transformers bhai,search_web,en
+bhai go to github.com bhai,website_open,en
+zarasi maine kya yaad rakhne ko bola tha fast,memory_recall,hi
+screen par kya dikh raha hai jaldi,screen_describe,hi
+look up python tutorials yaar,search_web,en
+can you computer band karo jaldi,system_shutdown,hi
+please commit all changes with message fix auth,git_commit,en
+please translate hello to hindi fast,translation,en
+hey cheeni close the browser window bhai,browser_close,en
+sun cheeni cheeni tera mood kaisa hai jaldi,emotion_query,hinglish
+bhai latest headlines sunao yaar,news_query,hinglish
+hey cheeni write a react hook for localstorage now,code_write,en
+sun cheeni type hello world on screen,screen_type,en
+please scroll to bottom please,browser_scroll,en
+please find notes containing exam jaldi,notes_search,en
+hey cheeni take a screenshot of the webpage bhai,browser_screenshot,en
+navigate to docs.python.org please,browser_navigate,en
+hello cheeni,chitchat,en
+search bar me query type karo,browser_fill,hinglish
+bhai click the submit button fast,browser_click,en
+please add meeting with mentor tomorrow at 4pm jaldi,calendar_add,en
+zarasi git commit karo,git_commit,hinglish
+sun cheeni computer band karo bhai,system_shutdown,hi
+explain quantum entanglement now,general_qa,en
+hey cheeni aaj mai bohot khush hu,emotion_happy,hi
+please what is on my schedule today now,calendar_read,en
+bhai wifi check karo please,system_wifi,hinglish
+can you chrome pe switch karo fast,app_switch,hinglish
+can you kitne baje hain please,time_query,hi
+sun cheeni execute main.py yaar,code_run,en
+analyze current screen please,screen_describe,en
+reminder hata do,reminder_cancel,hi
+can you take a screenshot of my whole desktop please,screen_capture,en
+can you scroll the active window down,screen_scroll,en
+please go to amazon and search for headphones yaar,browser_navigate,en
+sun cheeni screen ko upar karo please,screen_scroll,hi
+cheeni latest headlines sunao now,news_query,hinglish
+can you memory clear karo please,memory_delete,hinglish
+can you write an apology email bhai,email_compose,en
+scroll the active window down,screen_scroll,en
+hey cheeni what is my roll number yaar,memory_recall,en
+sun cheeni open notes.txt now,file_open,en
+please chrome pe switch karo bhai,app_switch,hinglish
+bhai clear all active reminders please,reminder_cancel,en
+sun cheeni search youtube for lofi hip hop please,search_youtube,en
+code execute kyu nahi ho raha jaldi,code_debug,hinglish
+folder kholo,app_launch,hi
+cheeni go to github.com bhai,website_open,en
+sun cheeni who created you jaldi,chitchat,en
+zarasi create calendar event yaar,calendar_add,en
+sun cheeni show my upcoming meetings yaar,calendar_read,en
+please git push kar do bhai,git_push,hinglish
+please take a note: buy milk and eggs jaldi,notes_create,en
+zarasi computer band karo bhai,system_shutdown,hi
+can you erase saved info bhai,memory_delete,en
+cheeni memory clear karo yaar,memory_delete,hinglish
+resume khol ke dikhao,file_open,hinglish
+cheeni increase volume yaar,system_volume,en
+sun cheeni this code is driving me crazy,emotion_angry,en
+please what is 45乘以12 jaldi,math_query,en
+please click on the red cancel button now,screen_click,en
+bhai wifi on karo now,system_wifi,hinglish
+sun cheeni set reminder for assignment submission yaar,reminder_set,en
+zarasi navigate to docs.python.org yaar,browser_navigate,en
+sun cheeni screenshot kheecho bhai,screen_capture,hi
+hey cheeni current time in new york yaar,time_query,en
+bhai sync with remote repo,git_push,en
+aaj mausam kaisa hai jaldi,weather_query,hi
+zarasi kitne baje hain jaldi,time_query,hi
+hey cheeni generate fastapi login route bhai,code_write,en
+sun cheeni enter text into field please,browser_fill,en
+bhai screen band karke sleep karo yaar,system_sleep,hi
+sun cheeni suspend computer please,system_sleep,en
+hey cheeni what notes did i take today now,notes_read,en
+bhai just continuing work please,emotion_neutral,en
+can you check calendar for tomorrow bhai,calendar_read,en
+sun cheeni click on sign in yaar,browser_click,en
+zarasi start notepad,app_launch,en
+please i am so frustrated right now jaldi,emotion_angry,en
+zarasi turn off my pc fast,system_shutdown,en
+cheeni yeh code kya kar raha hai samjhao yaar,code_explain,hinglish
+please navigate to docs.python.org fast,browser_navigate,en
+hey cheeni what is my roll number,memory_recall,en
+cheeni current time in new york,time_query,en
+cheeni forget my roll number,memory_delete,en
+file rename kar do fast,file_rename,hinglish
+hey cheeni open notes.txt jaldi,file_open,en
+aaj mera kya schedule hai please,calendar_read,hinglish
+hey cheeni who is the ceo of google now,general_qa,en
+bhai how does gps work now,general_qa,en
+bhai create a file named todo.txt now,file_create,en
+please launch settings,app_launch,en
+read my unread emails,email_read,en
+cheeni set reminder for assignment submission yaar,reminder_set,en
+hey cheeni find notes containing exam jaldi,notes_search,en
+bhai ek note banao fast,notes_create,hi
+hey cheeni create a function for factorial fast,code_write,en
+can you mera roll number kya tha yaar,memory_recall,hinglish
+zarasi file ko documents folder me move karo now,file_move,hinglish
+zarasi code execute kyu nahi ho raha now,code_debug,hinglish
+zarasi dimag kharab ho gaya hai,emotion_angry,hinglish
+bro I got selected for the internship!,emotion_happy,en
+can you press the save icon yaar,screen_click,en
+ek naya folder banao,folder_create,hi
+cheeni hello cheeni now,chitchat,en
+zarasi draft email to rahul bhai,email_compose,en
+can you compose an email to professor regarding project yaar,email_compose,en
+can you mera roll number kya tha,memory_recall,hinglish
+zarasi yeh baat bhool jao please,memory_delete,hi
+bhai erase saved info bhai,memory_delete,en
+can you screen ko upar karo now,screen_scroll,hi
+hey cheeni save webpage image,browser_screenshot,en
+tu kaisa hai bhai yaar,emotion_query,hinglish
+sun cheeni scroll up jaldi,browser_scroll,en
+hey cheeni alt tab to spotify now,app_switch,en
+cheeni move file to downloads jaldi,file_move,en
+bhai good night jaldi,chitchat,en
+hey cheeni kuch accha nahi lag raha bhai,emotion_sad,hi
+remind me to drink water in 30 minutes,reminder_set,en
+please execute main.py yaar,code_run,en
+file shift karo bhai,file_move,hinglish
+bhai enter text into field now,browser_fill,en
+zarasi mera mood theek nahi hai now,emotion_sad,hinglish
+bhai yahan par text likho please,screen_type,hi
+zarasi pc reboot kar do please,system_restart,hinglish
+email likho leave application ka yaar,email_compose,hinglish
+can you type hello world on screen,screen_type,en
+can you bhai spotify pe gaane sunne hai app khol bhai,app_launch,hinglish
+sun cheeni how does gps work,general_qa,en
+can you give me ai news updates jaldi,news_query,en
+can you temperature kitna hai now,weather_query,hinglish
+hey cheeni describe the image on my screen fast,screen_describe,en
+sun cheeni enter input at cursor jaldi,screen_type,en
+what is on my schedule today,calendar_read,en
+please create a function for factorial now,code_write,en
+pc ko sleep par daal do,system_sleep,hinglish
+bhai screenshot kheecho now,screen_capture,hi
+sun cheeni kisi ka mail aaya kya now,email_read,hinglish
+can you normal day hai yaar,emotion_neutral,hinglish
+bhai analyze current screen please,screen_describe,en
+bhai check calendar for tomorrow jaldi,calendar_read,en
+can you screen par kya dikh raha hai fast,screen_describe,hi
+sun cheeni mujhe bohot gussa aa raha hai bhai,emotion_angry,hi
+click on the red cancel button bhai,screen_click,en
+zarasi mujhe 5 baje yaad dilana please,reminder_set,hi
+can you nothing special today fast,emotion_neutral,en
+please switch to vscode now,app_switch,en
+please tab band kar do now,browser_close,hi
+sun cheeni press the save icon fast,screen_click,en
+bhai is code me bug dhundo bhai,code_debug,hinglish
+bhai scroll to bottom now,browser_scroll,en
+bhai volume badhao jaldi,system_volume,hi
+click on the red cancel button,screen_click,en
+hey cheeni git commit karo please,git_commit,hinglish
+zarasi tell me tech news yaar,news_query,en
+forget my roll number bhai,memory_delete,en
+bhai divide 1000 by 8 yaar,math_query,en
+sun cheeni resume khol ke dikhao fast,file_open,hinglish
+sun cheeni create calendar event bhai,calendar_add,en
+bhai file ka naam badlo,file_rename,hi
+type my email in the input box,browser_fill,en
+sun cheeni check latest emails jaldi,email_read,en
+zarasi band kar isko please,app_close,hi
+please aaj kaunsa din hai fast,time_query,hi
+please shut down notepad jaldi,app_close,en
+bhai save kar lo ki rahul ka birthday kal hai bhai,memory_save,hinglish
+increase volume,system_volume,en
+zarasi laptop restart karo yaar,system_restart,hinglish
+sun cheeni add meeting with mentor tomorrow at 4pm yaar,calendar_add,en
+sun cheeni google pe search karo latest news yaar,search_web,hinglish
+make screen brighter,system_brightness,en
+search google for machine learning,search_web,en
+start chrome browser,app_launch,en
+hey cheeni commit all changes with message fix auth fast,git_commit,en
+please screenshot kheecho now,screen_capture,hi
+cheeni save this to memory yaar,memory_save,en
+please mujhe 5 baje yaad dilana please,reminder_set,hi
+cheeni stage all files and commit,git_commit,en
+hey cheeni band kar isko now,app_close,hi
+hey cheeni what is today's top news yaar,news_query,en
+zarasi is code me bug dhundo jaldi,code_debug,hinglish
+sun cheeni generate fastapi login route,code_write,en
+click on sign in please,browser_click,en
+hey cheeni press the save icon please,screen_click,en
+bhai pc ko sleep par daal do please,system_sleep,hinglish
+hey cheeni write a react hook for localstorage yaar,code_write,en
+okay I am just sitting here,emotion_neutral,en
+mere notes dikhao please,notes_read,hinglish
+please why is my code giving null pointer exception bhai,code_debug,en
+please yeh yaad rakhna now,memory_save,hi
+please open portal and go to grades page bhai,browser_navigate,en
+zarasi what is the capital of france jaldi,general_qa,en
+screen pe kya likha hai padho now,screen_read,hinglish
+zarasi are you tired bhai,emotion_query,en
+hey cheeni draft email to rahul fast,email_compose,en
+sun cheeni delete reminder bhai,reminder_cancel,en
+sun cheeni scroll down the page,browser_scroll,en
+enter input at cursor,screen_type,en
+can you relocate this document fast,file_move,en
+sun cheeni turn up the sound,system_volume,en
+bhai pc ko sleep par daal do yaar,system_sleep,hinglish
+bhai take a note: buy milk and eggs,notes_create,en
+zarasi compose an email to professor regarding project,email_compose,en
+bhai gmail website kholo fast,website_open,hinglish
+please youtube pe latest song search karo fast,search_youtube,hinglish
+iska english translation batao,translation,hinglish
+bhai run this python script bhai,code_run,en
+can you dimag kharab ho gaya hai fast,emotion_angry,hinglish
+cancel my 5pm reminder fast,reminder_cancel,en
+please wifi check karo fast,system_wifi,hinglish
+cheeni divide 1000 by 8,math_query,en
+bhai screen par kya dikh raha hai fast,screen_describe,hi
+please linkedin khol de now,website_open,hinglish
+please mera roll number kya tha,memory_recall,hinglish
+please cancel my 5pm reminder yaar,reminder_cancel,en
+bhai bas aaram se baitha hu now,emotion_neutral,hinglish
+please go to amazon and search for headphones now,browser_navigate,en
+can you pc shut down karo jaldi,system_shutdown,hinglish
+sun cheeni hey what's up now,chitchat,en
+cheeni is script ko run karo,code_run,hinglish
+tab band kar do,browser_close,hi
+hey cheeni aaj mera kya schedule hai fast,calendar_read,hinglish
+please capture full page screenshot fast,browser_screenshot,en
+cheeni find notes containing exam,notes_search,en
+save this to memory,memory_save,en
+can you test suite execute karo jaldi,code_run,hinglish
+cheeni notes me project search karo please,notes_search,hinglish
+bhai aaj mera kya schedule hai bhai,calendar_read,hinglish
+sun cheeni type my email in the input box bhai,browser_fill,en
+please go to next window yaar,app_switch,en
+zarasi mere emails check karo please,email_read,hinglish
+create directory called Datasets,folder_create,en
+zarasi what is written on this window now,screen_read,en
+sun cheeni move file to downloads fast,file_move,en
+internet connected hai kya bhai,system_wifi,hinglish
+hey cheeni ek naya folder banao now,folder_create,hi
+hey cheeni change file name,file_rename,en
+hey cheeni store this information yaar,memory_save,en
+how does this regex work,code_explain,en
+please translate hello to hindi,translation,en
+can you open the project report bhai,file_open,en
+hey cheeni page scroll karo jaldi,screen_scroll,hinglish
+please code execute kyu nahi ho raha yaar,code_debug,hinglish
+please mere emails check karo yaar,email_read,hinglish
+terminate spotify,app_close,en
+bhai add meeting with mentor tomorrow at 4pm yaar,calendar_add,en
+hey cheeni turn off my pc now,system_shutdown,en
+cheeni enter text into field jaldi,browser_fill,en
+hey cheeni how are you feeling cheeni fast,emotion_query,en
+sun cheeni create a file named todo.txt,file_create,en
+cheeni erase saved info,memory_delete,en
+what is 45乘以12,math_query,en
+type my password here,screen_type,en
+cheeni iska english translation batao fast,translation,hinglish
+please browser me is page par jao please,browser_navigate,hinglish
+hey cheeni pichle notes padho,notes_read,hi
+view spreadsheet please,file_open,en
+cheeni push changes to origin main now,git_push,en
+cheeni show all notes please,notes_read,en
+cheeni how are you feeling cheeni,emotion_query,en
+sun cheeni maine kya yaad rakhne ko bola tha,memory_recall,hi
+shutdown now yaar,system_shutdown,en
+can you delete this file now,file_delete,en
+shut down the laptop,system_shutdown,en
+zarasi tell me tech news now,news_query,en
+touch test.py,file_create,en
+cheeni make a new folder in documents now,folder_create,en
+bhai reminder lagao kal subah 7 baje bhai,reminder_set,hinglish
+hey cheeni read the text on my screen,screen_read,en
+break down this sql query bhai,code_explain,en
+sun cheeni click on the red cancel button,screen_click,en
+cheeni give me ai news updates yaar,news_query,en
+sun cheeni fill username and password now,browser_fill,en
+sun cheeni square root of 144 kitna hota hai please,math_query,hinglish
+bhai okay i am just sitting here yaar,emotion_neutral,en
+cheeni yeh code kya kar raha hai samjhao,code_explain,hinglish
+can you bohot udas hu aaj yaar,emotion_sad,hi
+can you turn off my pc now,system_shutdown,en
+can you mera roll number kya tha bhai,memory_recall,hinglish
+bhai wifi check karo now,system_wifi,hinglish
+sun cheeni translate hello to hindi bhai,translation,en
+sun cheeni forget my roll number yaar,memory_delete,en
+hey cheeni create a folder named project cheeni,folder_create,en
+bhai google search deep learning course now,search_web,en
+sun cheeni kitne baje hain now,time_query,hi
+hey cheeni unmute audio,system_volume,en
+how does gps work yaar,general_qa,en
+zarasi okay i am just sitting here fast,emotion_neutral,en
+mera mood theek nahi hai jaldi,emotion_sad,hinglish
+can you create a quick note please,notes_create,en
+please who is the ceo of google,general_qa,en
+sun cheeni square root of 144 kitna hota hai jaldi,math_query,hinglish
+linkedin khol de,website_open,hinglish
+sun cheeni look up python tutorials jaldi,search_web,en
+save git changes,git_commit,en
+zarasi hello cheeni fast,chitchat,en
+hey cheeni calendar me reminder add karo jaldi,calendar_add,hinglish
+hey cheeni what is written on this window please,screen_read,en
+can you restart my laptop yaar,system_restart,en
+cheeni mere emails check karo please,email_read,hinglish
+current time in new york,time_query,en
+hey cheeni erase test.py bhai,file_delete,en
+zarasi save webpage image jaldi,browser_screenshot,en
+please check calendar for tomorrow now,calendar_read,en
+please aaj mai bohot khush hu fast,emotion_happy,hi
+hey cheeni hey what's up fast,chitchat,en
+sun cheeni delete reminder,reminder_cancel,en
+dobara chalu karo yaar,system_restart,hi
+cheeni email likho leave application ka jaldi,email_compose,hinglish
+bhai go to amazon and search for headphones yaar,browser_navigate,en
+can you make a new folder in documents jaldi,folder_create,en
+file ka naam badlo jaldi,file_rename,hi
+hey cheeni memory clear karo yaar,memory_delete,hinglish
+shubh ratri yaar,chitchat,hi
+sun cheeni dusra tab kholo fast,app_switch,hi
+cheeni browser me is page par jao jaldi,browser_navigate,hinglish
+zarasi make a new folder in documents fast,folder_create,en
+gmail website kholo,website_open,hinglish
+can you screen par is icon pe click karo jaldi,screen_click,hinglish
+please how do you say thank you in spanish yaar,translation,en
+bhai how do you say thank you in spanish please,translation,en
+can you click on the icon at top right please,screen_click,en
+search youtube for python crash course,search_youtube,en
+search on internet about quantum computing bhai,search_web,en
+sun cheeni page scroll karo bhai,screen_scroll,hinglish
+zarasi capture full page screenshot yaar,browser_screenshot,en
+cheeni file ka naam badlo please,file_rename,hi
+zarasi view spreadsheet now,file_open,en
+zarasi why is my code giving null pointer exception bhai,code_debug,en
+please move report.pdf to desktop yaar,file_move,en
+please clear all active reminders yaar,reminder_cancel,en
+hey cheeni i feel terrible today now,emotion_sad,en
+please test suite execute karo bhai,code_run,hinglish
+zarasi remind me to drink water in 30 minutes please,reminder_set,en
+hey cheeni what is my roll number bhai,memory_recall,en
+can you enter input at cursor jaldi,screen_type,en
+bhai read the text on my screen,screen_read,en
+hey cheeni reminder hata do yaar,reminder_cancel,hi
+can you push changes to origin main fast,git_push,en
+can you cheeni tera mood kaisa hai now,emotion_query,hinglish
+cheeni explain this recursive function bhai,code_explain,en
+please are you tired bhai,emotion_query,en
+please current time in new york now,time_query,en
+hey cheeni aaj mai bohot khush hu jaldi,emotion_happy,hi
+hey cheeni okay i am just sitting here yaar,emotion_neutral,en
+please give me ai news updates fast,news_query,en
+can you screenshot kheecho please,screen_capture,hi
+please iska english translation batao now,translation,hinglish
+can you pichle notes padho fast,notes_read,hi
+take a screenshot of my whole desktop please,screen_capture,en
+bhai restart the pc bhai,system_restart,en
+zarasi schedule doctor appointment on monday please,calendar_add,en
+hey cheeni search youtube for lofi hip hop please,search_youtube,en
+close active window,app_close,en
+zarasi note likho: project deadline is monday fast,notes_create,hinglish
+sun cheeni type my email in the input box yaar,browser_fill,en
+please einstein kaun tha bhai,general_qa,hinglish
+pc reboot kar do now,system_restart,hinglish
+sun cheeni what time is it please,time_query,en
+sun cheeni run this python script jaldi,code_run,en
+can you save git changes please,git_commit,en
+close discord,app_close,en
+can you create calendar event,calendar_add,en
+hey cheeni go to amazon and search for headphones please,browser_navigate,en
+just continuing work,emotion_neutral,en
+can you youtube pe latest song search karo yaar,search_youtube,hinglish
+recall my notes on neural networks,memory_recall,en
+please thoda niche scroll karo fast,browser_scroll,hinglish
+decrease volume by 20 percent,system_volume,en
+chrome pe switch karo bhai,app_switch,hinglish
+please how are you feeling cheeni jaldi,emotion_query,en
+zarasi translate this paragraph to french bhai,translation,en
+zarasi increase screen brightness jaldi,system_brightness,en
+can you is it going to rain jaldi,weather_query,en
+please write a python script to parse json now,code_write,en
+please brightness badha do jaldi,system_brightness,hi
+read my unread emails now,email_read,en
+cheeni create calendar event jaldi,calendar_add,en
+can you create a new text file now,file_create,en
+can you awaaz thodi kam karna please,system_volume,hinglish
+type hello world on screen please,screen_type,en
+bhai press the save icon,screen_click,en
+zarasi ek naya folder banao fast,folder_create,hi
+explain quantum entanglement please,general_qa,en
+sun cheeni read the text on my screen bhai,screen_read,en
+sun cheeni navigate to docs.python.org bhai,browser_navigate,en
+hey cheeni draft email to rahul bhai,email_compose,en
+hey cheeni bhai ek directory bana de,folder_create,hinglish
+zarasi file rename kar do fast,file_rename,hinglish
+sun cheeni how are you feeling cheeni now,emotion_query,en
+hey cheeni is script ko run karo yaar,code_run,hinglish
+please sync with remote repo yaar,git_push,en
+kya haal chaal,chitchat,hi
+zarasi what time is it,time_query,en
+cheeni volume kam karo please,system_volume,hinglish
+open college portal,website_open,en
+cheeni read out the error message please,screen_read,en
+can you mera roll number kya tha jaldi,memory_recall,hinglish
+sun cheeni how does this regex work bhai,code_explain,en
+zarasi commit all changes with message fix auth jaldi,git_commit,en
+please login button par click karo now,browser_click,hinglish
+zarasi what is currently on my display fast,screen_describe,en
+hey cheeni is script ko run karo now,code_run,hinglish
+break down this sql query,code_explain,en
+tab band kar do yaar,browser_close,hi
+cheeni sleep mode on karo,system_sleep,hinglish
+python code likho binary search ka,code_write,hinglish
+hey cheeni mujhe bohot gussa aa raha hai now,emotion_angry,hi
+cheeni bhai google pe search kar,search_web,hinglish
+bhai code execute kyu nahi ho raha jaldi,code_debug,hinglish
+sun cheeni navigate to docs.python.org now,browser_navigate,en
+bhai temperature kitna hai fast,weather_query,hinglish
+zarasi close this browser tab yaar,browser_close,en
+can you nothing special today bhai,emotion_neutral,en
+pdf file kholo,file_open,hinglish
+cheeni bhai vscode band karo,app_close,hinglish
+sun cheeni click on sign in now,browser_click,en
+can you yahan par text likho,screen_type,hi
+exit browser jaldi,browser_close,en
+sun cheeni email likho leave application ka bhai,email_compose,hinglish
+bhai aaj mera kya schedule hai now,calendar_read,hinglish
+zarasi square root of 144 kitna hota hai fast,math_query,hinglish
+please scroll the active window down now,screen_scroll,en
+cheeni app band kar fast,app_close,hi
+zarasi capture full page screenshot,browser_screenshot,en
+cheeni read the text on my screen fast,screen_read,en
+open notes.txt bhai,file_open,en
+cheeni rename document to project.pdf yaar,file_rename,en
+zarasi quit application jaldi,app_close,en
+go to amazon and search for headphones fast,browser_navigate,en
+please switch to vscode,app_switch,en
+please bohot udas hu aaj yaar,emotion_sad,hi
+hey cheeni reminder hata do now,reminder_cancel,hi
+cheeni translate this paragraph to french bhai,translation,en
+cheeni stage all files and commit jaldi,git_commit,en
+save webpage image bhai,browser_screenshot,en
+bhai file create karo please,file_create,hinglish
+hey cheeni laptop band kar do fast,system_shutdown,hi
+sun cheeni yeh baat bhool jao now,memory_delete,hi
+please screen pe kya likha hai padho now,screen_read,hinglish
+hey cheeni chrome band kar do bhai,app_close,hi
+cheeni net pe check karo,search_web,hinglish
+zarasi shut down the laptop yaar,system_shutdown,en
+cheeni ek note banao,notes_create,hi
+sun cheeni aaj mai bohot khush hu jaldi,emotion_happy,hi
+please aaj kaunsa din hai bhai,time_query,hi
+cheeni remove temp.log please,file_delete,en
+sun cheeni describe the image on my screen jaldi,screen_describe,en
+zarasi weather forecast for tomorrow bhai,weather_query,en
+bhai click on the icon at top right bhai,screen_click,en
+hey cheeni take a screenshot of the webpage,browser_screenshot,en
+transfer file to new folder bhai,file_move,en
+zarasi restart my laptop bhai,system_restart,en
+sun cheeni put laptop to sleep jaldi,system_sleep,en
+aaj kaunsa din hai,time_query,hi
+cheeni yahan par text likho yaar,screen_type,hi
+zarasi aaj ka din mast tha,emotion_happy,hinglish
+bhai suspend computer now,system_sleep,en
+bhai search bar me query type karo,browser_fill,hinglish
+zarasi erase saved info yaar,memory_delete,en
+hey cheeni is it going to rain fast,weather_query,en
+can you yahan par text likho yaar,screen_type,hi
+sun cheeni memory clear karo fast,memory_delete,hinglish
+hey cheeni push changes to origin main,git_push,en
+can you switch to vscode yaar,app_switch,en
+please dobara chalu karo fast,system_restart,hi
+zarasi enter input at cursor,screen_type,en
+open chatgpt,website_open,en
+bhai who created you yaar,chitchat,en
+unmute audio now,system_volume,en
+explain quantum entanglement,general_qa,en
+hey cheeni bhai temp file uda do fast,file_delete,hinglish
+zarasi dobara chalu karo,system_restart,hi
+can you translate this paragraph to french fast,translation,en
+open spotify,app_launch,en
+zarasi create a function for factorial jaldi,code_write,en
+show my upcoming meetings yaar,calendar_read,en
+sun cheeni play ed sheeran on youtube fast,search_youtube,en
+please capture full page screenshot now,browser_screenshot,en
+bhai what is on my schedule today jaldi,calendar_read,en
+hey cheeni maine kya yaad rakhne ko bola tha now,memory_recall,hi
+hey cheeni find notes containing exam now,notes_search,en
+bhai bohot udas hu aaj yaar,emotion_sad,hi
+zarasi maine kya yaad rakhne ko bola tha yaar,memory_recall,hi
+bhai save webpage image,browser_screenshot,en
+please aaj mai bohot khush hu,emotion_happy,hi
+sun cheeni weather forecast for tomorrow yaar,weather_query,en
+can you i failed my exam jaldi,emotion_sad,en
+connect to wifi,system_wifi,en
+cheeni look up my study notes please,notes_search,en
+cheeni notes me project search karo,notes_search,hinglish
+zarasi scroll down the page bhai,browser_scroll,en
+can you file delete karo jaldi,file_delete,hinglish
+cheeni exit vscode yaar,app_close,en
+puri screen ka screenshot le lo bhai,screen_capture,hinglish
+zarasi create a folder named project cheeni yaar,folder_create,en
+bharat ka prime minister kaun hai now,general_qa,hi
+please check calendar for tomorrow fast,calendar_read,en
+zarasi take a screenshot of the webpage bhai,browser_screenshot,en
+can you test suite execute karo now,code_run,hinglish
+zarasi delete reminder,reminder_cancel,en
+can you read my unread emails bhai,email_read,en
+please are you tired now,emotion_query,en
+please what is on my schedule today,calendar_read,en
+zarasi scroll down the page please,browser_scroll,en
+zarasi bas aaram se baitha hu fast,emotion_neutral,hinglish
+sun cheeni generate fastapi login route fast,code_write,en
+cheeni take a screenshot of my whole desktop fast,screen_capture,en
+hey cheeni reminder lagao kal subah 7 baje jaldi,reminder_set,hinglish
+check latest emails,email_read,en
+nothing special today yaar,emotion_neutral,en
+bharat ka prime minister kaun hai,general_qa,hi
+cheeni okay i am just sitting here jaldi,emotion_neutral,en
+can you wifi check karo jaldi,system_wifi,hinglish
+save git changes bhai,git_commit,en
+please close discord now,app_close,en
+cheeni delete reminder,reminder_cancel,en
+zarasi what is written on this window,screen_read,en
+can you shut down the laptop fast,system_shutdown,en
+bhai capture full page screenshot please,browser_screenshot,en
+zarasi mere emails check karo bhai,email_read,hinglish
+type hello world on screen,screen_type,en
+hey cheeni read my unread emails now,email_read,en
+can you explain this recursive function bhai,code_explain,en
+hey cheeni dobara chalu karo bhai,system_restart,hi
+zarasi set reminder for assignment submission please,reminder_set,en
+bhai sleep mode on karo jaldi,system_sleep,hinglish
+sun cheeni delete this file fast,file_delete,en
+sun cheeni restart the pc jaldi,system_restart,en
+screen ko upar karo,screen_scroll,hi
+please pc ko sleep par daal do jaldi,system_sleep,hinglish
+close discord bhai,app_close,en
+hey cheeni mujhe 5 baje yaad dilana bhai,reminder_set,hi
+bhai launch visual studio code,app_launch,en
+cheeni aaj mera kya schedule hai yaar,calendar_read,hinglish
+make screen brighter fast,system_brightness,en
+zarasi erase test.py please,file_delete,en
+please screen par kya dikh raha hai now,screen_describe,hi
+aur batao cheeni please,chitchat,hinglish
+zarasi find tutorial on youtube bhai,search_youtube,en
+sun cheeni remind me to drink water in 30 minutes fast,reminder_set,en
+hey cheeni set reminder for assignment submission jaldi,reminder_set,en
+can you file rename kar do,file_rename,hinglish
+cheeni aaj mera kya schedule hai please,calendar_read,hinglish
+zarasi enter input at cursor now,screen_type,en
+hey cheeni draft email to rahul now,email_compose,en
+close the browser window bhai,browser_close,en
+please what is my roll number now,memory_recall,en
+hey cheeni current time in new york bhai,time_query,en
+zarasi translate hello to hindi bhai,translation,en
+cheeni reboot computer please,system_restart,en
+bhai fill username and password jaldi,browser_fill,en
+can you search notes for machine learning bhai,notes_search,en
+kill notepad fast,app_close,en
+zarasi move report.pdf to desktop bhai,file_move,en
+can you dimag kharab ho gaya hai bhai,emotion_angry,hinglish
+who created you please,chitchat,en
+zarasi click on the red cancel button,screen_click,en
+make a file called notes.txt,file_create,en
+cheeni volume kam karo jaldi,system_volume,hinglish
+hey cheeni do you remember my friend's birthday bhai,memory_recall,en
+zarasi type my email in the input box bhai,browser_fill,en
+zarasi fill username and password,browser_fill,en
+sun cheeni change file name now,file_rename,en
+please translate hello to hindi yaar,translation,en
+hey cheeni mera mood theek nahi hai,emotion_sad,hinglish
+bhai screenshot kheecho yaar,screen_capture,hi
+zarasi calculate 15 percent of 4500 fast,math_query,en
+please restart my laptop jaldi,system_restart,en
+can you what is today's date now,time_query,en
+please read the text on my screen now,screen_read,en
+bhai yahan par text likho fast,screen_type,hi
+please search bar me query type karo fast,browser_fill,hinglish
+sun cheeni search bar me query type karo yaar,browser_fill,hinglish
+can you delete this file,file_delete,en
+cheeni what time is it fast,time_query,en
+sun cheeni file rename kar do yaar,file_rename,hinglish
+can you i am so frustrated right now,emotion_angry,en
+brightness kam karo bhai,system_brightness,hinglish
+bhai delete unwanted file jaldi,file_delete,en
+bhai latest headlines sunao now,news_query,hinglish
+please reboot computer please,system_restart,en
+hey cheeni is script ko run karo fast,code_run,hinglish
+please schedule doctor appointment on monday please,calendar_add,en
+translate hello to Hindi,translation,en
+create a file named todo.txt,file_create,en
+sun cheeni close the browser window yaar,browser_close,en
+can you give me ai news updates yaar,news_query,en
+bhai enter text into field yaar,browser_fill,en
+click the submit button,browser_click,en
+zarasi search youtube for python crash course yaar,search_youtube,en
+enter input at cursor jaldi,screen_type,en
+please save git changes fast,git_commit,en
+hey cheeni search web for best laptops fast,search_web,en
+cheeni python code likho binary search ka please,code_write,hinglish
+shutdown now please,system_shutdown,en
+feeling down and tired yaar,emotion_sad,en
+bhai screen par is icon pe click karo fast,screen_click,hinglish
+okay i am just sitting here jaldi,emotion_neutral,en
+hey cheeni how are you feeling cheeni now,emotion_query,en
+zarasi aaj kaunsa din hai yaar,time_query,hi
+sun cheeni tu kaisa hai bhai please,emotion_query,hinglish
+create a folder named Project Cheeni,folder_create,en
+can you click on the icon at top right now,screen_click,en
+what is written on this window,screen_read,en
+sun cheeni create calendar event please,calendar_add,en
+zarasi save git changes now,git_commit,en
+open invoice.docx,file_open,en
+mera mood theek nahi hai,emotion_sad,hinglish
+sun cheeni pc shut down karo jaldi,system_shutdown,hinglish
+please scroll screen horizontally now,screen_scroll,en
+sun cheeni break down this sql query bhai,code_explain,en
+hey cheeni git push kar do bhai,git_push,hinglish
+please mujhe bohot gussa aa raha hai,emotion_angry,hi
+cheeni open spotify fast,app_launch,en
+write a react hook for localstorage,code_write,en
+hey cheeni yeh yaad rakhna,memory_save,hi
+hey cheeni bohot udas hu aaj please,emotion_sad,hi
+please is it going to rain please,weather_query,en
+cheeni what time is it now,time_query,en
+sun cheeni open chatgpt bhai,website_open,en
+dimag kharab ho gaya hai jaldi,emotion_angry,hinglish
+please tell me tech news please,news_query,en
+zarasi break down this sql query fast,code_explain,en
+run this python script now,code_run,en
+sun cheeni google pe search karo latest news jaldi,search_web,hinglish
+hey cheeni reminder lagao kal subah 7 baje fast,reminder_set,hinglish
+click on the red cancel button now,screen_click,en
+sleep mode on karo,system_sleep,hinglish
+zarasi python code likho binary search ka jaldi,code_write,hinglish
+kuch accha nahi lag raha,emotion_sad,hi
+zarasi code execute kyu nahi ho raha bhai,code_debug,hinglish
+hey cheeni aaj mai bohot khush hu yaar,emotion_happy,hi
+can you show all notes,notes_read,en
+sun cheeni write a python script to parse json,code_write,en
+can you pc ko sleep par daal do bhai,system_sleep,hinglish
+can you screen par is icon pe click karo,screen_click,hinglish
+who is the CEO of Google,general_qa,en
+zarasi kisi ka mail aaya kya yaar,email_read,hinglish
+can you iska english translation batao yaar,translation,hinglish
+reboot computer,system_restart,en
+can you search youtube for lofi hip hop now,search_youtube,en
+bhai why is nothing working today now,emotion_angry,en
+please save note bhai,notes_create,en
+go to github.com,website_open,en
+bhai what time is it please,time_query,en
+bohot udas hu aaj,emotion_sad,hi
+please pichle notes padho jaldi,notes_read,hi
+zarasi screen ko upar karo fast,screen_scroll,hi
+okay i am just sitting here yaar,emotion_neutral,en
+bhai file shift karo,file_move,hinglish
+please change file name fast,file_rename,en
+cheeni click on the red cancel button yaar,screen_click,en
+can you take a screenshot of my whole desktop bhai,screen_capture,en
+bhai take a screenshot of the webpage yaar,browser_screenshot,en
+please open huggingface now,website_open,en
+execute main.py fast,code_run,en
+please git commit karo yaar,git_commit,hinglish
+can you pc shut down karo yaar,system_shutdown,hinglish
+barish hogi kya aaj,weather_query,hinglish
+sun cheeni who created you now,chitchat,en
+hey cheeni why is my code giving null pointer exception now,code_debug,en
+bhai what notes did i take today jaldi,notes_read,en
+can you latest headlines sunao yaar,news_query,hinglish
+please turn off my pc bhai,system_shutdown,en
+awaaz thodi kam karna fast,system_volume,hinglish
+hey cheeni put laptop to sleep now,system_sleep,en
+hey cheeni rename document to project.pdf yaar,file_rename,en
+cheeni tell me a joke jaldi,chitchat,en
+bhai restart the pc now,system_restart,en
+hey cheeni play punjabi songs on youtube jaldi,search_youtube,hinglish
+zarasi mere notes dikhao yaar,notes_read,hinglish
+hey cheeni recall my notes on neural networks please,memory_recall,en
+hey cheeni what time is it bhai,time_query,en
+cheeni tera mood kaisa hai,emotion_query,hinglish
+sun cheeni read the text on my screen jaldi,screen_read,en
+zarasi einstein kaun tha fast,general_qa,hinglish
+zarasi transfer file to new folder,file_move,en
+can you tab band kar do bhai,browser_close,hi
+can you create file project_plan.md now,file_create,en
+temperature kitna hai,weather_query,hinglish
+can you reminder hata do fast,reminder_cancel,hi
+github website open karo,website_open,hinglish
+who is the ceo of google please,general_qa,en
+can you shut down the laptop,system_shutdown,en
+bhai delete reminder please,reminder_cancel,en
+cheeni make screen brighter now,system_brightness,en
+zarasi switch back to browser bhai,app_switch,en
+can you mere emails check karo now,email_read,hinglish
+sun cheeni analyze current screen,screen_describe,en
+can you hey what's up jaldi,chitchat,en
+sun cheeni stage all files and commit bhai,git_commit,en
+cheeni reminder hata do now,reminder_cancel,hi
+open notes.txt,file_open,en
+bhai weather forecast for tomorrow yaar,weather_query,en
+read the text on my screen,screen_read,en
+zarasi increase screen brightness now,system_brightness,en
+navigate to docs.python.org,browser_navigate,en
+sun cheeni test suite execute karo yaar,code_run,hinglish
+take a screenshot of my whole desktop fast,screen_capture,en
+please note likho: project deadline is monday now,notes_create,hinglish
+can you tab band kar do jaldi,browser_close,hi
+cheeni tera mood kaisa hai jaldi,emotion_query,hinglish
+can you remember that my roll number is 42 jaldi,memory_save,en
+cheeni show all notes jaldi,notes_read,en
+sync with remote repo,git_push,en
+open netflix fast,website_open,en
+can you clear all active reminders now,reminder_cancel,en
+zarasi switch window fast,app_switch,en
+change file name now,file_rename,en
+bhai login button par click karo yaar,browser_click,hinglish
+dusri window dikhao,app_switch,hi
+can you app band kar,app_close,hi
+please mere emails check karo,email_read,hinglish
+can you wifi check karo yaar,system_wifi,hinglish
+please okay i am just sitting here now,emotion_neutral,en
+cheeni page scroll karo now,screen_scroll,hinglish
+hey cheeni read my unread emails yaar,email_read,en
+execute main.py,code_run,en
+chrome pe switch karo,app_switch,hinglish
+can you create calendar event yaar,calendar_add,en
+cheeni change file name,file_rename,en
+naya folder create karo bhai,folder_create,hinglish
+bhai look up my study notes fast,notes_search,en
+cheeni bas aaram se baitha hu jaldi,emotion_neutral,hinglish
+please close this browser tab yaar,browser_close,en
+can you switch back to browser,app_switch,en
+can you make screen brighter bhai,system_brightness,en
+bhai youtube pe search karo podcast yaar,search_youtube,hinglish
+cheeni click on the red cancel button please,screen_click,en
+sun cheeni click on the icon at top right jaldi,screen_click,en
+zarasi type hello world on screen jaldi,screen_type,en
+search notes for machine learning please,notes_search,en
+cheeni search notes for machine learning,notes_search,en
+zarasi click on the icon at top right,screen_click,en
+please compose an email to professor regarding project yaar,email_compose,en
+capture full page screenshot,browser_screenshot,en
+sun cheeni increase screen brightness yaar,system_brightness,en
+hey cheeni create a quick note now,notes_create,en
+add meeting with mentor tomorrow at 4pm,calendar_add,en
+zarasi scroll the active window down,screen_scroll,en
+why is my code giving null pointer exception jaldi,code_debug,en
+bhai internet connected hai kya now,system_wifi,hinglish
+can you remember my wifi password is secret now,memory_save,en
+sun cheeni screenshot kheecho,screen_capture,hi
+zarasi translate this paragraph to french please,translation,en
+cheeni documents me file banao jaldi,file_create,hinglish
+zarasi switch window,app_switch,en
+zarasi barish hogi kya aaj fast,weather_query,hinglish
+hey cheeni are you tired,emotion_query,en
+save webpage image now,browser_screenshot,en
+zarasi youtube pe latest song search karo now,search_youtube,hinglish
+hey cheeni read my recent notes jaldi,notes_read,en
+create file project_plan.md jaldi,file_create,en
+can you pdf file kholo jaldi,file_open,hinglish
+file shift karo yaar,file_move,hinglish
+cheeni play gaming stream on youtube yaar,search_youtube,en
+bhai login button par click karo jaldi,browser_click,hinglish
+bhai click on the red cancel button yaar,screen_click,en
+please push current branch to github fast,git_push,en
+is it going to rain,weather_query,en
+sun cheeni scroll to bottom please,browser_scroll,en
+zarasi calendar me reminder add karo please,calendar_add,hinglish
+restart my laptop,system_restart,en
+zarasi iska english translation batao jaldi,translation,hinglish
+please create calendar event please,calendar_add,en
+sun cheeni remember that i have an exam on friday yaar,memory_save,en
+push changes to origin main fast,git_push,en
+sun cheeni is code me bug dhundo jaldi,code_debug,hinglish
+yeh code kya kar raha hai samjhao,code_explain,hinglish
+sun cheeni schedule doctor appointment on monday bhai,calendar_add,en
+bhai click on the red cancel button jaldi,screen_click,en
+can you ek nayi file banao now,file_create,hi
+zarasi this code is driving me crazy now,emotion_angry,en
+zarasi shut down the laptop please,system_shutdown,en
+sun cheeni push changes to origin main fast,git_push,en
+sun cheeni explain this recursive function please,code_explain,en
+can you git push kar do jaldi,git_push,hinglish
+hey cheeni make a new folder in documents yaar,folder_create,en
+can you navigate to docs.python.org jaldi,browser_navigate,en
+sun cheeni add meeting with mentor tomorrow at 4pm jaldi,calendar_add,en
+hey cheeni check latest emails yaar,email_read,en
+please scroll the active window down jaldi,screen_scroll,en
+sun cheeni create a quick note please,notes_create,en
+sun cheeni scroll down the page jaldi,browser_scroll,en
+zarasi email likho leave application ka yaar,email_compose,hinglish
+can you go to github.com bhai,website_open,en
+increase screen brightness bhai,system_brightness,en
+cheeni yahan par text likho please,screen_type,hi
+can you sync with remote repo now,git_push,en
+zarasi what is today's top news yaar,news_query,en
+sun cheeni create calendar event jaldi,calendar_add,en
+please why is my code giving null pointer exception,code_debug,en
+cheeni click the submit button please,browser_click,en
+create file project_plan.md please,file_create,en
+scroll up now,browser_scroll,en
+can you open whatsapp desktop jaldi,app_launch,en
+volume badhao,system_volume,hi
+screen pe kya likha hai padho,screen_read,hinglish
+bhai explain this recursive function jaldi,code_explain,en
+decrease volume by 20 percent yaar,system_volume,en
+can you find notes containing exam fast,notes_search,en
+save webpage image,browser_screenshot,en
+mute audio,system_volume,en
+write down meeting summary now,notes_create,en
+cheeni awaaz thodi kam karna fast,system_volume,hinglish
+please delete reminder please,reminder_cancel,en
+bhai browser me is page par jao fast,browser_navigate,hinglish
+zarasi vscode pe jao jaldi,app_switch,hinglish
+disconnect wifi jaldi,system_wifi,en
+sun cheeni create calendar event yaar,calendar_add,en
+can you increase screen brightness fast,system_brightness,en
+hey cheeni bohot udas hu aaj jaldi,emotion_sad,hi
+cheeni read out the error message,screen_read,en
+cheeni screen band karke sleep karo,system_sleep,hi
+can you check calendar for tomorrow please,calendar_read,en
+zarasi type hello world on screen now,screen_type,en
+generate fastapi login route,code_write,en
+cheeni what is the weather today,weather_query,en
+please delete that memory please,memory_delete,en
+bhai calendar me reminder add karo fast,calendar_add,hinglish
+zarasi normal day hai,emotion_neutral,hinglish
+hey cheeni shubh ratri please,chitchat,hi
+what is my roll number now,memory_recall,en
+schedule doctor appointment on monday bhai,calendar_add,en
+please google search deep learning course,search_web,en
+zarasi bhai ek empty file bana de please,file_create,hinglish
+cheeni capture full page screenshot now,browser_screenshot,en
+sun cheeni i feel terrible today bhai,emotion_sad,en
+zarasi aaj ka din mast tha jaldi,emotion_happy,hinglish
+why is my code giving null pointer exception,code_debug,en
+please google pe search karo latest news bhai,search_web,hinglish
+bhai shut down the laptop jaldi,system_shutdown,en
+bhai reminder lagao kal subah 7 baje now,reminder_set,hinglish
+file shift karo please,file_move,hinglish
+zarasi how do you say thank you in spanish,translation,en
+bhai scroll up fast,browser_scroll,en
+sun cheeni break down this sql query now,code_explain,en
+bhai read out the error message now,screen_read,en
+hey cheeni git commit karo jaldi,git_commit,hinglish
+good night,chitchat,en
+telegram chala do,app_launch,hinglish
+go to next window,app_switch,en
+zarasi show all notes fast,notes_read,en
+bhai suspend computer bhai,system_sleep,en
+zarasi file delete karo yaar,file_delete,hinglish
+app band kar bhai,app_close,hi
+hey cheeni naya folder create karo now,folder_create,hinglish
+please take a screenshot of my whole desktop fast,screen_capture,en
+cheeni what did i tell you about my exam now,memory_recall,en
+can you type my email in the input box jaldi,browser_fill,en
+pichle notes padho,notes_read,hi
+can you maja aa gaya bhai jaldi,emotion_happy,hinglish
+bhai give me ai news updates fast,news_query,en
+hey cheeni file rename kar do bhai,file_rename,hinglish
+search web for best laptops,search_web,en
+read out the error message jaldi,screen_read,en
+can you shut down the laptop yaar,system_shutdown,en
+bhai web pe dekh ke batao now,search_web,hi
+sun cheeni scroll down the page yaar,browser_scroll,en
+iska english translation batao bhai,translation,hinglish
+remove temp.log,file_delete,en
+can you execute main.py,code_run,en
+bhai increase volume yaar,system_volume,en
+hey cheeni brightness badha do fast,system_brightness,hi
+please pichle notes padho please,notes_read,hi
+bhai take a screenshot of the webpage jaldi,browser_screenshot,en
+please take a screenshot of the webpage now,browser_screenshot,en
+please close the browser window,browser_close,en
+sun cheeni search bar me query type karo jaldi,browser_fill,hinglish
+cheeni give this file a new name please,file_rename,en
+open reddit,website_open,en
+cheeni tell me tech news,news_query,en
+hey cheeni enter input at cursor jaldi,screen_type,en
+bhai clear all active reminders yaar,reminder_cancel,en
+can you set reminder for assignment submission,reminder_set,en
+can you why is my code giving null pointer exception now,code_debug,en
+can you youtube pe latest song search karo,search_youtube,hinglish
+bhai compose an email to professor regarding project now,email_compose,en
+google kholo,website_open,hi
+cheeni read my recent notes,notes_read,en
+bhai analyze current screen fast,screen_describe,en
+sun cheeni iska english translation batao please,translation,hinglish
+pc shut down karo,system_shutdown,hinglish
+zarasi how does gps work bhai,general_qa,en
+bhai create directory called datasets please,folder_create,en
+zarasi laptop restart karo jaldi,system_restart,hinglish
+cheeni mujhe bohot gussa aa raha hai yaar,emotion_angry,hi
+bhai turn off system please,system_shutdown,en
+zarasi git commit karo fast,git_commit,hinglish
+please turn up the sound please,system_volume,en
+put laptop to sleep,system_sleep,en
+please reminder lagao kal subah 7 baje fast,reminder_set,hinglish
+aaj mera kya schedule hai,calendar_read,hinglish
+what is 45乘以12 fast,math_query,en
+hey cheeni email likho leave application ka now,email_compose,hinglish
+sun cheeni show my upcoming meetings fast,calendar_read,en
+zarasi commit all changes with message fix auth now,git_commit,en
+bhai capture full page screenshot fast,browser_screenshot,en
+please i feel terrible today please,emotion_sad,en
+zarasi dusra tab kholo please,app_switch,hi
+zarasi pc ko sleep par daal do,system_sleep,hinglish
+can you aaj mausam kaisa hai bhai,weather_query,hi
+sun cheeni save webpage image,browser_screenshot,en
+hey cheeni find tutorial on youtube please,search_youtube,en
+bhai touch test.py jaldi,file_create,en
+can you open discord,app_launch,en
+laptop restart karo,system_restart,hinglish
+cheeni tu kaisa hai bhai now,emotion_query,hinglish
+zarasi aaj mera kya schedule hai,calendar_read,hinglish
+bhai how does this regex work please,code_explain,en
+please einstein kaun tha now,general_qa,hinglish
+can you yahan par text likho fast,screen_type,hi
+sun cheeni capture desktop screen fast,screen_capture,en
+shut down notepad,app_close,en
+sun cheeni move report.pdf to desktop now,file_move,en
+can you latest headlines sunao,news_query,hinglish
+write a react hook for localstorage bhai,code_write,en
+please is it going to rain now,weather_query,en
+cheeni what notes did i take today please,notes_read,en
+hey cheeni bhai chrome khol de yaar,app_launch,hinglish
+bro i got selected for the internship! please,emotion_happy,en
+sun cheeni notes me project search karo please,notes_search,hinglish
+zarasi scroll down the page,browser_scroll,en
+please what notes did i take today bhai,notes_read,en
+can you search notes for machine learning,notes_search,en
+zarasi write a python script to parse json,code_write,en
+please reminder lagao kal subah 7 baje bhai,reminder_set,hinglish
+sun cheeni delete that memory please,memory_delete,en
+hey cheeni debug this syntax error,code_debug,en
+volume badhao now,system_volume,hi
+take a screenshot of my whole desktop jaldi,screen_capture,en
+please file delete karo now,file_delete,hinglish
+bhai analyze current screen now,screen_describe,en
+please file rename kar do,file_rename,hinglish
+hey cheeni remind me to drink water in 30 minutes now,reminder_set,en
+zarasi internet pe dhundo now,search_web,hi
+cheeni email likho leave application ka yaar,email_compose,hinglish
+bhai is script ko run karo jaldi,code_run,hinglish
+can you good night jaldi,chitchat,en
+sun cheeni aaj mera kya schedule hai yaar,calendar_read,hinglish
+bhai save git changes,git_commit,en
+hey cheeni dimag kharab ho gaya hai jaldi,emotion_angry,hinglish
+zarasi remove temp.log yaar,file_delete,en
+can you disconnect wifi now,system_wifi,en
+cheeni press the save icon jaldi,screen_click,en
+cheeni check latest emails please,email_read,en
+cheeni dimag kharab ho gaya hai jaldi,emotion_angry,hinglish
+sun cheeni yeh yaad rakhna jaldi,memory_save,hi
+sun cheeni take a note: buy milk and eggs yaar,notes_create,en
+zarasi open reddit fast,website_open,en
+cheeni screen pe kya likha hai padho jaldi,screen_read,hinglish
+can you bhai ek directory bana de fast,folder_create,hinglish
+hey cheeni what notes did i take today please,notes_read,en
+please file rename kar do jaldi,file_rename,hinglish
+sun cheeni open portal and go to grades page bhai,browser_navigate,en
+cheeni page scroll karo fast,screen_scroll,hinglish
+sun cheeni show my upcoming meetings now,calendar_read,en
+zarasi are you tired jaldi,emotion_query,en
+can you solve 2x + 5 = 15 please,math_query,en
+cheeni run this python script now,code_run,en
+sun cheeni explain this recursive function jaldi,code_explain,en
+restart the pc fast,system_restart,en
+zarasi volume kam karo jaldi,system_volume,hinglish
+hey cheeni is page ka screenshot lo please,browser_screenshot,hinglish
+can you screen par kya dikh raha hai jaldi,screen_describe,hi
+power off computer now,system_shutdown,en
+zarasi test suite execute karo yaar,code_run,hinglish
+bhai memory clear karo yaar,memory_delete,hinglish
+sun cheeni show my upcoming meetings,calendar_read,en
+cheeni hello cheeni please,chitchat,en
+zarasi screen ko upar karo please,screen_scroll,hi
+sun cheeni sync with remote repo now,git_push,en
+can you dockerfile likho nodejs ke liye,code_write,hinglish
+zarasi laptop restart karo,system_restart,hinglish
+bhai scroll screen horizontally now,screen_scroll,en
+hey cheeni calculate 15 percent of 4500 now,math_query,en
+cheeni can you navigate to stackoverflow please,website_open,en
+brightness badha do,system_brightness,hi
+gmail website kholo bhai,website_open,hinglish
+bhai reddit open karna,website_open,hinglish
+can you how are you feeling cheeni please,emotion_query,en
+sun cheeni good night now,chitchat,en
+can you alt tab to spotify fast,app_switch,en
+add meeting with mentor tomorrow at 4pm bhai,calendar_add,en
+hey cheeni latest headlines sunao fast,news_query,hinglish
+sun cheeni youtube pe chalao standup comedy now,search_youtube,hinglish
+can you laptop restart karo,system_restart,hinglish
+bhai exit browser please,browser_close,en
+cheeni weather forecast for tomorrow now,weather_query,en
+bhai tu kaisa hai bhai jaldi,emotion_query,hinglish
+sun cheeni unmute audio please,system_volume,en
+cheeni bhai ek directory bana de,folder_create,hinglish
+please linkedin khol de yaar,website_open,hinglish
+sun cheeni schedule doctor appointment on monday please,calendar_add,en
+press next button,browser_click,en
+hey cheeni thoda niche scroll karo fast,browser_scroll,hinglish
+cheeni make screen brighter please,system_brightness,en
+cheeni write a react hook for localstorage now,code_write,en
+computer band karo fast,system_shutdown,hi
+bhai aur batao cheeni please,chitchat,hinglish
+hey cheeni press next button yaar,browser_click,en
+test suite execute karo,code_run,hinglish
+hey cheeni mere emails check karo bhai,email_read,hinglish
+increase screen brightness,system_brightness,en
+delete old_notes.txt,file_delete,en
+hey cheeni explain this recursive function bhai,code_explain,en
+bhai who is the ceo of google fast,general_qa,en
+can you erase saved info jaldi,memory_delete,en
+zarasi translate this paragraph to french,translation,en
+please explain this recursive function bhai,code_explain,en
+zarasi temperature kitna hai bhai,weather_query,hinglish
+cheeni scroll down the page now,browser_scroll,en
+why is my code giving null pointer exception yaar,code_debug,en
+screenshot kheecho jaldi,screen_capture,hi
+can you what is the capital of france jaldi,general_qa,en
+scroll down the page,browser_scroll,en
+can you just continuing work bhai,emotion_neutral,en
+sun cheeni hello cheeni bhai,chitchat,en
+cheeni scroll the active window down,screen_scroll,en
+cheeni save this to memory now,memory_save,en
+bhai brightness badha do now,system_brightness,hi
+what is currently on my display,screen_describe,en
+mera mood theek nahi hai now,emotion_sad,hinglish
+please type hello world on screen fast,screen_type,en
+tab band kar do please,browser_close,hi
+please page scroll karo jaldi,screen_scroll,hinglish
+zarasi exit browser jaldi,browser_close,en
+zarasi enter text into field fast,browser_fill,en
+can you create a quick note fast,notes_create,en
+hey cheeni notes me project search karo fast,notes_search,hinglish
+can you look up my study notes now,notes_search,en
+zarasi rename document to project.pdf now,file_rename,en
+bhai check latest emails please,email_read,en
+hey cheeni switch back to browser now,app_switch,en
+zarasi click on sign in yaar,browser_click,en
+bhai go to amazon and search for headphones jaldi,browser_navigate,en
+cheeni create directory called datasets jaldi,folder_create,en
+open youtube,website_open,en
+please test suite execute karo yaar,code_run,hinglish
+please delete reminder jaldi,reminder_cancel,en
+please email likho leave application ka yaar,email_compose,hinglish
+I am feeling great today!,emotion_happy,en
+hey cheeni bharat ka prime minister kaun hai now,general_qa,hi
+zarasi remember that i have an exam on friday yaar,memory_save,en
+bro i got selected for the internship! fast,emotion_happy,en
+please aaj ki taza khabar kya hai now,news_query,hi
+cheeni screen ko upar karo bhai,screen_scroll,hi
+zarasi create calendar event jaldi,calendar_add,en
+code execute kyu nahi ho raha fast,code_debug,hinglish
+can you type hello world on screen please,screen_type,en
+write an apology email bhai,email_compose,en
+app band kar,app_close,hi
+hey cheeni notes me project search karo,notes_search,hinglish
+please nothing special today yaar,emotion_neutral,en
+hey cheeni close this browser tab jaldi,browser_close,en
+please mera roll number kya tha now,memory_recall,hinglish
+sun cheeni barish hogi kya aaj now,weather_query,hinglish
+can you save webpage image jaldi,browser_screenshot,en
+zarasi run this python script now,code_run,en
+kitne baje hain now,time_query,hi
+divide 1000 by 8,math_query,en
+hey cheeni isse close karo bhai,app_close,hinglish
+scroll to bottom please,browser_scroll,en
+can you file delete karo,file_delete,hinglish
+hey cheeni yeh yaad rakhna yaar,memory_save,hi
+increase screen brightness yaar,system_brightness,en
+hey cheeni login button par click karo bhai,browser_click,hinglish
+bhai take a screenshot of my whole desktop bhai,screen_capture,en
+cheeni recall my notes on neural networks bhai,memory_recall,en
+please restart the pc bhai,system_restart,en
+bhai iska english translation batao jaldi,translation,hinglish
+can you scroll up,browser_scroll,en
+wifi check karo bhai,system_wifi,hinglish
+please hey what's up fast,chitchat,en
+bhai calculate 15 percent of 4500 jaldi,math_query,en
+sun cheeni puri screen ka screenshot le lo bhai,screen_capture,hinglish
+cheeni what did i tell you about my exam bhai,memory_recall,en
+zarasi page scroll karo bhai,screen_scroll,hinglish
+can you check latest emails now,email_read,en
+bhai net pe check karo now,search_web,hinglish
+hey cheeni chrome band kar do yaar,app_close,hi
+sun cheeni transfer file to new folder yaar,file_move,en
+please bore ho raha hu fast,chitchat,hinglish
+can you screen ko upar karo please,screen_scroll,hi
+laptop band kar do,system_shutdown,hi
+please fill username and password fast,browser_fill,en
+bhai yeh file hata do now,file_delete,hi
+bhai what is today's date,time_query,en
+cheeni kitne baje hain jaldi,time_query,hi
+can you restart the pc jaldi,system_restart,en
+cheeni open whatsapp desktop now,app_launch,en
+can you look up python tutorials,search_web,en
+bhai spotify open karo please,app_launch,hinglish
+hey cheeni break down this sql query fast,code_explain,en
+kuch accha nahi lag raha please,emotion_sad,hi
+internet pe dhundo,search_web,hi
+cheeni documents me file banao fast,file_create,hinglish
+can you just continuing work yaar,emotion_neutral,en
+sun cheeni relocate this document jaldi,file_move,en
+zarasi take a screenshot of the webpage jaldi,browser_screenshot,en
+sun cheeni search web for best laptops jaldi,search_web,en
+hey cheeni play gaming stream on youtube now,search_youtube,en
+bhai debug this syntax error please,code_debug,en
+can you rename this file to final_v2.docx jaldi,file_rename,en
+open calculator,app_launch,en
+show all notes bhai,notes_read,en
+hey cheeni execute main.py jaldi,code_run,en
+can you what is today's date jaldi,time_query,en
+zarasi create calendar event,calendar_add,en
+sun cheeni translate this paragraph to french fast,translation,en
+can you computer band karo fast,system_shutdown,hi
+sun cheeni check latest emails fast,email_read,en
+can you break down this sql query yaar,code_explain,en
+bhai write a python script to parse json bhai,code_write,en
+mujhe bohot gussa aa raha hai,emotion_angry,hi
+zarasi cheeni tera mood kaisa hai jaldi,emotion_query,hinglish
+cheeni screen ko upar karo jaldi,screen_scroll,hi
+please read out the error message yaar,screen_read,en
+cheeni how do you say thank you in spanish now,translation,en
+bhai set reminder for assignment submission,reminder_set,en
+cheeni switch back to browser bhai,app_switch,en
+login button par click karo yaar,browser_click,hinglish
+create a quick note,notes_create,en
+cheeni take a screenshot of my whole desktop yaar,screen_capture,en
+please net pe check karo now,search_web,hinglish
+relocate this document,file_move,en
+bhai shut down the laptop bhai,system_shutdown,en
+sun cheeni what is today's date fast,time_query,en
+cheeni kill notepad now,app_close,en
+cheeni open calculator please,app_launch,en
+sun cheeni bohot udas hu aaj fast,emotion_sad,hi
+zarasi page scroll karo yaar,screen_scroll,hinglish
+close the browser window jaldi,browser_close,en
+can you look up my study notes yaar,notes_search,en
+can you open invoice.docx jaldi,file_open,en
+hey cheeni is it going to rain,weather_query,en
+please tu kaisa hai bhai bhai,emotion_query,hinglish
+sun cheeni what is written on this window now,screen_read,en
+cheeni aaj mera kya schedule hai now,calendar_read,hinglish
+hey cheeni code execute kyu nahi ho raha yaar,code_debug,hinglish
+bhai git push kar do fast,git_push,hinglish
+please net pe check karo yaar,search_web,hinglish
+email likho leave application ka,email_compose,hinglish
+file open karo,file_open,hinglish
+zarasi change file name,file_rename,en
+bhai add meeting with mentor tomorrow at 4pm,calendar_add,en
+cheeni switch to vscode jaldi,app_switch,en
+zarasi press next button yaar,browser_click,en
+cheeni describe the image on my screen please,screen_describe,en
+draft email to rahul now,email_compose,en
+hey cheeni save webpage image yaar,browser_screenshot,en
+can you navigate to docs.python.org bhai,browser_navigate,en
+hey cheeni pc reboot kar do yaar,system_restart,hinglish
+scroll the active window down please,screen_scroll,en
+cheeni write an apology email,email_compose,en
+hey cheeni open college portal bhai,website_open,en
+hey cheeni pc reboot kar do,system_restart,hinglish
+sun cheeni yahan par text likho yaar,screen_type,hi
+file delete karo jaldi,file_delete,hinglish
+hey cheeni read out the error message yaar,screen_read,en
+can you make screen brighter jaldi,system_brightness,en
+can you increase screen brightness jaldi,system_brightness,en
+sun cheeni click on the red cancel button please,screen_click,en
+zarasi enter text into field yaar,browser_fill,en
+can you reminder lagao kal subah 7 baje now,reminder_set,hinglish
+kill notepad,app_close,en
+cheeni take a screenshot of my whole desktop jaldi,screen_capture,en
+zarasi push changes to origin main bhai,git_push,en
+hey cheeni aaj mera kya schedule hai now,calendar_read,hinglish
+volume kam karo please,system_volume,hinglish
+bhai what notes did i take today yaar,notes_read,en
+zarasi puri screen ka screenshot le lo bhai,screen_capture,hinglish
+is code me bug dhundo,code_debug,hinglish
+can you navigate to stackoverflow bhai,website_open,en
+cheeni barish hogi kya aaj,weather_query,hinglish
+sun cheeni unmute audio bhai,system_volume,en
+sun cheeni describe the image on my screen bhai,screen_describe,en
+please play ed sheeran on youtube yaar,search_youtube,en
+square root of 144 kitna hota hai,math_query,hinglish
+zarasi square root of 144 kitna hota hai yaar,math_query,hinglish
+can you this code is driving me crazy yaar,emotion_angry,en
+cheeni close this browser tab please,browser_close,en
+cheeni solve 2x + 5 = 15 jaldi,math_query,en
+please normal day hai jaldi,emotion_neutral,hinglish
+bhai how do you say thank you in spanish yaar,translation,en
+sun cheeni scroll down the page please,browser_scroll,en
+show my upcoming meetings bhai,calendar_read,en
+cheeni file dikhao,file_open,hi
+can you delete this file jaldi,file_delete,en
+sun cheeni write an apology email jaldi,email_compose,en
+can you show all notes please,notes_read,en
+cheeni chrome pe switch karo jaldi,app_switch,hinglish
+can you linkedin khol de now,website_open,hinglish
+please rename this file to final_v2.docx jaldi,file_rename,en
+please yeh file hata do please,file_delete,hi
+bhai are you tired bhai,emotion_query,en
+bhai add meeting with mentor tomorrow at 4pm please,calendar_add,en
+cheeni stage all files and commit yaar,git_commit,en
+cheeni google search deep learning course bhai,search_web,en
+please increase screen brightness yaar,system_brightness,en
+please barish hogi kya aaj please,weather_query,hinglish
+cheeni you are awesome please,chitchat,en
+push changes to origin main yaar,git_push,en
+hey cheeni internet connected hai kya jaldi,system_wifi,hinglish
+file delete karo,file_delete,hinglish
+sun cheeni calculate 15 percent of 4500 now,math_query,en
+sun cheeni translate this paragraph to french yaar,translation,en
+zarasi what is my roll number now,memory_recall,en
+cheeni square root of 144 kitna hota hai now,math_query,hinglish
+sun cheeni clear all active reminders yaar,reminder_cancel,en
+sun cheeni file ko documents folder me move karo jaldi,file_move,hinglish
+can you open portal and go to grades page bhai,browser_navigate,en
+sun cheeni login button par click karo,browser_click,hinglish
+sun cheeni current time in new york please,time_query,en
+sun cheeni schedule doctor appointment on monday fast,calendar_add,en
+sun cheeni calendar me reminder add karo now,calendar_add,hinglish
+hey cheeni aaj kaunsa din hai yaar,time_query,hi
+cheeni click on sign in fast,browser_click,en
+bhai file rename kar do,file_rename,hinglish
+sun cheeni type my password here bhai,screen_type,en
+please stage all files and commit now,git_commit,en
+sun cheeni bhai temp file uda do please,file_delete,hinglish
+bhai aaj ki taza khabar kya hai fast,news_query,hi
+please calendar me reminder add karo jaldi,calendar_add,hinglish
+can you sync with remote repo,git_push,en
+please do you remember my friend's birthday fast,memory_recall,en
+bhai laptop band kar do jaldi,system_shutdown,hi
+cheeni delete that memory fast,memory_delete,en
+please mere emails check karo bhai,email_read,hinglish
+hey cheeni calculate 15 percent of 4500 bhai,math_query,en
+cheeni feeling down and tired please,emotion_sad,en
+put laptop to sleep yaar,system_sleep,en
+pc reboot kar do,system_restart,hinglish
+bhai mujhe 5 baje yaad dilana,reminder_set,hi
+can you thoda niche scroll karo please,browser_scroll,hinglish
+bhai save note,notes_create,en
+bhai generate a new python file yaar,file_create,en
+cheeni transfer file to new folder yaar,file_move,en
+zarasi cheeni tera mood kaisa hai please,emotion_query,hinglish
+bhai change application jaldi,app_switch,en
+break down this sql query please,code_explain,en
+search notes for machine learning,notes_search,en
+please switch to vscode please,app_switch,en
+cheeni i am feeling great today! jaldi,emotion_happy,en
+bhai rename this file to final_v2.docx,file_rename,en
+bhai remember my wifi password is secret,memory_save,en
+click on the red cancel button yaar,screen_click,en
+hey cheeni brightness kam karo now,system_brightness,hinglish
+can you who is the ceo of google please,general_qa,en
+cheeni bas aaram se baitha hu fast,emotion_neutral,hinglish
+take a note: buy milk and eggs please,notes_create,en
+zarasi write an apology email now,email_compose,en
+can you open netflix jaldi,website_open,en
+cheeni start notepad now,app_launch,en
+please page scroll karo now,screen_scroll,hinglish
+capture desktop screen,screen_capture,en
+sun cheeni close active window,app_close,en
+bhai create a quick note bhai,notes_create,en
+can you describe the image on my screen fast,screen_describe,en
+tell me a joke,chitchat,en
+bhai translate hello to hindi,translation,en
+hey cheeni internet connected hai kya yaar,system_wifi,hinglish
+read out the error message bhai,screen_read,en
+bhai push current branch to github,git_push,en
+can you translate hello to hindi now,translation,en
+describe the image on my screen,screen_describe,en
+cheeni pichle notes padho bhai,notes_read,hi
+please search bar me query type karo jaldi,browser_fill,hinglish
+can you yaad rakhna bhai,memory_save,hi
+can you why is my code giving null pointer exception jaldi,code_debug,en
+can you what notes did i take today,notes_read,en
+bhai press the save icon jaldi,screen_click,en
+hey cheeni describe the image on my screen bhai,screen_describe,en
+cheeni find tutorial on youtube jaldi,search_youtube,en
+can you why is nothing working today,emotion_angry,en
+zarasi write down meeting summary,notes_create,en
+please git commit karo jaldi,git_commit,hinglish
+hey cheeni scroll the active window down jaldi,screen_scroll,en
+what is my roll number,memory_recall,en
+can you stage all files and commit please,git_commit,en
+can you remember my wifi password is secret,memory_save,en
+zarasi stage all files and commit yaar,git_commit,en
+sun cheeni wifi on karo now,system_wifi,hinglish
+hey cheeni file rename kar do yaar,file_rename,hinglish
+kisi ka mail aaya kya,email_read,hinglish
+can you mujhe bohot gussa aa raha hai,emotion_angry,hi
+bhai click on the red cancel button bhai,screen_click,en
+zarasi youtube pe chalao standup comedy now,search_youtube,hinglish
+bhai scroll up,browser_scroll,en
+cheeni system power off kar jaldi,system_shutdown,hinglish
+please restart my laptop please,system_restart,en
+can you create a function for factorial please,code_write,en
+hey cheeni screen ko upar karo bhai,screen_scroll,hi
+file ka naam badlo fast,file_rename,hi
+bhai how does this regex work fast,code_explain,en
+please what is 45乘以12 yaar,math_query,en
+hey cheeni bharat ka prime minister kaun hai bhai,general_qa,hi
+hey cheeni ek note banao please,notes_create,hi
+can you bas aaram se baitha hu now,emotion_neutral,hinglish
+tu kaisa hai bhai,emotion_query,hinglish
+sun cheeni linkedin khol de bhai,website_open,hinglish
+please click on the red cancel button fast,screen_click,en
+scroll the active window down bhai,screen_scroll,en
+bro i got selected for the internship! now,emotion_happy,en
+is script ko run karo,code_run,hinglish
+please what is on my schedule today fast,calendar_read,en
+please aaj mai bohot khush hu yaar,emotion_happy,hi
+can you explain this recursive function fast,code_explain,en
+hey cheeni create file project_plan.md now,file_create,en
+fill username and password,browser_fill,en
+zarasi write down meeting summary jaldi,notes_create,en
+can you check wifi status yaar,system_wifi,en
+zarasi capture desktop screen please,screen_capture,en
+type hello world on screen fast,screen_type,en
+can you email likho leave application ka fast,email_compose,hinglish
+sun cheeni notes me project search karo yaar,notes_search,hinglish
+cheeni cheeni tera mood kaisa hai bhai,emotion_query,hinglish
+can you temperature kitna hai,weather_query,hinglish
+sun cheeni take a screenshot of my whole desktop please,screen_capture,en
+sun cheeni what time is it bhai,time_query,en
+what is today's top news please,news_query,en
+cheeni mera mood theek nahi hai please,emotion_sad,hinglish
+cheeni git commit karo fast,git_commit,hinglish
+sun cheeni play punjabi songs on youtube fast,search_youtube,hinglish
+cheeni create directory called datasets fast,folder_create,en
+bhai write a react hook for localstorage yaar,code_write,en
+cheeni file ka naam badlo jaldi,file_rename,hi
+isse close karo,app_close,hinglish
+git commit karo,git_commit,hinglish
+can you what is on my schedule today yaar,calendar_read,en
+sun cheeni resume khol ke dikhao now,file_open,hinglish
+zarasi yeh code kya kar raha hai samjhao jaldi,code_explain,hinglish
+close this browser tab,browser_close,en
+can you what is the weather today yaar,weather_query,en
+bhai read my unread emails fast,email_read,en
+can you i failed my exam bhai,emotion_sad,en
+zarasi dusri window dikhao jaldi,app_switch,hi
+bhai write an apology email now,email_compose,en
+ek naya folder banao now,folder_create,hi
+sun cheeni iska english translation batao fast,translation,hinglish
+can you translate hello to hindi,translation,en
+I feel terrible today,emotion_sad,en
+please look up my study notes fast,notes_search,en
+can you navigate to stackoverflow,website_open,en
+cheeni write a python script to parse json now,code_write,en
+cheeni browser me is page par jao bhai,browser_navigate,hinglish
+bhai tab band kar do yaar,browser_close,hi
+please check wifi status jaldi,system_wifi,en
+suspend computer,system_sleep,en
+can you find notes containing exam bhai,notes_search,en
+zarasi screen pe kya likha hai padho bhai,screen_read,hinglish
+cheeni translate this paragraph to french jaldi,translation,en
+aaj mausam kaisa hai bhai,weather_query,hi
+bhai tell me tech news,news_query,en
+enter text into field jaldi,browser_fill,en
+please reminder lagao kal subah 7 baje jaldi,reminder_set,hinglish
+sun cheeni run this python script please,code_run,en
+bhai ek directory bana de,folder_create,hinglish
+please write an apology email yaar,email_compose,en
+can you this code is driving me crazy bhai,emotion_angry,en
+cheeni navigate to docs.python.org jaldi,browser_navigate,en
+thoda niche scroll karo,browser_scroll,hinglish
+can you recall my notes on neural networks fast,memory_recall,en
+bhai mujhe bohot gussa aa raha hai,emotion_angry,hi
+please give me ai news updates now,news_query,en
+cheeni close the browser window please,browser_close,en
+please fill username and password yaar,browser_fill,en
+search youtube for lofi hip hop please,search_youtube,en
+bhai file ka naam badlo bhai,file_rename,hi
+can you check latest emails bhai,email_read,en
+sun cheeni screen band karke sleep karo,system_sleep,hi
+please translate hello to hindi please,translation,en
+cheeni rename document to project.pdf now,file_rename,en
+commit all changes with message fix auth,git_commit,en
+bhai save webpage image jaldi,browser_screenshot,en
+can you push current branch to github bhai,git_push,en
+sun cheeni sync with remote repo please,git_push,en
+hey cheeni write a python script to parse json fast,code_write,en
+please delete that memory fast,memory_delete,en
+read my unread emails please,email_read,en
+sun cheeni write down meeting summary jaldi,notes_create,en
+can you screen ko upar karo fast,screen_scroll,hi
+please naya folder create karo fast,folder_create,hinglish
+sun cheeni erase test.py jaldi,file_delete,en
+cheeni stage all files and commit fast,git_commit,en
+sun cheeni delete unwanted file,file_delete,en
+navigate to docs.python.org jaldi,browser_navigate,en
+hey cheeni fill username and password yaar,browser_fill,en
+bhai write a react hook for localstorage fast,code_write,en
+exit vscode,app_close,en
+delete reminder,reminder_cancel,en
+sun cheeni notes me project search karo now,notes_search,hinglish
+sun cheeni create a folder named project cheeni fast,folder_create,en
+sun cheeni mujhe bohot gussa aa raha hai now,emotion_angry,hi
+scroll the active window down yaar,screen_scroll,en
+bhai read out the error message,screen_read,en
+cheeni compose an email to professor regarding project please,email_compose,en
+please scroll screen horizontally jaldi,screen_scroll,en
+cheeni note likho: project deadline is monday fast,notes_create,hinglish
+take a screenshot of my whole desktop,screen_capture,en
+please set reminder for assignment submission fast,reminder_set,en
+hey cheeni are you tired please,emotion_query,en
+please scroll the active window down please,screen_scroll,en
+sun cheeni youtube kholo now,website_open,hi
+cheeni break down this sql query now,code_explain,en
+can you read my unread emails please,email_read,en
+bhai are you tired fast,emotion_query,en
+please add meeting with mentor tomorrow at 4pm bhai,calendar_add,en
+can you reboot computer please,system_restart,en
+search on internet about quantum computing,search_web,en
+cheeni dockerfile likho nodejs ke liye now,code_write,hinglish
+hey cheeni stage all files and commit fast,git_commit,en
+zarasi close this browser tab now,browser_close,en
+launch terminal,app_launch,en
+can you calendar me reminder add karo yaar,calendar_add,hinglish
+dockerfile likho nodejs ke liye,code_write,hinglish
+sun cheeni delete unwanted file jaldi,file_delete,en
+weather forecast for tomorrow,weather_query,en
+bhai screen pe kya likha hai padho fast,screen_read,hinglish
+zarasi bas aaram se baitha hu,emotion_neutral,hinglish
+please ek nayi file banao jaldi,file_create,hi
+zarasi scroll to bottom jaldi,browser_scroll,en
+sun cheeni chrome pe switch karo now,app_switch,hinglish
+can you remind me to drink water in 30 minutes,reminder_set,en
+please what time is it now,time_query,en
+sun cheeni login button par click karo please,browser_click,hinglish
+hey cheeni draft email to rahul,email_compose,en
+please type hello world on screen yaar,screen_type,en
+bhai aaj mausam kaisa hai bhai,weather_query,hi
+bhai create directory called datasets bhai,folder_create,en
+file open karo fast,file_open,hinglish
+zarasi search notes for machine learning fast,notes_search,en
+sun cheeni weather forecast for tomorrow fast,weather_query,en
+hey cheeni describe the image on my screen,screen_describe,en
+aaj ki taza khabar kya hai jaldi,news_query,hi
+push changes to origin main,git_push,en
+bhai create a new text file fast,file_create,en
+zarasi close this browser tab bhai,browser_close,en
+close this browser tab bhai,browser_close,en
+please dobara chalu karo yaar,system_restart,hi
+zarasi scroll to bottom now,browser_scroll,en
+can you what is currently on my display bhai,screen_describe,en
+schedule doctor appointment on monday jaldi,calendar_add,en
+hey cheeni screen par is icon pe click karo yaar,screen_click,hinglish
+restart the pc,system_restart,en
+sun cheeni scroll up please,browser_scroll,en
+yeh baat bhool jao,memory_delete,hi
+cheeni shut down notepad please,app_close,en
+bhai i failed my exam yaar,emotion_sad,en
+can you create file project_plan.md jaldi,file_create,en
+scroll to bottom yaar,browser_scroll,en
+cheeni save kar lo ki rahul ka birthday kal hai bhai,memory_save,hinglish
+can you tell me a joke,chitchat,en
+hey cheeni break down this sql query jaldi,code_explain,en
+type hello world on screen now,screen_type,en
+sun cheeni play punjabi songs on youtube please,search_youtube,hinglish
+zarasi explain this recursive function yaar,code_explain,en
+sun cheeni email likho leave application ka fast,email_compose,hinglish
+bhai remind me to drink water in 30 minutes fast,reminder_set,en
+please read my unread emails yaar,email_read,en
+can you who created you yaar,chitchat,en
+zarasi analyze current screen bhai,screen_describe,en
+please mere notes dikhao fast,notes_read,hinglish
+sun cheeni save git changes,git_commit,en
+hey cheeni relocate this document please,file_move,en
+bhai break down this sql query bhai,code_explain,en
+cheeni ek note banao yaar,notes_create,hi
+screen par kya dikh raha hai bhai,screen_describe,hi
+bhai why is nothing working today bhai,emotion_angry,en
+please power off computer bhai,system_shutdown,en
+bhai find information about transformers fast,search_web,en
+bhai tu kaisa hai bhai,emotion_query,hinglish
+cheeni file rename kar do bhai,file_rename,hinglish
+zarasi what did i tell you about my exam yaar,memory_recall,en
+zarasi enter input at cursor fast,screen_type,en
+screen par kya dikh raha hai,screen_describe,hi
+bhai reminder lagao kal subah 7 baje please,reminder_set,hinglish
+zarasi bhai temp file uda do now,file_delete,hinglish
+sun cheeni aaj ka din mast tha fast,emotion_happy,hinglish
+can you screen band karke sleep karo fast,system_sleep,hi
+click on sign in,browser_click,en
+hey cheeni wifi check karo bhai,system_wifi,hinglish
+zarasi play ed sheeran on youtube,search_youtube,en
+hey cheeni is script ko run karo bhai,code_run,hinglish
+ek note banao,notes_create,hi
+cheeni create a quick note,notes_create,en
+zarasi wifi check karo now,system_wifi,hinglish
+please switch window yaar,app_switch,en
+can you note likho: project deadline is monday,notes_create,hinglish
+can you save git changes yaar,git_commit,en
+please press next button please,browser_click,en
+bhai python code likho binary search ka bhai,code_write,hinglish
+calculator chalu karo,app_launch,hinglish
+please create a folder named project cheeni now,folder_create,en
+zarasi youtube pe chalao standup comedy please,search_youtube,hinglish
+can you cancel my 5pm reminder fast,reminder_cancel,en
+bhai turn off my pc fast,system_shutdown,en
+bhai connect to wifi jaldi,system_wifi,en
+sun cheeni create directory called datasets bhai,folder_create,en
+create file project_plan.md,file_create,en
+sun cheeni scroll screen horizontally now,screen_scroll,en
+sun cheeni nothing special today bhai,emotion_neutral,en
+can you increase volume jaldi,system_volume,en
+cheeni read this document fast,file_open,en
+zarasi google what is backpropagation please,search_web,en
+cheeni go to amazon and search for headphones,browser_navigate,en
+please press the save icon please,screen_click,en
+cheeni code execute kyu nahi ho raha please,code_debug,hinglish
+hey cheeni show all notes yaar,notes_read,en
+bhai break down this sql query yaar,code_explain,en
+execute main.py bhai,code_run,en
+please close this browser tab jaldi,browser_close,en
+create calendar event fast,calendar_add,en
+zarasi brightness kam karo bhai,system_brightness,hinglish
+bhai dockerfile likho nodejs ke liye yaar,code_write,hinglish
+please clear all active reminders fast,reminder_cancel,en
+sun cheeni file delete karo now,file_delete,hinglish
+yahan par text likho,screen_type,hi
+please make a file called notes.txt bhai,file_create,en
+cheeni analyze current screen please,screen_describe,en
+please cancel my 5pm reminder bhai,reminder_cancel,en
+bhai create directory called datasets now,folder_create,en
+please create directory called datasets bhai,folder_create,en
+bhai navigate to twitter yaar,website_open,en
+please navigate to docs.python.org bhai,browser_navigate,en
+bhai play gaming stream on youtube bhai,search_youtube,en
+can you email likho leave application ka yaar,email_compose,hinglish
+sun cheeni what is today's date bhai,time_query,en
+bhai google search deep learning course bhai,search_web,en
+cheeni delete unwanted file jaldi,file_delete,en
+bhai sync with remote repo jaldi,git_push,en
+save this to memory jaldi,memory_save,en
+hey cheeni open huggingface jaldi,website_open,en
+cheeni restart my laptop jaldi,system_restart,en
+bhai give me ai news updates please,news_query,en
+please break down this sql query yaar,code_explain,en
+please git push kar do yaar,git_push,hinglish
+commit all changes with message fix auth jaldi,git_commit,en
+hey cheeni write down meeting summary,notes_create,en
+sun cheeni open portal and go to grades page,browser_navigate,en
+bhai launch task manager bhai,app_launch,en
+cheeni file open karo fast,file_open,hinglish
+please enter text into field now,browser_fill,en
+can you thoda niche scroll karo fast,browser_scroll,hinglish
+can you ek note banao,notes_create,hi
+please are you tired,emotion_query,en
+look up python tutorials,search_web,en
+github website open karo fast,website_open,hinglish
+zarasi memory clear karo jaldi,memory_delete,hinglish
+zarasi move report.pdf to desktop,file_move,en
+cheeni close this browser tab jaldi,browser_close,en
+close this app,app_close,en
+hey cheeni read my recent notes fast,notes_read,en
+can you type hello world on screen fast,screen_type,en
+bhai who is the ceo of google please,general_qa,en
+bhai make screen brighter bhai,system_brightness,en
+what notes did I take today,notes_read,en
+cheeni put laptop to sleep bhai,system_sleep,en
+hey cheeni view spreadsheet bhai,file_open,en
+note likho: project deadline is Monday,notes_create,hinglish
+check calendar for tomorrow,calendar_read,en
+hey cheeni click the submit button now,browser_click,en
+zarasi memory clear karo bhai,memory_delete,hinglish
+write an apology email,email_compose,en
+please brightness badha do fast,system_brightness,hi
+zarasi aaj ka din mast tha fast,emotion_happy,hinglish
+sun cheeni laptop restart karo now,system_restart,hinglish
+bhai aaj mera kya schedule hai,calendar_read,hinglish
+hey cheeni remove temp.log jaldi,file_delete,en
+bas aaram se baitha hu bhai,emotion_neutral,hinglish
+sun cheeni pc ko sleep par daal do please,system_sleep,hinglish
+zarasi erase test.py,file_delete,en
+zarasi internet connected hai kya jaldi,system_wifi,hinglish
+nothing special today,emotion_neutral,en
+bhai what notes did i take today fast,notes_read,en
+please yeh baat bhool jao fast,memory_delete,hi
+please why is nothing working today bhai,emotion_angry,en
+hey cheeni what is the capital of france yaar,general_qa,en
+hey cheeni aaj mausam kaisa hai,weather_query,hi
+sun cheeni aaj ka din mast tha yaar,emotion_happy,hinglish
+bhai debug this syntax error fast,code_debug,en
+aur batao cheeni,chitchat,hinglish
+bhai check calendar for tomorrow now,calendar_read,en
+sun cheeni cancel my 5pm reminder jaldi,reminder_cancel,en
+cheeni analyze current screen yaar,screen_describe,en
+zarasi square root of 144 kitna hota hai now,math_query,hinglish
+cheeni click on sign in yaar,browser_click,en
+bhai read my recent notes please,notes_read,en
+remember my wifi password is secret,memory_save,en
+zarasi exit browser bhai,browser_close,en
+make screen brighter please,system_brightness,en
+bhai take a note: buy milk and eggs jaldi,notes_create,en
+zarasi make a file called notes.txt please,file_create,en
+exit window,app_close,en
+bhai test suite execute karo yaar,code_run,hinglish
+hey cheeni write an apology email bhai,email_compose,en
+please sync with remote repo bhai,git_push,en
+disconnect wifi yaar,system_wifi,en
+cancel my 5pm reminder bhai,reminder_cancel,en
+page scroll karo,screen_scroll,hinglish
+bhai enter input at cursor bhai,screen_type,en
+sun cheeni internet connected hai kya,system_wifi,hinglish
+hey cheeni this code is driving me crazy now,emotion_angry,en
+can you pc ko sleep par daal do yaar,system_sleep,hinglish
+hey cheeni schedule doctor appointment on monday bhai,calendar_add,en
+hey cheeni bhai visual studio kholna please,app_launch,hinglish
+bhai puri screen ka screenshot le lo yaar,screen_capture,hinglish
+hey cheeni delete that memory,memory_delete,en
+type my email in the input box yaar,browser_fill,en
+cheeni yeh baat bhool jao please,memory_delete,hi
+bhai aaj ki taza khabar kya hai yaar,news_query,hi
+sun cheeni do you remember my friend's birthday yaar,memory_recall,en
+cheeni what is the capital of france jaldi,general_qa,en
+sun cheeni increase volume now,system_volume,en
+hey cheeni email likho leave application ka bhai,email_compose,hinglish
+cheeni screen pe kya likha hai padho,screen_read,hinglish
+zarasi weather forecast for tomorrow jaldi,weather_query,en
+screen pe kya likha hai padho bhai,screen_read,hinglish
+vscode pe jao,app_switch,hinglish
+aaj ki taza khabar kya hai,news_query,hi
+sun cheeni bas aaram se baitha hu jaldi,emotion_neutral,hinglish
+zarasi navigate to docs.python.org please,browser_navigate,en
+can you read out the error message now,screen_read,en
+please store this information,memory_save,en
+bhai is script ko run karo fast,code_run,hinglish
+please memory clear karo please,memory_delete,hinglish
+hey cheeni touch test.py yaar,file_create,en
+save kar lo ki rahul ka birthday kal hai yaar,memory_save,hinglish
+what is the weather today,weather_query,en
+bhai maine kya yaad rakhne ko bola tha yaar,memory_recall,hi
+cheeni fill username and password,browser_fill,en
+hey cheeni yeh code kya kar raha hai samjhao now,code_explain,hinglish
+hey cheeni scroll to bottom please,browser_scroll,en
+compose an email to professor regarding project,email_compose,en
+can you tab band kar do,browser_close,hi
+zarasi yeh baat bhool jao yaar,memory_delete,hi
+can you schedule doctor appointment on monday jaldi,calendar_add,en
+hey cheeni reboot computer now,system_restart,en
+please explain this recursive function yaar,code_explain,en
+can you i am so frustrated right now please,emotion_angry,en
+bhai save git changes jaldi,git_commit,en
+can you einstein kaun tha now,general_qa,hinglish
+explain this recursive function fast,code_explain,en
+bhai file dikhao now,file_open,hi
+please compose an email to professor regarding project fast,email_compose,en
+hey cheeni close this browser tab fast,browser_close,en
+can you spotify open karo yaar,app_launch,hinglish
+can you aaj ki taza khabar kya hai yaar,news_query,hi
+please screen ko upar karo now,screen_scroll,hi
+play gaming stream on youtube,search_youtube,en
+sun cheeni calculate 15 percent of 4500,math_query,en
+nothing special today jaldi,emotion_neutral,en
+can you what is on my schedule today,calendar_read,en
+zarasi aaj ki taza khabar kya hai jaldi,news_query,hi
+navigate to twitter,website_open,en
+bhai navigate to docs.python.org fast,browser_navigate,en
+bhai normal day hai,emotion_neutral,hinglish
+can you type my email in the input box now,browser_fill,en
+please show all notes now,notes_read,en
+please resume khol ke dikhao please,file_open,hinglish
+save kar lo ki Rahul ka birthday kal hai,memory_save,hinglish
+bhai enter text into field jaldi,browser_fill,en
+sun cheeni youtube pe latest song search karo,search_youtube,hinglish
+sun cheeni sleep mode on karo now,system_sleep,hinglish
+cheeni current time in new york jaldi,time_query,en
+calculate 15 percent of 4500 yaar,math_query,en
+sun cheeni tab band kar do yaar,browser_close,hi
+bhai look up my study notes please,notes_search,en
+terminate spotify bhai,app_close,en
+zarasi press next button fast,browser_click,en
+are you tired,emotion_query,en
+zarasi search notes for machine learning now,notes_search,en
+cheeni turn off my pc jaldi,system_shutdown,en
+can you why is nothing working today fast,emotion_angry,en
+zarasi take a screenshot of the webpage yaar,browser_screenshot,en
+sun cheeni is page ka screenshot lo fast,browser_screenshot,hinglish
+laptop band kar do yaar,system_shutdown,hi
+bhai calculate 15 percent of 4500 bhai,math_query,en
+maine kya yaad rakhne ko bola tha,memory_recall,hi
+zarasi describe the image on my screen now,screen_describe,en
+zarasi brightness badha do yaar,system_brightness,hi
+go to amazon and search for headphones,browser_navigate,en
+hey cheeni delete old_notes.txt fast,file_delete,en
+cheeni git push kar do fast,git_push,hinglish
+cheeni relocate this document bhai,file_move,en
+screenshot kheecho,screen_capture,hi
+can you naya folder create karo jaldi,folder_create,hinglish
+sun cheeni screen ko upar karo,screen_scroll,hi
+zarasi close this app fast,app_close,en
+cheeni screen band karke sleep karo bhai,system_sleep,hi
+hey cheeni read out the error message please,screen_read,en
+change application now,app_switch,en
+alt tab to spotify jaldi,app_switch,en
+bhai page scroll karo fast,screen_scroll,hinglish
+hey cheeni increase screen brightness jaldi,system_brightness,en
+einstein kaun tha,general_qa,hinglish
+bhai open college portal now,website_open,en
+why is nothing working today fast,emotion_angry,en
+dimag kharab ho gaya hai fast,emotion_angry,hinglish
+git push kar do,git_push,hinglish
+bhai capture desktop screen now,screen_capture,en
+cheeni remember that i have an exam on friday,memory_save,en
+cheeni is code me bug dhundo please,code_debug,hinglish
+zarasi bore ho raha hu bhai,chitchat,hinglish
+sun cheeni scroll to bottom yaar,browser_scroll,en
+can you what is today's top news fast,news_query,en
+zarasi aaj mausam kaisa hai yaar,weather_query,hi
+cheeni execute main.py please,code_run,en
+bhai mute audio,system_volume,en
+bhai barish hogi kya aaj jaldi,weather_query,hinglish
+bhai what is currently on my display jaldi,screen_describe,en
+can you mera roll number kya tha fast,memory_recall,hinglish
+cheeni aaj ka din mast tha now,emotion_happy,hinglish
+sun cheeni restart the pc please,system_restart,en
+can you commit all changes with message fix auth,git_commit,en
+give this file a new name,file_rename,en
+please is code me bug dhundo fast,code_debug,hinglish
+zarasi create a new text file jaldi,file_create,en
+switch to vscode,app_switch,en
+open portal and go to grades page,browser_navigate,en
+hey cheeni fill username and password bhai,browser_fill,en
+sun cheeni aaj kaunsa din hai now,time_query,hi
+switch to chrome,app_switch,en
+cheeni how are you feeling cheeni jaldi,emotion_query,en
+bhai scroll to bottom yaar,browser_scroll,en
+yahan par text likho yaar,screen_type,hi
+can you stage all files and commit jaldi,git_commit,en
+please kuch accha nahi lag raha bhai,emotion_sad,hi
+can you generate fastapi login route jaldi,code_write,en
+tell me tech news,news_query,en
+sun cheeni iska english translation batao bhai,translation,hinglish
+change application,app_switch,en
+please i am feeling great today!,emotion_happy,en
+please break down this sql query,code_explain,en
+bhai memory clear karo jaldi,memory_delete,hinglish
+please just continuing work now,emotion_neutral,en
+compose an email to professor regarding project yaar,email_compose,en
+please make screen brighter now,system_brightness,en
+please enter text into field fast,browser_fill,en
+zarasi remind me to drink water in 30 minutes jaldi,reminder_set,en
+zarasi reminder lagao kal subah 7 baje,reminder_set,hinglish
+cheeni why is my code giving null pointer exception,code_debug,en
+kitne baje hain,time_query,hi
+pichle notes padho fast,notes_read,hi
+please who is the ceo of google now,general_qa,en
+cheeni open chrome now,app_launch,en
+can you push changes to origin main please,git_push,en
+bhai translate this paragraph to french fast,translation,en
+can you navigate to docs.python.org please,browser_navigate,en
+bhai quit application fast,app_close,en
+sun cheeni puri screen ka screenshot le lo please,screen_capture,hinglish
+what time is it,time_query,en
+bhai fix the type error in this typescript file please,code_debug,en
+bhai volume kam karo jaldi,system_volume,hinglish
+can you web pe dekh ke batao please,search_web,hi
+hey cheeni create a function for factorial yaar,code_write,en
+sun cheeni git commit karo yaar,git_commit,hinglish
+can you remind me to drink water in 30 minutes fast,reminder_set,en
+please what is the weather today bhai,weather_query,en
+cheeni create a function for factorial fast,code_write,en
+cheeni generate fastapi login route,code_write,en
+cheeni look up python tutorials bhai,search_web,en
+volume kam karo yaar,system_volume,hinglish
+bhai ek directory bana de yaar,folder_create,hinglish
+sun cheeni translate hello to hindi,translation,en
+please wifi on karo bhai,system_wifi,hinglish
+bhai ek directory bana de please,folder_create,hinglish
+sun cheeni normal day hai jaldi,emotion_neutral,hinglish
+create a new text file,file_create,en
+cheeni remind me to drink water in 30 minutes now,reminder_set,en
+sun cheeni search notes for machine learning jaldi,notes_search,en
+what is today's top news,news_query,en
+please yeh baat bhool jao bhai,memory_delete,hi
+bhai check wifi status,system_wifi,en
+bhai note likho: project deadline is monday jaldi,notes_create,hinglish
+bhai youtube pe search karo podcast bhai,search_youtube,hinglish
+can you how does this regex work now,code_explain,en
+cheeni delete that memory please,memory_delete,en
+can you wifi on karo fast,system_wifi,hinglish
+can you scroll down the page jaldi,browser_scroll,en
+please email likho leave application ka bhai,email_compose,hinglish
+please create calendar event fast,calendar_add,en
+sun cheeni forget my roll number please,memory_delete,en
+please close the browser window bhai,browser_close,en
+cheeni store this information,memory_save,en
+cheeni mera roll number kya tha now,memory_recall,hinglish
+sun cheeni is script ko run karo bhai,code_run,hinglish
+hey cheeni sync with remote repo,git_push,en
+bhai make a new folder in documents now,folder_create,en
+test suite execute karo jaldi,code_run,hinglish
+can you describe the image on my screen bhai,screen_describe,en
+please is code me bug dhundo,code_debug,hinglish
+can you mere emails check karo jaldi,email_read,hinglish
+is page ka screenshot lo fast,browser_screenshot,hinglish
+cheeni break down this sql query please,code_explain,en
+zarasi look up my study notes please,notes_search,en
+sun cheeni enter text into field,browser_fill,en
+can you delete reminder please,reminder_cancel,en
+hey cheeni take a screenshot of my whole desktop yaar,screen_capture,en
+zarasi stage all files and commit,git_commit,en
+file ko documents folder me move karo bhai,file_move,hinglish
+execute main.py please,code_run,en
+file ko documents folder me move karo,file_move,hinglish
+sun cheeni save kar lo ki rahul ka birthday kal hai now,memory_save,hinglish
+can you cancel my 5pm reminder now,reminder_cancel,en
+hey cheeni mujhe bohot gussa aa raha hai yaar,emotion_angry,hi
+cheeni git commit karo please,git_commit,hinglish
+bhai calendar me reminder add karo,calendar_add,hinglish
+dobara chalu karo,system_restart,hi
+please make screen brighter please,system_brightness,en
+sun cheeni why is my code giving null pointer exception jaldi,code_debug,en
+bhai file dikhao please,file_open,hi
+launch task manager,app_launch,en
+hey cheeni give this file a new name please,file_rename,en
+zarasi remember that my roll number is 42,memory_save,en
+sun cheeni what is today's date yaar,time_query,en
+hey cheeni compose an email to professor regarding project bhai,email_compose,en
+can you how do you say thank you in spanish,translation,en
+cheeni pc ko sleep par daal do bhai,system_sleep,hinglish
+open portal and go to grades page please,browser_navigate,en
+bhai scroll down the page jaldi,browser_scroll,en
+please write a react hook for localstorage yaar,code_write,en
+hey cheeni is script ko run karo jaldi,code_run,hinglish
+hey cheeni youtube pe search karo podcast please,search_youtube,hinglish
+save webpage image please,browser_screenshot,en
+I am so frustrated right now,emotion_angry,en
+cheeni cheeni tera mood kaisa hai,emotion_query,hinglish
+navigate to twitter jaldi,website_open,en
+bhai close active window jaldi,app_close,en
+sun cheeni file ka naam badlo yaar,file_rename,hi
+sun cheeni sleep mode on karo jaldi,system_sleep,hinglish
+can you mera mood theek nahi hai yaar,emotion_sad,hinglish
+please look up my study notes bhai,notes_search,en
+bhai internet connected hai kya please,system_wifi,hinglish
+please feeling super motivated yaar,emotion_happy,en
+hey cheeni what is the weather today fast,weather_query,en
+cheeni puri screen ka screenshot le lo yaar,screen_capture,hinglish
+bhai exit browser bhai,browser_close,en
+please create calendar event,calendar_add,en
+zarasi create a quick note jaldi,notes_create,en
+bhai file create karo now,file_create,hinglish
+analyze current screen,screen_describe,en
+zarasi power off computer jaldi,system_shutdown,en
+hey cheeni push changes to origin main yaar,git_push,en
+create calendar event,calendar_add,en
+sun cheeni bro i got selected for the internship! bhai,emotion_happy,en
+sun cheeni explain this recursive function,code_explain,en
+cheeni type my password here please,screen_type,en
+bhai commit all changes with message fix auth,git_commit,en
+bhai find notes containing exam yaar,notes_search,en
+read the text on my screen bhai,screen_read,en
+please this code is driving me crazy fast,emotion_angry,en
+click on sign in bhai,browser_click,en
+enter input at cursor bhai,screen_type,en
+type my password here yaar,screen_type,en
+bhai write down meeting summary bhai,notes_create,en
+what notes did i take today jaldi,notes_read,en
+launch visual studio code,app_launch,en
+sun cheeni mujhe 5 baje yaad dilana,reminder_set,hi
+zarasi python code likho binary search ka yaar,code_write,hinglish
+can you mere notes dikhao bhai,notes_read,hinglish
+open portal and go to grades page bhai,browser_navigate,en
+hey cheeni save webpage image jaldi,browser_screenshot,en
+please turn off system please,system_shutdown,en
+feeling super motivated,emotion_happy,en
+can you analyze current screen please,screen_describe,en
+sun cheeni why is my code giving null pointer exception please,code_debug,en
+can you put laptop to sleep,system_sleep,en
+zarasi move report.pdf to desktop yaar,file_move,en
+cheeni reminder hata do,reminder_cancel,hi
+show all notes,notes_read,en
+can you what time is it bhai,time_query,en
+cheeni is it going to rain bhai,weather_query,en
+bhai python code likho binary search ka fast,code_write,hinglish
+zarasi type my password here,screen_type,en
+find notes containing exam,notes_search,en
+can you kisi ka mail aaya kya please,email_read,hinglish
+what notes did i take today,notes_read,en
+hey cheeni move file to downloads now,file_move,en
+zarasi scroll screen horizontally,screen_scroll,en
+hey cheeni look up my study notes yaar,notes_search,en
+can you thoda niche scroll karo now,browser_scroll,hinglish
+what is the weather today please,weather_query,en
+zarasi analyze current screen now,screen_describe,en
+zarasi play ed sheeran on youtube now,search_youtube,en
+hey cheeni yeh code kya kar raha hai samjhao fast,code_explain,hinglish
+zarasi calculate 15 percent of 4500 please,math_query,en
+bhai sleep mode on karo please,system_sleep,hinglish
+cheeni screen par kya dikh raha hai fast,screen_describe,hi
+cheeni remind me to drink water in 30 minutes jaldi,reminder_set,en
+bhai schedule doctor appointment on monday bhai,calendar_add,en
+chrome khol,app_launch,hi
+yeh code kya kar raha hai samjhao please,code_explain,hinglish
+cheeni open huggingface fast,website_open,en
+bhai remember that i have an exam on friday,memory_save,en
+sleep mode on karo please,system_sleep,hinglish
+cheeni go to amazon and search for headphones please,browser_navigate,en
+please translate this paragraph to french fast,translation,en
+zarasi delete old_notes.txt now,file_delete,en
+please add meeting with mentor tomorrow at 4pm now,calendar_add,en
+can you is page ka screenshot lo fast,browser_screenshot,hinglish
+hey cheeni explain this recursive function yaar,code_explain,en
+hey cheeni puri screen ka screenshot le lo yaar,screen_capture,hinglish
+sun cheeni what is today's top news jaldi,news_query,en
+sun cheeni how does this regex work now,code_explain,en
+can you type my email in the input box bhai,browser_fill,en
+yeh file hata do,file_delete,hi
+switch to vscode jaldi,app_switch,en
+puri screen ka screenshot le lo,screen_capture,hinglish
+please press next button bhai,browser_click,en
+zarasi mujhe bohot gussa aa raha hai now,emotion_angry,hi
+cheeni mera roll number kya tha jaldi,memory_recall,hinglish
+screen ko upar karo yaar,screen_scroll,hi
+alt tab to spotify,app_switch,en
+zarasi barish hogi kya aaj jaldi,weather_query,hinglish
+please feeling super motivated please,emotion_happy,en
+hey cheeni what time is it now,time_query,en
+please check latest emails jaldi,email_read,en
+sun cheeni close the browser window fast,browser_close,en
+bhai bharat ka prime minister kaun hai jaldi,general_qa,hi
+forget my roll number jaldi,memory_delete,en
+cheeni tera mood kaisa hai bhai,emotion_query,hinglish
+sun cheeni memory clear karo now,memory_delete,hinglish
+please temperature kitna hai bhai,weather_query,hinglish
+bhai kitne baje hain bhai,time_query,hi
+hey cheeni suspend computer,system_sleep,en
+can you screen par kya dikh raha hai,screen_describe,hi
+hey cheeni quit application,app_close,en
+increase screen brightness please,system_brightness,en
+bhai make screen brighter yaar,system_brightness,en
+please pichle notes padho now,notes_read,hi
+what is the capital of France,general_qa,en
+hey cheeni save git changes please,git_commit,en
+zarasi screen band karke sleep karo please,system_sleep,hi
+bhai brightness kam karo jaldi,system_brightness,hinglish
+push current branch to github,git_push,en
+cheeni switch window now,app_switch,en
+sun cheeni translate this paragraph to french,translation,en
+delete this file,file_delete,en
+create a folder named project cheeni jaldi,folder_create,en
+this code is driving me crazy please,emotion_angry,en
+can you remember that my roll number is 42 yaar,memory_save,en
+can you bohot udas hu aaj fast,emotion_sad,hi
+bhai generate fastapi login route yaar,code_write,en
+hey cheeni aaj mausam kaisa hai please,weather_query,hi
+please restart my laptop bhai,system_restart,en
+zarasi close active window jaldi,app_close,en
+bhai create a function for factorial yaar,code_write,en
+sun cheeni restart the pc yaar,system_restart,en
+system power off kar,system_shutdown,hinglish
+cheeni connect to wifi jaldi,system_wifi,en
+hey cheeni create directory called datasets bhai,folder_create,en
+bhai scroll up jaldi,browser_scroll,en
+sun cheeni aaj mai bohot khush hu fast,emotion_happy,hi
+zarasi cancel my 5pm reminder yaar,reminder_cancel,en
+please who is the ceo of google fast,general_qa,en
+file dikhao bhai,file_open,hi
+zarasi analyze current screen yaar,screen_describe,en
+can you store this information,memory_save,en
+sun cheeni click on the red cancel button jaldi,screen_click,en
+cheeni increase volume jaldi,system_volume,en
+can you how does gps work bhai,general_qa,en
+can you dusri window dikhao now,app_switch,hi
+bhai solve 2x + 5 = 15,math_query,en
+sun cheeni read my recent notes fast,notes_read,en
+youtube kholo,website_open,hi
+bhai transfer file to new folder please,file_move,en
+explain this recursive function,code_explain,en
+make a new folder in Documents,folder_create,en
+bhai cancel my 5pm reminder now,reminder_cancel,en
+please click the submit button fast,browser_click,en
+zarasi divide 1000 by 8 yaar,math_query,en
+dusri window dikhao please,app_switch,hi
+cheeni set reminder for assignment submission,reminder_set,en
+naya folder create karo,folder_create,hinglish
+cheeni yahan par text likho,screen_type,hi
+bhai feeling super motivated now,emotion_happy,en
+can you dimag kharab ho gaya hai jaldi,emotion_angry,hinglish
+open chrome yaar,app_launch,en
+can you reminder hata do jaldi,reminder_cancel,hi
+please debug this syntax error yaar,code_debug,en
+clear all active reminders now,reminder_cancel,en
+can you yeh code kya kar raha hai samjhao jaldi,code_explain,hinglish
+sun cheeni mujhe bohot gussa aa raha hai yaar,emotion_angry,hi
+cheeni maine kya yaad rakhne ko bola tha bhai,memory_recall,hi
+sun cheeni close the browser window now,browser_close,en
+bhai move report.pdf to desktop fast,file_move,en
+hey cheeni temperature kitna hai jaldi,weather_query,hinglish
+bhai visual studio kholna,app_launch,hinglish
+sun cheeni bhai reddit open karna now,website_open,hinglish
+bhai delete that memory bhai,memory_delete,en
+can you aaj mai bohot khush hu bhai,emotion_happy,hi
+cheeni exit browser bhai,browser_close,en
+bhai create file project_plan.md bhai,file_create,en
+sun cheeni google kholo now,website_open,hi
+sun cheeni save this to memory please,memory_save,en
+can you this code is driving me crazy please,emotion_angry,en
+please read my unread emails now,email_read,en
+please what is my roll number,memory_recall,en
+can you exit browser yaar,browser_close,en
+sun cheeni type my password here jaldi,screen_type,en
+unmute audio,system_volume,en
+please tell me tech news bhai,news_query,en
+sun cheeni sound full karo,system_volume,hinglish
+is page ka screenshot lo,browser_screenshot,hinglish
+memory clear karo now,memory_delete,hinglish
+sun cheeni forget my roll number,memory_delete,en
+zarasi shubh ratri bhai,chitchat,hi
+bas aaram se baitha hu,emotion_neutral,hinglish
+bhai open my resume.pdf please,file_open,en
+bhai bhai temp file uda do bhai,file_delete,hinglish
+hey what's up,chitchat,en
+rename this file to final_v2.docx,file_rename,en
+can you resume khol ke dikhao fast,file_open,hinglish
+cheeni analyze current screen fast,screen_describe,en
+zarasi read my recent notes now,notes_read,en
+hey cheeni cancel my 5pm reminder jaldi,reminder_cancel,en
+can you what is currently on my display yaar,screen_describe,en
+please telegram chala do fast,app_launch,hinglish
+cheeni check calendar for tomorrow,calendar_read,en
+please read out the error message bhai,screen_read,en
+hey cheeni save webpage image fast,browser_screenshot,en
+bhai mere notes dikhao jaldi,notes_read,hinglish
+page scroll karo jaldi,screen_scroll,hinglish
+mujhe 5 baje yaad dilana now,reminder_set,hi
+can you i feel terrible today bhai,emotion_sad,en
+cheeni naya folder create karo,folder_create,hinglish
+ek note banao yaar,notes_create,hi
+bhai divide 1000 by 8 please,math_query,en
+zarasi yaad rakhna jaldi,memory_save,hi
+find tutorial on youtube,search_youtube,en
+can you tell me tech news fast,news_query,en
+please move report.pdf to desktop please,file_move,en
+aaj mai bohot khush hu,emotion_happy,hi
+bhai read my unread emails,email_read,en
+can you sound full karo fast,system_volume,hinglish
+mujhe 5 baje yaad dilana,reminder_set,hi
+search youtube for python crash course jaldi,search_youtube,en
+cheeni read this document please,file_open,en
+sun cheeni delete reminder fast,reminder_cancel,en
+sun cheeni scroll to bottom now,browser_scroll,en
+bhai stage all files and commit please,git_commit,en
+can you spotify open karo fast,app_launch,hinglish
+please play gaming stream on youtube jaldi,search_youtube,en
+sun cheeni capture desktop screen bhai,screen_capture,en
+stage all files and commit,git_commit,en
+please pichle notes padho yaar,notes_read,hi
+read out the error message,screen_read,en
+please i feel terrible today bhai,emotion_sad,en
+can you file ko documents folder me move karo fast,file_move,hinglish
+bhai what is today's date bhai,time_query,en
+cheeni do you remember my friend's birthday jaldi,memory_recall,en
+sun cheeni check wifi status please,system_wifi,en
+can you look up my study notes fast,notes_search,en
+bhai screen par kya dikh raha hai now,screen_describe,hi
+sound full karo jaldi,system_volume,hinglish
+zarasi do you remember my friend's birthday bhai,memory_recall,en
+look up my study notes yaar,notes_search,en
+cheeni add meeting with mentor tomorrow at 4pm please,calendar_add,en
+navigate to docs.python.org bhai,browser_navigate,en
+can you just continuing work please,emotion_neutral,en
+bhai read the text on my screen yaar,screen_read,en
+can you fix the type error in this typescript file bhai,code_debug,en
+bhai ek empty file bana de,file_create,hinglish
+sun cheeni scroll down the page fast,browser_scroll,en
+please switch back to browser yaar,app_switch,en
+hey cheeni fill username and password now,browser_fill,en
+can you press next button fast,browser_click,en
+hey cheeni remember that i have an exam on friday yaar,memory_save,en
+sun cheeni go to amazon and search for headphones jaldi,browser_navigate,en
+sun cheeni remove temp.log jaldi,file_delete,en
+create a function for factorial,code_write,en
+hey cheeni connect to wifi fast,system_wifi,en
+sun cheeni click on the icon at top right bhai,screen_click,en
+play punjabi songs on youtube,search_youtube,hinglish
+zarasi search bar me query type karo jaldi,browser_fill,hinglish
+youtube pe search karo podcast,search_youtube,hinglish
+please laptop restart karo yaar,system_restart,hinglish
+zarasi play ed sheeran on youtube fast,search_youtube,en
+bhai mere emails check karo please,email_read,hinglish
+zarasi search google for machine learning bhai,search_web,en
+sun cheeni bhai ek directory bana de yaar,folder_create,hinglish
+can you show my upcoming meetings bhai,calendar_read,en
+cheeni check latest emails now,email_read,en
+hey cheeni git push kar do now,git_push,hinglish
+cheeni press next button jaldi,browser_click,en
+sun cheeni navigate to twitter yaar,website_open,en
+hey cheeni internet pe dhundo please,search_web,hi
+can you look up my study notes jaldi,notes_search,en
+zarasi bhai google pe search kar fast,search_web,hinglish
+sun cheeni mujhe 5 baje yaad dilana now,reminder_set,hi
+sun cheeni press next button now,browser_click,en
+sun cheeni find information about transformers now,search_web,en
+increase screen brightness jaldi,system_brightness,en
+hey cheeni what notes did i take today yaar,notes_read,en
+bhai put laptop to sleep now,system_sleep,en
+naya folder create karo now,folder_create,hinglish
+zarasi email likho leave application ka bhai,email_compose,hinglish
+screenshot kheecho yaar,screen_capture,hi
+screen par kya dikh raha hai please,screen_describe,hi
+sun cheeni reminder hata do now,reminder_cancel,hi
+can you yahan par text likho now,screen_type,hi
+hey cheeni why is my code giving null pointer exception yaar,code_debug,en
+cheeni write down meeting summary yaar,notes_create,en
+bhai execute main.py yaar,code_run,en
+hey cheeni maine kya yaad rakhne ko bola tha yaar,memory_recall,hi
+what is today's date,time_query,en
+spotify open karo,app_launch,hinglish
+can you how do you say thank you in spanish please,translation,en
+sun cheeni turn off system please,system_shutdown,en
+zarasi net pe check karo yaar,search_web,hinglish
+what time is it bhai,time_query,en
+sun cheeni volume kam karo,system_volume,hinglish
+sun cheeni push current branch to github,git_push,en
+cheeni draft email to rahul jaldi,email_compose,en
+hey cheeni dockerfile likho nodejs ke liye yaar,code_write,hinglish
+bhai system power off kar,system_shutdown,hinglish
+please internet connected hai kya jaldi,system_wifi,hinglish
+hey cheeni create a file named todo.txt bhai,file_create,en
+quit application,app_close,en
+hey cheeni set reminder for assignment submission bhai,reminder_set,en
+read the text on my screen jaldi,screen_read,en
+can you open huggingface bhai,website_open,en
+read this document bhai,file_open,en
+can you remind me to drink water in 30 minutes please,reminder_set,en
+run this python script,code_run,en
+sun cheeni play punjabi songs on youtube yaar,search_youtube,hinglish
+hey cheeni yeh yaad rakhna please,memory_save,hi
+zarasi git commit karo yaar,git_commit,hinglish
+zarasi i feel terrible today jaldi,emotion_sad,en
+cheeni reboot computer bhai,system_restart,en
+please you are awesome please,chitchat,en
+can you rename document to project.pdf please,file_rename,en
+sun cheeni is script ko run karo jaldi,code_run,hinglish
+please tu kaisa hai bhai please,emotion_query,hinglish
+maja aa gaya bhai bhai,emotion_happy,hinglish
+hey cheeni pc ko sleep par daal do please,system_sleep,hinglish
+bhai yaad rakhna fast,memory_save,hi
+delete unwanted file,file_delete,en
+cheeni give me ai news updates fast,news_query,en
+feeling super motivated yaar,emotion_happy,en
+bhai what is today's date jaldi,time_query,en
+zarasi look up python tutorials bhai,search_web,en
+file dikhao yaar,file_open,hi
+hey cheeni read the text on my screen jaldi,screen_read,en
+hey cheeni read the text on my screen bhai,screen_read,en
+can you press the save icon jaldi,screen_click,en
+google what is backpropagation,search_web,en
+zarasi cheeni tera mood kaisa hai,emotion_query,hinglish
+git commit karo jaldi,git_commit,hinglish
+write a react hook for localstorage please,code_write,en
+zarasi code execute kyu nahi ho raha,code_debug,hinglish
+zarasi what is the capital of france bhai,general_qa,en
+zarasi break down this sql query,code_explain,en
+cheeni analyze current screen now,screen_describe,en
+please view spreadsheet yaar,file_open,en
+open my resume.pdf,file_open,en
+zarasi suspend computer yaar,system_sleep,en
+hey cheeni create a function for factorial now,code_write,en
+bhai push current branch to github now,git_push,en
+store this information,memory_save,en
+bhai push current branch to github jaldi,git_push,en
+please open portal and go to grades page yaar,browser_navigate,en
+hey cheeni navigate to docs.python.org fast,browser_navigate,en
+bhai screenshot kheecho,screen_capture,hi
+bhai relocate this document please,file_move,en
+sun cheeni mera mood theek nahi hai now,emotion_sad,hinglish
+please decrease volume by 20 percent jaldi,system_volume,en
+sun cheeni write an apology email now,email_compose,en
+please screen par kya dikh raha hai jaldi,screen_describe,hi
+sun cheeni yeh baat bhool jao bhai,memory_delete,hi
+can you disconnect wifi please,system_wifi,en
+cheeni create calendar event,calendar_add,en
+please mera mood theek nahi hai fast,emotion_sad,hinglish
+hey cheeni barish hogi kya aaj jaldi,weather_query,hinglish
+hey cheeni change application bhai,app_switch,en
+play arijit singh on youtube,search_youtube,hinglish
+wifi on karo,system_wifi,hinglish
+cheeni search on internet about quantum computing jaldi,search_web,en
+can you scroll to bottom,browser_scroll,en
+cheeni screen ko upar karo now,screen_scroll,hi
+cheeni find tutorial on youtube please,search_youtube,en
+bhai open chrome,app_launch,en
+please hello cheeni yaar,chitchat,en
+cheeni login button par click karo,browser_click,hinglish
+check wifi status now,system_wifi,en
+cheeni delete reminder bhai,reminder_cancel,en
+click the submit button now,browser_click,en
+sun cheeni close active window please,app_close,en
+latest headlines sunao bhai,news_query,hinglish
+bhai look up python tutorials jaldi,search_web,en
+bhai brightness kam karo now,system_brightness,hinglish
+please store this information yaar,memory_save,en
+move file to downloads,file_move,en
+hey cheeni run this python script now,code_run,en
+zarasi calendar me reminder add karo yaar,calendar_add,hinglish
+how does this regex work bhai,code_explain,en
+sun cheeni calculate 15 percent of 4500 please,math_query,en
+sun cheeni you are awesome,chitchat,en
+click on the icon at top right,screen_click,en
+bhai kitne baje hain jaldi,time_query,hi
+zarasi search notes for machine learning yaar,notes_search,en
+can you puri screen ka screenshot le lo bhai,screen_capture,hinglish
+please screen band karke sleep karo yaar,system_sleep,hi
+cheeni enter input at cursor now,screen_type,en
+zarasi feeling super motivated please,emotion_happy,en
+please set reminder for assignment submission bhai,reminder_set,en
+sun cheeni increase volume yaar,system_volume,en
+debug this syntax error fast,code_debug,en
+cheeni is page ka screenshot lo please,browser_screenshot,hinglish
+please what is on my schedule today jaldi,calendar_read,en
+sun cheeni recall my notes on neural networks bhai,memory_recall,en
+cheeni pc shut down karo bhai,system_shutdown,hinglish
+can you mujhe 5 baje yaad dilana jaldi,reminder_set,hi
+hey cheeni git push kar do jaldi,git_push,hinglish
+zarasi describe the image on my screen bhai,screen_describe,en
+bhai transfer file to new folder,file_move,en
+bhai move report.pdf to desktop bhai,file_move,en
+hey cheeni aaj mera kya schedule hai yaar,calendar_read,hinglish
+youtube pe latest song search karo,search_youtube,hinglish
+write an apology email jaldi,email_compose,en
+zarasi feeling super motivated jaldi,emotion_happy,en
+please bhai ek empty file bana de bhai,file_create,hinglish
+hey cheeni how are you feeling cheeni bhai,emotion_query,en
+please okay i am just sitting here bhai,emotion_neutral,en
+sun cheeni check wifi status yaar,system_wifi,en
+please google search deep learning course now,search_web,en
+zarasi wifi check karo,system_wifi,hinglish
+hey cheeni read my recent notes bhai,notes_read,en
+calculate 15 percent of 4500,math_query,en
+cheeni yeh file hata do now,file_delete,hi
+zarasi app band kar,app_close,hi
+email likho leave application ka bhai,email_compose,hinglish
+sun cheeni is it going to rain now,weather_query,en
+hey cheeni enter text into field,browser_fill,en
+start notepad,app_launch,en
+what is on my schedule today now,calendar_read,en
+zarasi reminder lagao kal subah 7 baje jaldi,reminder_set,hinglish
+power off computer,system_shutdown,en
+zarasi square root of 144 kitna hota hai,math_query,hinglish
+cheeni just continuing work now,emotion_neutral,en
+please good night please,chitchat,en
+zarasi is page ka screenshot lo jaldi,browser_screenshot,hinglish
+hey cheeni why is nothing working today fast,emotion_angry,en
+bhai exit browser now,browser_close,en
+bhai what notes did i take today bhai,notes_read,en
+cheeni scroll up,browser_scroll,en
+please open notes.txt now,file_open,en
+hey cheeni mere emails check karo fast,email_read,hinglish
+can you restart the pc please,system_restart,en
+bhai mere emails check karo now,email_read,hinglish
+do you remember my friend's birthday jaldi,memory_recall,en
+bhai capture desktop screen please,screen_capture,en
+bhai puri screen ka screenshot le lo fast,screen_capture,hinglish
+open whatsapp desktop,app_launch,en
+can you run this python script bhai,code_run,en
+zarasi bhai ek directory bana de fast,folder_create,hinglish
+hey cheeni yeh code kya kar raha hai samjhao jaldi,code_explain,hinglish
+save note now,notes_create,en
+cheeni hello cheeni bhai,chitchat,en
+can you hello cheeni now,chitchat,en
+bhai close the browser window please,browser_close,en
+please what did i tell you about my exam jaldi,memory_recall,en
+i feel terrible today jaldi,emotion_sad,en
+cheeni check calendar for tomorrow bhai,calendar_read,en
+click on the icon at top right fast,screen_click,en
+hey cheeni erase test.py jaldi,file_delete,en
+please capture desktop screen jaldi,screen_capture,en
+click on the red cancel button please,screen_click,en
+hey cheeni notepad open kar jaldi,app_launch,hinglish
+reminder hata do bhai,reminder_cancel,hi
+zarasi remember that i have an exam on friday bhai,memory_save,en
+zarasi aaj mera kya schedule hai now,calendar_read,hinglish
+sun cheeni commit all changes with message fix auth yaar,git_commit,en
+zarasi enter text into field please,browser_fill,en
+bhai how do you say thank you in spanish,translation,en
+sun cheeni translate hello to hindi yaar,translation,en
+internet pe dhundo please,search_web,hi
+zarasi type my email in the input box fast,browser_fill,en
+zarasi debug this syntax error bhai,code_debug,en
+zarasi press the save icon,screen_click,en
+cheeni make a new folder in documents yaar,folder_create,en
+zarasi scroll to bottom please,browser_scroll,en
+zarasi create a folder named project cheeni please,folder_create,en
+can you file delete karo yaar,file_delete,hinglish
+can you go to github.com please,website_open,en
+cheeni why is nothing working today,emotion_angry,en
+hey cheeni touch test.py fast,file_create,en
+zarasi write an apology email,email_compose,en
+bhai mere emails check karo bhai,email_read,hinglish
+zarasi change file name bhai,file_rename,en
+increase screen brightness now,system_brightness,en
+hey cheeni who is the ceo of google bhai,general_qa,en
+cheeni kitne baje hain now,time_query,hi
+sun cheeni login button par click karo bhai,browser_click,hinglish
+sun cheeni is code me bug dhundo now,code_debug,hinglish
+hey cheeni login button par click karo fast,browser_click,hinglish
+cheeni mera mood theek nahi hai now,emotion_sad,hinglish
+zarasi recall my notes on neural networks yaar,memory_recall,en
+bhai reminder lagao kal subah 7 baje yaar,reminder_set,hinglish
+sun cheeni delete reminder now,reminder_cancel,en
+zarasi bohot udas hu aaj bhai,emotion_sad,hi
+can you save kar lo ki rahul ka birthday kal hai fast,memory_save,hinglish
+hey cheeni bore ho raha hu yaar,chitchat,hinglish
+zarasi maine kya yaad rakhne ko bola tha please,memory_recall,hi
+hey cheeni file ka naam badlo now,file_rename,hi
+stage all files and commit now,git_commit,en
+sun cheeni close the browser window jaldi,browser_close,en
+bhai aaj kaunsa din hai please,time_query,hi
+can you read my unread emails jaldi,email_read,en
+zarasi read out the error message please,screen_read,en
+please increase volume yaar,system_volume,en
+sun cheeni look up my study notes,notes_search,en
+hey cheeni screenshot kheecho jaldi,screen_capture,hi
+open portal and go to grades page jaldi,browser_navigate,en
+hey cheeni volume badhao please,system_volume,hi
+sun cheeni bhai google pe search kar,search_web,hinglish
+cheeni mera roll number kya tha bhai,memory_recall,hinglish
+zarasi kitne baje hain fast,time_query,hi
+please look up my study notes jaldi,notes_search,en
+bhai go to next window please,app_switch,en
+disconnect wifi,system_wifi,en
+google search deep learning course,search_web,en
+can you just continuing work now,emotion_neutral,en
+bas aaram se baitha hu jaldi,emotion_neutral,hinglish
+weather forecast for tomorrow jaldi,weather_query,en
+bhai screen par is icon pe click karo bhai,screen_click,hinglish
+increase screen brightness fast,system_brightness,en
+reminder hata do jaldi,reminder_cancel,hi
+sun cheeni type hello world on screen fast,screen_type,en
+can you close the browser window bhai,browser_close,en
+zarasi yeh baat bhool jao bhai,memory_delete,hi
+hey cheeni translate this paragraph to french please,translation,en
+sun cheeni git commit karo now,git_commit,hinglish
+hey cheeni turn off my pc yaar,system_shutdown,en
+sun cheeni remember that i have an exam on friday,memory_save,en
+cheeni feeling super motivated bhai,emotion_happy,en
+can you aaj mera kya schedule hai,calendar_read,hinglish
+bhai shut down the laptop,system_shutdown,en
+can you exit browser,browser_close,en
+bhai take a screenshot of the webpage fast,browser_screenshot,en
+bhai youtube pe chalao standup comedy please,search_youtube,hinglish
+bhai screen pe kya likha hai padho jaldi,screen_read,hinglish
+please click on the red cancel button jaldi,screen_click,en
+please screen ko upar karo fast,screen_scroll,hi
+please recall my notes on neural networks please,memory_recall,en
+can you what is currently on my display now,screen_describe,en
+mute audio fast,system_volume,en
+zarasi who is the ceo of google yaar,general_qa,en
+hey cheeni solve 2x + 5 = 15 jaldi,math_query,en
+computer band karo,system_shutdown,hi
+zarasi solve 2x + 5 = 15 now,math_query,en
+bhai close the browser window yaar,browser_close,en
+zarasi run this python script bhai,code_run,en
+can you aur batao cheeni,chitchat,hinglish
+who created you,chitchat,en
+bhai open notes.txt jaldi,file_open,en
+wifi check karo please,system_wifi,hinglish
+cheeni search youtube for lofi hip hop,search_youtube,en
+please take a note: buy milk and eggs bhai,notes_create,en
+zarasi normal day hai jaldi,emotion_neutral,hinglish
+can you make screen brighter please,system_brightness,en
+bhai screen par kya dikh raha hai jaldi,screen_describe,hi
+please bhai reddit open karna yaar,website_open,hinglish
+play ed sheeran on youtube,search_youtube,en
+hey cheeni scroll screen horizontally now,screen_scroll,en
+can you put laptop to sleep now,system_sleep,en
+hey cheeni open portal and go to grades page jaldi,browser_navigate,en
+hey cheeni bharat ka prime minister kaun hai fast,general_qa,hi
+scroll up,browser_scroll,en
+zarasi scroll down the page jaldi,browser_scroll,en
+sun cheeni take a note: buy milk and eggs jaldi,notes_create,en
+zarasi clear all active reminders jaldi,reminder_cancel,en
+can you play arijit singh on youtube,search_youtube,hinglish
+cheeni how do you say thank you in spanish,translation,en
+bhai file ko documents folder me move karo now,file_move,hinglish
+zarasi check calendar for tomorrow fast,calendar_read,en
+hey cheeni commit all changes with message fix auth,git_commit,en
+hey cheeni bro i got selected for the internship! now,emotion_happy,en
+open netflix,website_open,en
+what did i tell you about my exam jaldi,memory_recall,en
+hey cheeni enter text into field jaldi,browser_fill,en
+please aaj ki taza khabar kya hai bhai,news_query,hi
+bhai who is the ceo of google now,general_qa,en
+resume khol ke dikhao yaar,file_open,hinglish
+hey cheeni iska english translation batao now,translation,hinglish
+cheeni create file project_plan.md now,file_create,en
+view spreadsheet now,file_open,en
+latest headlines sunao,news_query,hinglish
+bhai dimag kharab ho gaya hai yaar,emotion_angry,hinglish
+brightness kam karo,system_brightness,hinglish
+bhai ek directory bana de jaldi,folder_create,hinglish
+bhai yeh baat bhool jao jaldi,memory_delete,hi
+please what is today's top news yaar,news_query,en
+can you is code me bug dhundo bhai,code_debug,hinglish
+cheeni yahan par text likho jaldi,screen_type,hi
+zarasi naya folder create karo now,folder_create,hinglish
+can you why is nothing working today now,emotion_angry,en
+can you open discord fast,app_launch,en
+hey cheeni yeh baat bhool jao fast,memory_delete,hi
+can you press next button please,browser_click,en
+bhai run this python script fast,code_run,en
+bhai make screen brighter now,system_brightness,en
+hey cheeni is code me bug dhundo,code_debug,hinglish
+cheeni mujhe 5 baje yaad dilana,reminder_set,hi
+sun cheeni page scroll karo yaar,screen_scroll,hinglish
+can you screen pe kya likha hai padho now,screen_read,hinglish
+sun cheeni screenshot kheecho now,screen_capture,hi
+sun cheeni put laptop to sleep,system_sleep,en
+bhai cancel my 5pm reminder jaldi,reminder_cancel,en
+close chrome yaar,app_close,en
+search bar me query type karo fast,browser_fill,hinglish
+sun cheeni kisi ka mail aaya kya yaar,email_read,hinglish
+internet connected hai kya now,system_wifi,hinglish
+please brightness kam karo bhai,system_brightness,hinglish
+hey cheeni create a new text file fast,file_create,en
+cheeni chrome pe switch karo yaar,app_switch,hinglish
+bhai dusra tab kholo jaldi,app_switch,hi
+sun cheeni code execute kyu nahi ho raha jaldi,code_debug,hinglish
+please click on sign in bhai,browser_click,en
+hey cheeni documents me file banao fast,file_create,hinglish
+please set reminder for assignment submission,reminder_set,en
+sun cheeni i feel terrible today please,emotion_sad,en
+screen par is icon pe click karo jaldi,screen_click,hinglish
+bhai file dikhao,file_open,hi
+zarasi i am feeling great today! yaar,emotion_happy,en
+rename document to project.pdf now,file_rename,en
+please dim the display bhai,system_brightness,en
+zarasi yaad rakhna please,memory_save,hi
+hey cheeni forget my roll number,memory_delete,en
+zarasi i failed my exam bhai,emotion_sad,en
+hey cheeni yeh window band karo please,app_close,hinglish
+sun cheeni delete old_notes.txt fast,file_delete,en
+cheeni close the browser window jaldi,browser_close,en
